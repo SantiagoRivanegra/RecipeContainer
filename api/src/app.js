@@ -29,8 +29,8 @@ server.use((req, res, next) => {
 // //   host: '127.0.0.1',
 // // })
 
-// server.use('/user', userRoute)
-// server.use('/recipe', recipeRoute)
+server.use('/user', userRoute)
+server.use('/recipe', recipeRoute)
 
 server.use((err, req, res, next) => {
   const status = err.status || 500
