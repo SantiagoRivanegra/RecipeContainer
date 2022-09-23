@@ -24,13 +24,13 @@ server.use((req, res, next) => {
   next()
 })
 
-// const redis = new Redis({
-//   port: 6379,
-//   host: '127.0.0.1',
-// })
+// // const redis = new Redis({
+// //   port: 6379,
+// //   host: '127.0.0.1',
+// // })
 
-server.use('/user', userRoute)
-server.use('/recipe', recipeRoute)
+// server.use('/user', userRoute)
+// server.use('/recipe', recipeRoute)
 
 server.use((err, req, res, next) => {
   const status = err.status || 500
