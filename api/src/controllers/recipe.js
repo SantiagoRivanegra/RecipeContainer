@@ -99,17 +99,6 @@ const getRandomRecipe = async(req, res) => {
 const getRecipeByName = async(req, res) => {
   const { name } = req.params
   try {
-    // const recipe = await getRecipes()
-    // if(!name){
-    //   res.status(404).send('nope')
-    // } else {
-    //   const rec = recipe.filter(rec => rec.name_recipe.toLowerCase() === name.toLowerCase())
-    //   rec.length ?
-    //   res.status(200).send(rec)
-    //   :
-    //   console.log(recipe) 
-    //   res.status(404).send('nopee')
-    // }
     if(name){
       const apiUrl = await axios.get(`https://www.themealdb.com/api/json/v1/1/search.php?s=${name}`)
       if(apiUrl.data.meals){
@@ -122,17 +111,136 @@ const getRecipeByName = async(req, res) => {
       })
       res.status(200).json(recipeName)    
     } else {
-      res.status(404).json('No exist')
+      res.status(404).send('This food does not exist')
     }
     }
   } catch (error) {
     console.log(error)
   }
+}
 
+const getRecipeDetail = async(req, res) => {
+  const { id } = req.params
+  try {
+    if(id){
+      const apiUrl = await axios.get(`https://www.themealdb.com/api/json/v1/1/lookup.php?i=${id}`)
+      if(apiUrl.data.meals){
+      const recipeId = await apiUrl.data.meals.map(r => {
+        return {
+          recipe_id: r.idMeal,
+          name_recipe: r.strMeal,
+          description: r.strInstructions,
+        }
+      })
+      res.status(200).json(recipeId)    
+    } else {
+      res.status(404).send('This food does not exist')
+    }
+    }
+  } catch (error) {
+    console.log(error)
+  }
+}
+
+const getRecipeByFirstLetter = async(req, res) => {
+  const { letter } = req.params
+  try {
+    if(letter){
+      const apiUrl = await axios.get(`https://www.themealdb.com/api/json/v1/1/search.php?f=${letter}`)
+      if(apiUrl.data.meals){
+      const recipeLetter = await apiUrl.data.meals.map(r => {
+        return {
+          recipe_id: r.idMeal,
+          name_recipe: r.strMeal,
+          description: r.strInstructions,
+        }
+      })
+      res.status(200).json(recipeLetter)    
+    } else {
+      res.status(404).send(`There is no food with the letter ${letter}`)
+    }
+    }
+  } catch (error) {
+    console.log(error)
+  }
+}
+
+const getRecipeByCategory = async(req, res) => {
+  const { category } = req.params
+  try {
+    if(category){
+      const apiUrl = await axios.get(`https://www.themealdb.com/api/json/v1/1/filter.php?c=${category}`)
+      if(apiUrl.data.meals){
+      const recipeCategory = await apiUrl.data.meals.map(r => {
+        return {
+          recipe_id: r.idMeal,
+          name_recipe: r.strMeal,
+          image: r.strMealThumb,
+        }
+      })
+      res.status(200).json(recipeCategory)    
+    } else {
+      res.status(404).send(`No category found`)
+    }
+    }
+  } catch (error) {
+    console.log(error)
+  }
+}
+
+const getRecipeByArea = async(req, res) => {
+  const { area } = req.params
+  try {
+    if(area){
+      const apiUrl = await axios.get(`https://www.themealdb.com/api/json/v1/1/filter.php?a=${area}`)
+      if(apiUrl.data.meals){
+      const recipeArea = await apiUrl.data.meals.map(r => {
+        return {
+          recipe_id: r.idMeal,
+          name_recipe: r.strMeal,
+          image: r.strMealThumb,
+        }
+      })
+      res.status(200).json(recipeArea)    
+    } else {
+      res.status(404).send(`No Area found`)
+    }
+    }
+  } catch (error) {
+    console.log(error)
+  }
+}
+
+const getRecipeByIngredient = async(req, res) => {
+  const { ingredient } = req.params
+  try {
+    if(ingredient){
+      const apiUrl = await axios.get(`https://www.themealdb.com/api/json/v1/1/filter.php?i=${ingredient}`)
+      if(apiUrl.data.meals){
+      const recipeIngredient = await apiUrl.data.meals.map(r => {
+        return {
+          recipe_id: r.idMeal,
+          name_recipe: r.strMeal,
+          image: r.strMealThumb,
+        }
+      })
+      res.status(200).json(recipeIngredient)    
+    } else {
+      res.status(404).send(`No ingredient found`)
+    }
+    }
+  } catch (error) {
+    console.log(error)
+  }
 }
 
 module.exports = {
   getRecipes,
   getRandomRecipe,
-  getRecipeByName
+  getRecipeByName,
+  getRecipeDetail,
+  getRecipeByFirstLetter,
+  getRecipeByCategory,
+  getRecipeByArea,
+  getRecipeByIngredient
 }
