@@ -11,6 +11,7 @@ function reducer(state = initialState, { type, payload }){
         recipe: payload,
         allRecipe: payload
       }
+      default: return state
   }
 
 }

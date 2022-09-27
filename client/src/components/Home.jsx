@@ -19,7 +19,7 @@ const Home = () => {
             return(
             <div>
               <h3>{r.name_recipe}</h3>
-              <img src={r.image}/>
+              <img src={r.image} alt=''/>
             </div>
             )
           })
