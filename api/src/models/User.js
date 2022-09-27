@@ -24,19 +24,19 @@ module.exports = (sequelize) => {
     },
     avatar: {
       type: DataTypes.STRING,
-      allowNull: false,
+      allowNull: true,
     },
     like: {
       type: DataTypes.STRING,
-      allowNull: false,
+      allowNull: true,
     },
     comment_received: {
       type: DataTypes.STRING,
-      allowNull: false,
+      allowNull: true,
     },
     comment_send: {
       type: DataTypes.STRING,
-      allowNull: false,
+      allowNull: true,
     },
   },
   {
