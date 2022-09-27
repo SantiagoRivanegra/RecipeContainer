@@ -1,4 +1,8 @@
 const { Router } = require('express')
+const {} = require('../controllers/user/getUser')
+const {} = require('../controllers/user/deleteUser') 
+const {} = require('../controllers/user/postUser') 
+const {} = require('../controllers/user/putUser') 
 
 const router = Router()
 

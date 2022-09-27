@@ -1,5 +1,5 @@
 const axios = require('axios')
-const { User, Recipe } = require('../db')
+const { User, Recipe } = require('../../db')
 
 const getApiInfo = async() =>{
     const apiUrl = await axios.get('https://www.themealdb.com/api/json/v1/1/search.php?s=')
@@ -51,13 +51,16 @@ const getDbInfo = async() => {
   })
 }
 
+//Get recipes
 const getRecipes = async(req, res) => {
   const apiInfo = await getApiInfo()
   const dbInfo = await getDbInfo()
   const recipes = apiInfo.concat(dbInfo)
+  res.status(200).json(recipes)
   return recipes
 }
 
+//Get Random Recipe
 const getRandomRecipe = async(req, res) => {
     const apiUrl = await axios.get('https://www.themealdb.com/api/json/v1/1/random.php')
     const random = await apiUrl.data.meals.map(r => {
@@ -96,6 +99,7 @@ const getRandomRecipe = async(req, res) => {
      res.status(200).json(random)
 }
 
+//Get Recipe by Name
 const getRecipeByName = async(req, res) => {
   const { name } = req.params
   try {
@@ -119,6 +123,7 @@ const getRecipeByName = async(req, res) => {
   }
 }
 
+//Get Recipe Detail
 const getRecipeDetail = async(req, res) => {
   const { id } = req.params
   try {
@@ -142,6 +147,7 @@ const getRecipeDetail = async(req, res) => {
   }
 }
 
+//Get Recipe by First Letter
 const getRecipeByFirstLetter = async(req, res) => {
   const { letter } = req.params
   try {
@@ -165,6 +171,7 @@ const getRecipeByFirstLetter = async(req, res) => {
   }
 }
 
+//Get Recipe by Category
 const getRecipeByCategory = async(req, res) => {
   const { category } = req.params
   try {
@@ -188,6 +195,7 @@ const getRecipeByCategory = async(req, res) => {
   }
 }
 
+//Get Recipe by Area
 const getRecipeByArea = async(req, res) => {
   const { area } = req.params
   try {
@@ -211,6 +219,7 @@ const getRecipeByArea = async(req, res) => {
   }
 }
 
+//Get Recipe by Ingredient
 const getRecipeByIngredient = async(req, res) => {
   const { ingredient } = req.params
   try {

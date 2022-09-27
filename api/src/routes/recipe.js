@@ -1,5 +1,8 @@
 const { Router } = require('express')
-const { getRecipes, getRandomRecipe, getRecipeByName, getRecipeDetail, getRecipeByFirstLetter, getRecipeByCategory, getRecipeByArea, getRecipeByIngredient } = require('../controllers/recipe')
+const { getRecipes, getRandomRecipe, getRecipeByName, getRecipeDetail, getRecipeByFirstLetter, getRecipeByCategory, getRecipeByArea, getRecipeByIngredient } = require('../controllers/recipe/getRecipe')
+const {  } = require('../controllers/recipe/deleteRecipe')
+const {  } = require('../controllers/recipe/postRecipe')
+const {  } = require('../controllers/recipe/putRecipe')
 
 const router = Router()
 
