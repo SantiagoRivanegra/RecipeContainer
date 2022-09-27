@@ -1,6 +1,7 @@
 const initialState = {
   recipe: [],
-  allRecipe: []
+  allRecipe: [],
+  letter: []
 }
 
 function reducer(state = initialState, { type, payload }){
@@ -11,7 +12,14 @@ function reducer(state = initialState, { type, payload }){
         recipe: payload,
         allRecipe: payload
       }
-      default: return state
+    
+    case 'GET_RECIPE_LETTER':
+      return{
+        ...state,
+        recipe: payload
+      }  
+
+    default: return state
   }
 
 }

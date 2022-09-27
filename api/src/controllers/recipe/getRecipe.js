@@ -158,6 +158,7 @@ const getRecipeByFirstLetter = async(req, res) => {
         return {
           recipe_id: r.idMeal,
           name_recipe: r.strMeal,
+          image: r.strMealThumb,
           description: r.strInstructions,
         }
       })
