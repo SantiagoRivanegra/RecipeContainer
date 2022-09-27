@@ -1,6 +1,6 @@
 const { Router } = require('express')
 const { getRecipes, getRandomRecipe, getRecipeByName, getRecipeDetail, getRecipeByFirstLetter, getRecipeByCategory, getRecipeByArea, getRecipeByIngredient } = require('../controllers/recipe/getRecipe')
-const {  } = require('../controllers/recipe/deleteRecipe')
+const { deleteRecipe } = require('../controllers/recipe/deleteRecipe')
 const {  } = require('../controllers/recipe/postRecipe')
 const {  } = require('../controllers/recipe/putRecipe')
 
@@ -33,5 +33,8 @@ router.get('/ingredient/:ingredient', getRecipeByIngredient)
 //List of All categories(have descirption - /categories.php)
 //List of area(/list.php?a=list)
 //List of ingredient(/list.php?i=list)
+
+//Delete Recipe
+router.delete('/:id', deleteRecipe)
 
 module.exports = router;
