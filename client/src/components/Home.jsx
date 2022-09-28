@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
+import Card from './recipe/Card'
+
 import { getRecipe, firstLetter } from '../redux/actions'
 
 const Home = () => {
@@ -16,7 +18,7 @@ const Home = () => {
   }, [])
   
   return (
-    <div>home
+    <div>AppBar - SearchBar SignUp LogIn -- SearchBar Likes Comments LogOut Profile
       <div>
         <button value="a" onClick={(e) => letter(e)}>a</button>
         <button value="b" onClick={(e) => letter(e)}>b</button>
@@ -49,10 +51,11 @@ const Home = () => {
         {
           allRecipe && allRecipe.map((r) =>{
             return(
-            <div>
-              <h3>{r.name_recipe}</h3>
-              <img src={r.image} alt=''/>
-            </div>
+              <Card name={r.name_recipe} img={r.image}/>
+            // <div>
+            //   <h3>{r.name_recipe}</h3>
+            //   <img src={r.image} alt=''/>
+            // </div>
             )
           })
         }
