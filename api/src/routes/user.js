@@ -1,13 +1,13 @@
 const { Router } = require('express')
-const {} = require('../controllers/user/getUser')
+const { getUser } = require('../controllers/user/getUser')
 const {} = require('../controllers/user/deleteUser') 
-const {} = require('../controllers/user/postUser') 
+const { postUser } = require('../controllers/user/postUser') 
 const {} = require('../controllers/user/putUser') 
 
 const router = Router()
 
-// //Get Users for Admin
-// router.get('/', getUser)
+//Get Users for Admin
+router.get('/', getUser)
 
 // //Get User Profile
 // router.get('/profile/:idUser', getUserProfile)
@@ -21,11 +21,11 @@ const router = Router()
 // //Get all Likes
 // router.get('/likes/:idUser', getUserLike)
 
-// //Post User
-// router.post('/', postUser)
-
 // //Delete User
 // router.delete('/:idUser', deleteUser)
+
+//Post User
+router.post('/', postUser)
 
 // //Put Password
 // router.put('/password/:idUser', putPassword)
