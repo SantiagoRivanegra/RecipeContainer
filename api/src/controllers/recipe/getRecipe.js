@@ -115,21 +115,22 @@ const getRecipeByName = async(req, res) => {
       })
       res.status(200).json(recipeName)    
     } else if(name) {
-      const recipeDb = await getDbInfo()
+      const recipeDb = await Recipe.findAll({ 
+        where: { name_recipe : name }
+      })
       if(recipeDb){
         const recipeName = await recipeDb.map(r => {
-          //console.log(recipeDb[0])
           if((name) === r.name_recipe){
             return {
               recipe_id: r.recipe_id,
               name_recipe: r.name_recipe,
               description: r.description,
             }
-          } else {
-
           }
         })
-        res.status(200).json(recipeName)    
+        recipeName.length > 0 ?
+        res.status(200).json(recipeName) :
+        res.status(404).send('This food does not exist')
       }
     } else {
       res.status(404).send('This food does not exist')
