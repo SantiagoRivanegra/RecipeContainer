@@ -16,13 +16,13 @@ router.get('/', getUser)
 // router.get('/recipe/:idUser', getUserRecipe)
 
 // //Get all Comments
-// router.get('/commen/:idUser', getUserComment)
+// router.get('/commen/:idUser', getUserComment)*
 
 // //Get all Likes
-// router.get('/likes/:idUser', getUserLike)
+// router.get('/likes/:idUser', getUserLike)*
 
 // //Delete User
-// router.delete('/:idUser', deleteUser)
+// router.delete('/:idUser', deleteUser)*
 
 //Post User
 router.post('/', postUser)
@@ -30,10 +30,13 @@ router.post('/', postUser)
 // //Put Password
 // router.put('/password/:idUser', putPassword)
 
+// //Put CommentSend
+// router.put('/comment/:idUser', putCommentSend)
+
 // //Put Username
-// router.put('/username/:idUser', putUsername)
+// router.put('/username/:idUser', putUsername)*
 
 // //Put Avatar
-// router.put('/avatar/:idUser', putAvatar)
+// router.put('/avatar/:idUser', putAvatar)*
 
 module.exports = router;

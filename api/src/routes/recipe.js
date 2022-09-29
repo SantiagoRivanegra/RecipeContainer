@@ -1,7 +1,7 @@
 const { Router } = require('express')
 const { getRecipes, getRandomRecipe, getRecipeByName, getRecipeDetail, getRecipeByFirstLetter, getRecipeByCategory, getRecipeByArea, getRecipeByIngredient } = require('../controllers/recipe/getRecipe')
 const { deleteRecipe } = require('../controllers/recipe/deleteRecipe')
-const {  } = require('../controllers/recipe/postRecipe')
+const { postRecipe } = require('../controllers/recipe/postRecipe')
 const {  } = require('../controllers/recipe/putRecipe')
 
 const router = Router()
@@ -36,5 +36,8 @@ router.get('/ingredient/:ingredient', getRecipeByIngredient)
 
 //Delete Recipe
 router.delete('/:id', deleteRecipe)
+
+//Post Recipe
+router.post('/', postRecipe)
 
 module.exports = router;

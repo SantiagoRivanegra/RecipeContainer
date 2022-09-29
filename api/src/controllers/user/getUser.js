@@ -3,10 +3,10 @@ const { User, Recipe } = require('../../db')
 
 const getUser = async(req, res) => {
   try {
-    const users = await User.FindAll({
-      include: {
-        model: Recipe
-      }
+    const users = await User.findAll({
+      // include: {
+      //   model: Recipe
+      // }
     })
     res.status(200).json(users) 
   } catch (error) {
