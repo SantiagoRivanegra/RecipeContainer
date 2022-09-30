@@ -1,13 +1,36 @@
 import React, { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+import Box from '@material-ui/core/Box'
 
 import Card from './recipe/Card'
+import Random from './recipe/Random'
+import Paged from './Paged'
 
 import { getRecipe, firstLetter } from '../redux/actions'
 
+import { makeStyles } from '@material-ui/core/styles'
+
+const useStyle = makeStyles({
+  // paged:{
+  //   display: flex,
+  // }
+})
+
 const Home = () => {
+  const classes = useStyle()
   const dispatch = useDispatch()
-  const allRecipe = useSelector((state) => state.recipe)
+  const allRecipes = useSelector((state) => state.recipe)
+
+  const [currentPage, setCurrentPage] = useState(1)
+  const [recipesPerPage, setRecipesPerPage] = useState(8)
+  const indexOfLastRecipe = currentPage * recipesPerPage
+  const indexOfFirstRecipe = indexOfLastRecipe - recipesPerPage
+  const currentRecipe = allRecipes.slice(indexOfFirstRecipe, indexOfLastRecipe)
+
+  const paged = (pageNumber) => {
+    setCurrentPage(pageNumber)
+    console.log(setCurrentPage)
+  }
 
   const letter = (e) => {
     dispatch(firstLetter(e.target.value))
@@ -18,8 +41,9 @@ const Home = () => {
   }, [])
   
   return (
-    <div>AppBar - SearchBar SignUp LogIn -- SearchBar Likes Comments LogOut Profile
-      <div>
+    <Box>AppBar - SearchBar SignUp LogIn -- SearchBar Likes Comments LogOut Profile
+      <Box>
+        <Random />
         <button value="a" onClick={(e) => letter(e)}>a</button>
         <button value="b" onClick={(e) => letter(e)}>b</button>
         <button value="c" onClick={(e) => letter(e)}>c</button>
@@ -46,12 +70,17 @@ const Home = () => {
         <button value="x" onClick={(e) => letter(e)}>x</button>
         <button value="y" onClick={(e) => letter(e)}>y</button>
         <button value="z" onClick={(e) => letter(e)}>z</button>
-      </div>
-      <div>
+      </Box>
+        <Paged 
+          recipesPerPage = {recipesPerPage}
+          allRecipes = {allRecipes.length}
+          paged = {paged}
+        />
+      <Box display="flex">
         {
-          allRecipe && allRecipe.map((r) =>{
+          currentRecipe && currentRecipe.map((r) =>{
             return(
-              <Card name={r.name_recipe} img={r.image}/>
+              <Card key={r.recipe_id} name={r.name_recipe} img={r.image}/>
             // <div>
             //   <h3>{r.name_recipe}</h3>
             //   <img src={r.image} alt=''/>
@@ -59,8 +88,8 @@ const Home = () => {
             )
           })
         }
-      </div>
-    </div>
+      </Box>
+    </Box>
   )
 }
 

@@ -10,6 +10,16 @@ export function getRecipe(){
   }
 }
 
+export function getRandomRecipe(){
+  return async function(dispatch){
+    let json = await axios.get(`http://localhost:3001/recipe/random`)
+    return dispatch({
+      type: 'GET_RANDOM_RECIPE',
+      payload: json.data
+    })
+  }
+}
+
 export function firstLetter(letter){
   return async function(dispatch){
     try {

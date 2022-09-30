@@ -51,71 +51,71 @@ module.exports = (sequelize) => {
     },
     ingredient4: {
       type: DataTypes.STRING,
-      allowNull: false,
+      allowNull: true,
     },
     ingredient5: {
       type: DataTypes.STRING,
-      allowNull: false,
+      allowNull: true,
     },
     ingredient6: {
       type: DataTypes.STRING,
-      allowNull: false,
+      allowNull: true,
     },
     ingredient7: {
       type: DataTypes.STRING,
-      allowNull: false,
+      allowNull: true,
     },
     ingredient8: {
       type: DataTypes.STRING,
-      allowNull: false,
+      allowNull: true,
     },
     ingredient9: {
       type: DataTypes.STRING,
-      allowNull: false,
+      allowNull: true,
     },
     ingredient10: {
       type: DataTypes.STRING,
-      allowNull: false,
+      allowNull: true,
     },
     ingredient11: {
       type: DataTypes.STRING,
-      allowNull: false,
+      allowNull: true,
     },
     ingredient12: {
       type: DataTypes.STRING,
-      allowNull: false,
+      allowNull: true,
     },
     ingredient13: {
       type: DataTypes.STRING,
-      allowNull: false,
+      allowNull: true,
     },
     ingredient14: {
       type: DataTypes.STRING,
-      allowNull: false,
+      allowNull: true,
     },
     ingredient15: {
       type: DataTypes.STRING,
-      allowNull: false,
+      allowNull: true,
     },
     ingredient16: {
       type: DataTypes.STRING,
-      allowNull: false,
+      allowNull: true,
     },
     ingredient17: {
       type: DataTypes.STRING,
-      allowNull: false,
+      allowNull: true,
     },
     ingredient18: {
       type: DataTypes.STRING,
-      allowNull: false,
+      allowNull: true,
     },
     ingredient19: {
       type: DataTypes.STRING,
-      allowNull: false,
+      allowNull: true,
     },
     ingredient20: {
       type: DataTypes.STRING,
-      allowNull: false,
+      allowNull: true,
     },
     measure1: {
       type: DataTypes.STRING,
@@ -131,71 +131,71 @@ module.exports = (sequelize) => {
     },
     measure4: {
       type: DataTypes.STRING,
-      allowNull: false,
+      allowNull: true,
     },
     measure5: {
       type: DataTypes.STRING,
-      allowNull: false,
+      allowNull: true,
     },
     measure6: {
       type: DataTypes.STRING,
-      allowNull: false,
+      allowNull: true,
     },
     measure7: {
       type: DataTypes.STRING,
-      allowNull: false,
+      allowNull: true,
     },
     measure8: {
       type: DataTypes.STRING,
-      allowNull: false,
+      allowNull: true,
     },
     measure9: {
       type: DataTypes.STRING,
-      allowNull: false,
+      allowNull: true,
     },
     measure10: {
       type: DataTypes.STRING,
-      allowNull: false,
+      allowNull: true,
     },
     measure11: {
       type: DataTypes.STRING,
-      allowNull: false,
+      allowNull: true,
     },
     measure12: {
       type: DataTypes.STRING,
-      allowNull: false,
+      allowNull: true,
     },
     measure13: {
       type: DataTypes.STRING,
-      allowNull: false,
+      allowNull: true,
     },
     measure14: {
       type: DataTypes.STRING,
-      allowNull: false,
+      allowNull: true,
     },
     measure15: {
       type: DataTypes.STRING,
-      allowNull: false,
+      allowNull: true,
     },
     measure16: {
       type: DataTypes.STRING,
-      allowNull: false,
+      allowNull: true,
     },
     measure17: {
       type: DataTypes.STRING,
-      allowNull: false,
+      allowNull: true,
     },
     measure18: {
       type: DataTypes.STRING,
-      allowNull: false,
+      allowNull: true,
     },
     measure19: {
       type: DataTypes.STRING,
-      allowNull: false,
+      allowNull: true,
     },
     measure20: {
       type: DataTypes.STRING,
-      allowNull: false,
+      allowNull: true,
     },
     likes: {
       type: DataTypes.INTEGER,

@@ -1,7 +1,7 @@
 const initialState = {
   recipe: [],
   allRecipe: [],
-  letter: []
+  randomRecipe: []
 }
 
 function reducer(state = initialState, { type, payload }){
@@ -13,6 +13,12 @@ function reducer(state = initialState, { type, payload }){
         allRecipe: payload
       }
     
+    case 'GET_RANDOM_RECIPE':
+      return{
+        ...state,
+        randomRecipe: payload
+      }
+
     case 'GET_RECIPE_LETTER':
       return{
         ...state,
