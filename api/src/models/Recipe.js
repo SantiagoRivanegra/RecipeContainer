@@ -3,7 +3,7 @@ const { DataTypes } = require('sequelize');
 module.exports = (sequelize) => {
 
   sequelize.define('Recipe', {
-    recipe_id: {
+    id: {
       type: DataTypes.UUID,
       defaultValue: DataTypes.UUIDV4,
       allowNull: false,
@@ -199,13 +199,13 @@ module.exports = (sequelize) => {
     },
     likes: {
       type: DataTypes.INTEGER,
-      allowNull: false,
+      allowNull: true,
     },
     comments: {
       type: DataTypes.ARRAY(DataTypes.JSON),
-      allowNull: false,
+      allowNull: true,
     },
-    createdInD: {
+    createdInDb: {
       type: DataTypes.BOOLEAN,
       allowNull: false,
       defaultValue: true,

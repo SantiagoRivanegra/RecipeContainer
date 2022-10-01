@@ -5,7 +5,7 @@ const getApiInfo = async() =>{
     const apiUrl = await axios.get('https://www.themealdb.com/api/json/v1/1/search.php?s=')
     const apiInfo = await apiUrl.data.meals.map(r => {
       return {
-        recipe_id: r.idMeal,
+        id: r.idMeal,
         name_recipe: r.strMeal,
         instructions: r.strInstructions,
         image: r.strMealThumb,
@@ -65,7 +65,7 @@ const getRandomRecipe = async(req, res) => {
     const apiUrl = await axios.get('https://www.themealdb.com/api/json/v1/1/random.php')
     const random = await apiUrl.data.meals.map(r => {
       return {
-        recipe_id: r.idMeal,
+        id: r.idMeal,
         name_recipe: r.strMeal,
         category: r.strCategory,
         area: r.strArea,
@@ -127,7 +127,7 @@ const getRecipeByName = async(req, res) => {
       if(apiUrl.data.meals){
       const recipeName = await apiUrl.data.meals.map(r => {
         return {
-          recipe_id: r.idMeal,
+          id: r.idMeal,
           name_recipe: r.strMeal,
           instructions: r.strInstructions,
         }
@@ -141,7 +141,7 @@ const getRecipeByName = async(req, res) => {
         const recipeName = await recipeDb.map(r => {
           if((name) === r.name_recipe){
             return {
-              recipe_id: r.recipe_id,
+              id: r.id,
               name_recipe: r.name_recipe,
               instructions: r.instructions,
             }
@@ -169,7 +169,7 @@ const getRecipeDetail = async(req, res) => {
       if(apiUrl.data.meals){
       const recipeId = await apiUrl.data.meals.map(r => {
         return {
-          recipe_id: r.idMeal,
+          id: r.idMeal,
           name_recipe: r.strMeal,
           instructions: r.strInstructions,
         }
@@ -193,7 +193,7 @@ const getRecipeByFirstLetter = async(req, res) => {
       if(apiUrl.data.meals){
       const recipeLetter = await apiUrl.data.meals.map(r => {
         return {
-          recipe_id: r.idMeal,
+          id: r.idMeal,
           name_recipe: r.strMeal,
           image: r.strMealThumb,
           instructions: r.strInstructions,
@@ -218,7 +218,7 @@ const getRecipeByCategory = async(req, res) => {
       if(apiUrl.data.meals){
       const recipeCategory = await apiUrl.data.meals.map(r => {
         return {
-          recipe_id: r.idMeal,
+          id: r.idMeal,
           name_recipe: r.strMeal,
           image: r.strMealThumb,
         }
@@ -242,7 +242,7 @@ const getRecipeByArea = async(req, res) => {
       if(apiUrl.data.meals){
       const recipeArea = await apiUrl.data.meals.map(r => {
         return {
-          recipe_id: r.idMeal,
+          id: r.idMeal,
           name_recipe: r.strMeal,
           image: r.strMealThumb,
         }
@@ -266,7 +266,7 @@ const getRecipeByIngredient = async(req, res) => {
       if(apiUrl.data.meals){
       const recipeIngredient = await apiUrl.data.meals.map(r => {
         return {
-          recipe_id: r.idMeal,
+          id: r.idMeal,
           name_recipe: r.strMeal,
           image: r.strMealThumb,
         }

@@ -1,8 +1,8 @@
 const { Router } = require('express')
 const { getUser } = require('../controllers/user/getUser')
-const {} = require('../controllers/user/deleteUser') 
+const { deleteUser } = require('../controllers/user/deleteUser') 
 const { postUser } = require('../controllers/user/postUser') 
-const {} = require('../controllers/user/putUser') 
+const { putUsername } = require('../controllers/user/putUser') 
 
 const router = Router()
 
@@ -10,33 +10,33 @@ const router = Router()
 router.get('/', getUser)
 
 // //Get User Profile
-// router.get('/profile/:idUser', getUserProfile)
+// router.get('/profile/:id', getUserProfile)
 
 // //Get User Recipe
-// router.get('/recipe/:idUser', getUserRecipe)
+// router.get('/recipe/:id', getUserRecipe)
 
 // //Get all Comments
-// router.get('/commen/:idUser', getUserComment)*
+// router.get('/commen/:id', getUserComment)*
 
 // //Get all Likes
-// router.get('/likes/:idUser', getUserLike)*
+// router.get('/likes/:id', getUserLike)*
 
-// //Delete User
-// router.delete('/:idUser', deleteUser)*
+//Delete User
+router.delete('/:id', deleteUser)
 
 //Post User
 router.post('/', postUser)
 
 // //Put Password
-// router.put('/password/:idUser', putPassword)
+// router.put('/password/:id', putPassword)
 
 // //Put CommentSend
-// router.put('/comment/:idUser', putCommentSend)
+// router.put('/comment/:id', putCommentSend)
 
-// //Put Username
-// router.put('/username/:idUser', putUsername)*
+//Put Username
+router.put('/username/:id', putUsername)
 
 // //Put Avatar
-// router.put('/avatar/:idUser', putAvatar)*
+// router.put('/avatar/:id', putAvatar)*
 
 module.exports = router;

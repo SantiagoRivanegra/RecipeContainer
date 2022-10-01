@@ -80,7 +80,7 @@ const Home = () => {
         {
           currentRecipe && currentRecipe.map((r) =>{
             return(
-              <Card key={r.recipe_id} name={r.name_recipe} img={r.image}/>
+              <Card key={r.id} name={r.name_recipe} img={r.image}/>
             // <div>
             //   <h3>{r.name_recipe}</h3>
             //   <img src={r.image} alt=''/>
