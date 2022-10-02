@@ -23,7 +23,12 @@ function reducer(state = initialState, { type, payload }){
       return{
         ...state,
         recipe: payload
-      }  
+      }
+      
+    case 'POST_RECIPE':
+      return{
+        ...state,
+      }   
 
     default: return state
   }

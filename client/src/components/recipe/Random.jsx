@@ -3,8 +3,6 @@ import { useSelector, useDispatch } from 'react-redux'
 import { getRandomRecipe } from '../../redux/actions'
 import Card from './Card'
 
-import Box from '@material-ui/core/Box'
-
 const Random = () => {
   const dispatch = useDispatch()
   const random = useSelector((state) => state.randomRecipe)
@@ -16,7 +14,7 @@ const Random = () => {
   
 
   return (
-    <Box>
+    <div>
       {
         random && random.map((r) => {
           return(
@@ -24,7 +22,7 @@ const Random = () => {
           )
         })
       }
-    </Box>
+    </div>
   )
 }
 

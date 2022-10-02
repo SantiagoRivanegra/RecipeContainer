@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import Box from '@material-ui/core/Box'
+
+import s from './recipe/Card.module.css'
 
 import Card from './recipe/Card'
 import Random from './recipe/Random'
@@ -8,16 +9,7 @@ import Paged from './Paged'
 
 import { getRecipe, firstLetter } from '../redux/actions'
 
-import { makeStyles } from '@material-ui/core/styles'
-
-const useStyle = makeStyles({
-  // paged:{
-  //   display: flex,
-  // }
-})
-
 const Home = () => {
-  const classes = useStyle()
   const dispatch = useDispatch()
   const allRecipes = useSelector((state) => state.recipe)
 
@@ -41,8 +33,8 @@ const Home = () => {
   }, [])
   
   return (
-    <Box>AppBar - SearchBar SignUp LogIn -- SearchBar Likes Comments LogOut Profile
-      <Box>
+    <div className={s.bgHome}>AppBar - SearchBar SignUp LogIn -- SearchBar Likes Comments LogOut Profile
+      <div>
         <Random />
         <button value="a" onClick={(e) => letter(e)}>a</button>
         <button value="b" onClick={(e) => letter(e)}>b</button>
@@ -70,13 +62,13 @@ const Home = () => {
         <button value="x" onClick={(e) => letter(e)}>x</button>
         <button value="y" onClick={(e) => letter(e)}>y</button>
         <button value="z" onClick={(e) => letter(e)}>z</button>
-      </Box>
+      </div>
         <Paged 
           recipesPerPage = {recipesPerPage}
           allRecipes = {allRecipes.length}
           paged = {paged}
         />
-      <Box display="flex">
+      <div className="flex flex-row bg-blue-500">
         {
           currentRecipe && currentRecipe.map((r) =>{
             return(
@@ -88,8 +80,8 @@ const Home = () => {
             )
           })
         }
-      </Box>
-    </Box>
+      </div>
+    </div>
   )
 }
 
