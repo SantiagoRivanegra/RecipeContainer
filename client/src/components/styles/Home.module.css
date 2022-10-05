@@ -1,0 +1,41 @@
+.bgHome{
+  height: 100vh;
+  width: 100vw;
+  background-image:url('../../images/bg-home.jpg');
+  position:absolute;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  display: flex;
+  flex-direction: row;
+}
+
+.section1{
+  display: flex;
+  flex-direction: column;
+  float: left;
+  width: 30%;
+}
+
+.section2{
+  display: flex;
+  flex-direction: column;
+  float: right;
+  width: 60%;
+}
+
+.divLetter{
+  display: flex;
+}
+
+.card{
+  display: grid;
+  gap: 1rem;
+  grid-auto-rows: 22rem;
+  grid-template-columns: repeat(auto-fill, minmax(10rem, 1fr))
+}
+
+.cardRandom{
+  width:30%;
+  height:10%;
+}

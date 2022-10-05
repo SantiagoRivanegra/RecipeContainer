@@ -11,7 +11,7 @@ const getUser = async(req, res) => {
     res.status(200).json(users) 
   } catch (error) {
     console.log(error)
-    res.status(404).json("No anda") 
+    res.status(500).json("No anda") 
 
   }
 }

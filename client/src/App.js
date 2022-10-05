@@ -2,6 +2,7 @@ import './App.css';
 import React from 'react'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import Home from './components/Home'
+import Post from './components/recipe/post/Post'
 
 function App() {
   return (
@@ -9,6 +10,7 @@ function App() {
     <div className="App">
       <Routes>
         <Route exact path = '/' element = {<Home />}/>
+        <Route exact path = '/post' element = {<Post />}/>
       </Routes>  
     </div>
     </BrowserRouter>

@@ -11,7 +11,7 @@ const postUser = async(req, res) => {
     res.status(200).json(userCreated)    
   } catch (error) {
     console.log(error)
-    res.status(404).send("nope")
+    res.status(500).send("nope")
   }
 }
 
