@@ -8,13 +8,33 @@ const Post = () => {
     console.log(e.target.files[0])
   }
 
+  const handleChangeText = (e) => {
+    console.log(e.target.value)
+  }
+
   return (
     <div>Post
       <div>
-        <h2>Poner los selects para los filtros en la home asi veo como va quedando</h2>
-        <h2>Separar las cosas con el Section(random y filtros izquierda || lo demas al centro/derecha)</h2>
         <form>
-          <input onChange={handleChange} type="file" /> 
+          <input onChange={handleChange} type="file" />
+          <label>Title: </label> 
+          <input onChange={handleChangeText} type="text" />
+          <label>Instructions: </label> 
+          <input onChange={handleChangeText} type="text" />
+          <label>Ingredient1: </label> 
+          <input onChange={handleChangeText} type="text" />
+          <label>ingredient2: </label> 
+          <input onChange={handleChangeText} type="text" />
+          <label>Ingredient3: </label> 
+          <input onChange={handleChangeText} type="text" />
+          <label>Measure1: </label> 
+          <input onChange={handleChangeText} type="text" />
+          <label>Measure2: </label> 
+          <input onChange={handleChangeText} type="text" />
+          <label>Measure3: </label> 
+          <input onChange={handleChangeText} type="text" />
+          <label>Tags: </label> 
+          <input onChange={handleChangeText} type="text" />  
 
         </form>
       </div>
