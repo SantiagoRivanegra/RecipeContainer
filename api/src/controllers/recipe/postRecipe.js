@@ -19,7 +19,7 @@ const postRecipe = async(req, res) => {
       likes,
       comments,
       tags,
-      createdInD,
+      createdInDb,
       userId,
     } = req.body
   
@@ -39,11 +39,12 @@ const postRecipe = async(req, res) => {
       likes,
       comments,
       tags,
-      createdInD,
+      createdInDb,
       userId
     })
     res.json(recipeCreated)
   } catch (error) {
+    console.log(error)
     res.status(500).json({ message: error.message})
   }
 }

@@ -36,8 +36,9 @@ export function firstLetter(letter){
 }
 
 export function postRecipe(payload){
-  return async function(){
-    let json = await axios.post(`http://localhost:3001/recipe`, payload)
-    return json
+  return async () => {
+    let res = await axios.post("http://localhost:3001/recipe", payload)
+    console.log(res)
+    return res
   }
 }
