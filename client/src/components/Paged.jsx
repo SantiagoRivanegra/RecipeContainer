@@ -6,15 +6,14 @@ const Paged = ({ recipesPerPage, allRecipes, paged }) => {
   for(let i = 0; i <= Math.ceil(allRecipes/recipesPerPage)-1; i++){
     pageNumbers.push(i+1)
   }
-  console.log(pageNumbers)
   return (
-      <nav >
-        <ul className='apginado'>
+      <nav key={pageNumbers}>
+        <ul className='paginado' key={pageNumbers}>
           {
             pageNumbers && pageNumbers.map(number => (
-                  <button href="/#" onClick={() => paged(number)}>{number}</button>
-            )
-          )}
+              <button href="/#" onClick={() => paged(number)}>{number}</button>
+              )
+              )}
         </ul>
       </nav>
   )

@@ -25,8 +25,12 @@ module.exports = (sequelize) => {
       type: DataTypes.TEXT,
       allowNull: false,
     },
+    // image: {
+    //   type: DataTypes.ARRAY(DataTypes.STRING),
+    //   allowNull: false,
+    // },
     image: {
-      type: DataTypes.ARRAY(DataTypes.STRING),
+      type: DataTypes.STRING,
       allowNull: false,
     },
     tags: {
@@ -202,7 +206,7 @@ module.exports = (sequelize) => {
       allowNull: true,
     },
     comments: {
-      type: DataTypes.ARRAY(DataTypes.JSON),
+      type: DataTypes.STRING,
       allowNull: true,
     },
     createdInDb: {

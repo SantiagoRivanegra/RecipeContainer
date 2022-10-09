@@ -1,8 +1,15 @@
-const axios = require('axios')
-const { User, Recipe } = require('../../db')
+const { Recipe } = require('../../db')
+
+const cloudinary = require('cloudinary')
+cloudinary.config({
+  cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+  api_key: process.env.CLOUDINARY_API_KEY,
+  api_secret: process.env.CLOUDINARY_API_SECRET,
+})
 
 const postRecipe = async(req, res) => {
   try {
+    // const image = req.body.image
     const {
       name_recipe,
       instructions,
@@ -20,8 +27,23 @@ const postRecipe = async(req, res) => {
       comments,
       tags,
       createdInDb,
-      userId,
+      userId
     } = req.body
+
+    // let arr = []
+    // const img = req.body.image
+    // img.map(async (image) => {
+    //   await cloudinary.uploader.upload(image, (result) => {
+    //     arr.push(result.url)
+    //   })
+    //   console.log(arr + 'arr img')
+    // })
+
+    // const arr = []
+    // arr.push(image)
+
+
+    console.log(image)
   
     const recipeCreated = await Recipe.create({
       name_recipe,
