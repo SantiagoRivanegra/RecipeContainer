@@ -1,8 +1,9 @@
 const axios = require('axios')
 const { User, Recipe } = require('../../db')
-const byName = require('./apiData/byName')
-const byCategory = require('./apiData/byCategory')
 const byArea = require('./apiData/byArea')
+const byCategory = require('./apiData/byCategory')
+const byId = require('./apiData/byId')
+const byName = require('./apiData/byName')
 
 const getApiInfo = async() =>{
     const apiUrl = await axios.get('https://www.themealdb.com/api/json/v1/1/search.php?s=')
@@ -136,8 +137,6 @@ const getRecipeByName = async(req, res) => {
     (recipeDb.length > 0 ? 
     res.status(200).json(recipeDb) :
     res.status(500).json("There are no recipes with that name"))
-    } else {
-    res.status(500).json("There are no recipes with that name")
     }
   } catch (error) {
     console.log(error)
@@ -147,21 +146,21 @@ const getRecipeByName = async(req, res) => {
 //Get Recipe Detail
 const getRecipeDetail = async(req, res) => {
   const { id } = req.params
+  let idUuid = id.length
+  console.log(idUuid)
   try {
-    if(id){
-      const apiUrl = await axios.get(`https://www.themealdb.com/api/json/v1/1/lookup.php?i=${id}`)
-      if(apiUrl.data.meals){
-      const recipeId = await apiUrl.data.meals.map(r => {
-        return {
-          id: r.idMeal,
-          name_recipe: r.strMeal,
-          instructions: r.strInstructions,
-        }
+    if(idUuid !== 36){
+      const recipeIdApi = await byId(id)
+      recipeIdApi ?
+      res.status(200).json(recipeIdApi) :
+      res.status(500).json("There are no recipes with this id.")
+    } else if(idUuid === 36){
+        const recipeIdDb = await Recipe.findAll({ 
+        where: { id : id }
       })
-      res.status(200).json(recipeId)    
-    } else {
-      res.status(500).send('This food does not exist')
-    }
+      recipeIdDb.length > 0 ?
+      res.status(200).json(recipeIdDb) :
+      res.status(500).json("There are no recipes with this id.")
     }
   } catch (error) {
     console.log(error)
