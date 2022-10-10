@@ -1,5 +1,4 @@
-const axios = require('axios')
-const { User, Recipe } = require('../../db')
+const { Recipe } = require('../../db')
 
 const deleteRecipe = async(req, res, next) => {
   const { id } = req.params

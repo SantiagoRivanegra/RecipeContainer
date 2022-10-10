@@ -55,6 +55,7 @@ const Home = () => {
           
         </section>
         <section className={s.section2}>
+          <h3>Carrusel</h3>
           <div className={s.divLetter}>
             <button value="a" onClick={(e) => letter(e)}>a</button>
             <button value="b" onClick={(e) => letter(e)}>b</button>
