@@ -46,7 +46,7 @@ const postRecipe = async(req, res) => {
     console.log(image)
   
     const recipeCreated = await Recipe.create({
-      name_recipe,
+      name_recipe: name_recipe.toLowerCase(),
       instructions,
       image,
       video,
@@ -56,8 +56,8 @@ const postRecipe = async(req, res) => {
       measure1,
       measure2,
       measure3,
-      area,
-      category,
+      area: area.toLowerCase(),
+      category: category.toLowerCase(),
       likes,
       comments,
       tags,

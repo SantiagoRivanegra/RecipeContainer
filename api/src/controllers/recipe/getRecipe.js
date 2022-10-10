@@ -2,6 +2,7 @@ const axios = require('axios')
 const { User, Recipe } = require('../../db')
 const byName = require('./apiData/byName')
 const byCategory = require('./apiData/byCategory')
+const byArea = require('./apiData/byArea')
 
 const getApiInfo = async() =>{
     const apiUrl = await axios.get('https://www.themealdb.com/api/json/v1/1/search.php?s=')
@@ -123,11 +124,12 @@ const getRandomRecipe = async(req, res) => {
 //Get Recipe by Name
 const getRecipeByName = async(req, res) => {
   const { name } = req.params
+  const nameDb = name.toLowerCase()
   try {
     if(name){
       const recipeNameApi = await byName(name)
       const recipeDb = await Recipe.findAll({ 
-        where: { name_recipe : name }
+        where: { name_recipe : nameDb }
       })
     recipeNameApi !== undefined ?
     res.status(200).json(recipeNameApi.concat(recipeDb)) :
@@ -194,42 +196,39 @@ const getRecipeByFirstLetter = async(req, res) => {
 //Get Recipe by Category
 const getRecipeByCategory = async(req, res) => {
   const { category } = req.params
+  const categoryDb = category.toLowerCase()
   try {
     if(category){
       const recipeCategoryApi = await byCategory(category)
       const recipeCategoryDb = await Recipe.findAll({ 
-        where: { category : category }
+        where: { category : categoryDb }
       })
-      console.log(recipeCategoryApi)
       recipeCategoryApi !== undefined ?
       res.status(200).json(recipeCategoryApi.concat(recipeCategoryDb)) :
       (recipeCategoryDb.length > 0 ? 
       res.status(200).json(recipeCategoryDb) :
-      res.status(500).json("There are no recipes with that name"))
+      res.status(500).json("There are no recipes in this category."))
     }
   } catch (error) {
-    console.log(error + 'aca?')
+    console.log(error)
   }
 }
 
 //Get Recipe by Area
 const getRecipeByArea = async(req, res) => {
   const { area } = req.params
+  const areaDb = area.toLowerCase()
   try {
     if(area){
-      const apiUrl = await axios.get(`https://www.themealdb.com/api/json/v1/1/filter.php?a=${area}`)
-      if(apiUrl.data.meals){
-      const recipeArea = await apiUrl.data.meals.map(r => {
-        return {
-          id: r.idMeal,
-          name_recipe: r.strMeal,
-          image: r.strMealThumb,
-        }
+      const recipeAreaApi = await byArea(area)
+      const recipeAreaDb = await Recipe.findAll({ 
+        where: { area : areaDb }
       })
-      res.status(200).json(recipeArea)    
-    } else {
-      res.status(500).send(`No Area found`)
-    }
+      recipeAreaApi !== undefined ?
+      res.status(200).json(recipeAreaApi.concat(recipeAreaDb)) :
+      (recipeAreaDb.length > 0 ? 
+      res.status(200).json(recipeAreaDb) :
+      res.status(500).json("There are no recipes in this area."))
     }
   } catch (error) {
     console.log(error)
