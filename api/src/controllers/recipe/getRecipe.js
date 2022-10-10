@@ -1,6 +1,7 @@
 const axios = require('axios')
 const { User, Recipe } = require('../../db')
 const byName = require('./apiData/byName')
+const byCategory = require('./apiData/byCategory')
 
 const getApiInfo = async() =>{
     const apiUrl = await axios.get('https://www.themealdb.com/api/json/v1/1/search.php?s=')
@@ -133,6 +134,8 @@ const getRecipeByName = async(req, res) => {
     (recipeDb.length > 0 ? 
     res.status(200).json(recipeDb) :
     res.status(500).json("There are no recipes with that name"))
+    } else {
+    res.status(500).json("There are no recipes with that name")
     }
   } catch (error) {
     console.log(error)
@@ -155,7 +158,7 @@ const getRecipeDetail = async(req, res) => {
       })
       res.status(200).json(recipeId)    
     } else {
-      res.status(404).send('This food does not exist')
+      res.status(500).send('This food does not exist')
     }
     }
   } catch (error) {
@@ -180,7 +183,7 @@ const getRecipeByFirstLetter = async(req, res) => {
       })
       res.status(200).json(recipeLetter)    
     } else {
-      res.status(404).send(`There is no food with the letter ${letter}`)
+      res.status(500).send(`There is no food with the letter ${letter}`)
     }
     }
   } catch (error) {
@@ -193,22 +196,19 @@ const getRecipeByCategory = async(req, res) => {
   const { category } = req.params
   try {
     if(category){
-      const apiUrl = await axios.get(`https://www.themealdb.com/api/json/v1/1/filter.php?c=${category}`)
-      if(apiUrl.data.meals){
-      const recipeCategory = await apiUrl.data.meals.map(r => {
-        return {
-          id: r.idMeal,
-          name_recipe: r.strMeal,
-          image: r.strMealThumb,
-        }
+      const recipeCategoryApi = await byCategory(category)
+      const recipeCategoryDb = await Recipe.findAll({ 
+        where: { category : category }
       })
-      res.status(200).json(recipeCategory)    
-    } else {
-      res.status(404).send(`No category found`)
-    }
+      console.log(recipeCategoryApi)
+      recipeCategoryApi !== undefined ?
+      res.status(200).json(recipeCategoryApi.concat(recipeCategoryDb)) :
+      (recipeCategoryDb.length > 0 ? 
+      res.status(200).json(recipeCategoryDb) :
+      res.status(500).json("There are no recipes with that name"))
     }
   } catch (error) {
-    console.log(error)
+    console.log(error + 'aca?')
   }
 }
 
@@ -228,7 +228,7 @@ const getRecipeByArea = async(req, res) => {
       })
       res.status(200).json(recipeArea)    
     } else {
-      res.status(404).send(`No Area found`)
+      res.status(500).send(`No Area found`)
     }
     }
   } catch (error) {
@@ -252,7 +252,7 @@ const getRecipeByIngredient = async(req, res) => {
       })
       res.status(200).json(recipeIngredient)    
     } else {
-      res.status(404).send(`No ingredient found`)
+      res.status(500).send(`No ingredient found`)
     }
     }
   } catch (error) {
