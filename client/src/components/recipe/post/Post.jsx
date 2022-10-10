@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom' 
 
+import s from './Post.module.css'
 import { postRecipe } from '../../../redux/actions'
 
 const Post = () => {
@@ -158,7 +159,7 @@ function handleSubmit(e){
   }
 
   return (
-    <div>Post
+    <div className={s.bgPost}>
       <div>
         <button onClick={() => navigate('/')}>Back to Home</button>
         <form onSubmit={(e) => handleSubmit(e)}>
@@ -166,9 +167,10 @@ function handleSubmit(e){
           {
             loading ? <h5>Loading image...</h5> : <img src={image} style={{width:"40%"}}/>
           } */}
+          <label>Image of Final Food: </label> 
           <input onChange={(e) => handleChange(e)} type="text" value={recipe.image} name="image"/>
           <br />
-          <label>Title: </label> 
+          <label>Name of Recipe: </label> 
           <input onChange={(e) => handleChange(e)} type="text" value={recipe.name_recipe} name="name_recipe"/>
           <br />
           <label>Instructions: </label> 
@@ -191,7 +193,7 @@ function handleSubmit(e){
           <br />
           <label>Tags: puedo traerlos por ruta</label> 
           <input onChange={(e) => handleChange(e)} type="text" value={recipe.tags} name="tags"/>
-
+          <br />
           <button type="submit">Create Recipe</button>
         </form>
       </div>

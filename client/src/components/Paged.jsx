@@ -7,11 +7,11 @@ const Paged = ({ recipesPerPage, allRecipes, paged }) => {
     pageNumbers.push(i+1)
   }
   return (
-      <nav key={pageNumbers}>
-        <ul className='paginado' key={pageNumbers}>
+      <nav>
+        <ul className='paginado'>
           {
             pageNumbers && pageNumbers.map(number => (
-              <button href="/#" onClick={() => paged(number)}>{number}</button>
+              <button href="/#" onClick={() => paged(number)} key={number}>{number}</button>
               )
               )}
         </ul>

@@ -1,5 +1,6 @@
 const axios = require('axios')
 const { User, Recipe } = require('../../db')
+const byName = require('./apiData/byName')
 
 const getApiInfo = async() =>{
     const apiUrl = await axios.get('https://www.themealdb.com/api/json/v1/1/search.php?s=')
@@ -123,38 +124,73 @@ const getRecipeByName = async(req, res) => {
   const { name } = req.params
   try {
     if(name){
-      const apiUrl = await axios.get(`https://www.themealdb.com/api/json/v1/1/search.php?s=${name}`)
-      if(apiUrl.data.meals){
-      const recipeName = await apiUrl.data.meals.map(r => {
-        return {
-          id: r.idMeal,
-          name_recipe: r.strMeal,
-          instructions: r.strInstructions,
-        }
-      })
-      res.status(200).json(recipeName)    
-    } else if(name) {
+      const recipeNameApi = await byName(name)
       const recipeDb = await Recipe.findAll({ 
         where: { name_recipe : name }
       })
       if(recipeDb){
-        const recipeName = await recipeDb.map(r => {
+        const recipeNameDb = await recipeDb.map(r => {
           if((name) === r.name_recipe){
             return {
               id: r.id,
               name_recipe: r.name_recipe,
               instructions: r.instructions,
+              image: r.image,
+              video: r.video,
+              ingredient1: r.ingredient1,
+              ingredient2: r.ingredient2,
+              ingredient3: r.ingredient3,
+              ingredient4: r.ingredient4,
+              ingredient5: r.ingredient5,
+              ingredient6: r.ingredient6,
+              ingredient7: r.ingredient7,
+              ingredient8: r.ingredient8,
+              ingredient9: r.ingredient9,
+              ingredient10: r.ingredient10,
+              ingredient11: r.ingredient11,
+              ingredient12: r.ingredient12,
+              ingredient13: r.ingredient13,
+              ingredient14: r.ingredient14,
+              ingredient15: r.ingredient15,
+              ingredient16: r.ingredient16,
+              ingredient17: r.ingredient17,
+              ingredient18: r.ingredient18,
+              ingredient19: r.ingredient19,
+              ingredient20: r.ingredient20,
+              measure1: r.measure1,
+              measure2: r.measure2,
+              measure3: r.measure3,
+              measure4: r.measure4, 
+              measure5: r.measure5, 
+              measure6: r.measure6, 
+              measure7: r.measure7, 
+              measure8: r.measure8, 
+              measure9: r.measure9, 
+              measure10: r.measure10,
+              measure11: r.measure11,
+              measure12: r.measure12,
+              measure13: r.measure13,
+              measure14: r.measure14,
+              measure15: r.measure15,
+              measure16: r.measure16,
+              measure17: r.measure17,
+              measure18: r.measure18,
+              measure19: r.measure19,
+              measure20: r.measure20,
+              area: r.area,
+              category: r.category,
+              likes: r.likes,
+              comments: r.comments,
+              tags: r.tags,
+              createdInDb: r.createdInDb,
             }
           }
         })
-        recipeName.length > 0 ?
-        res.status(200).json(recipeName) :
-        res.status(404).send('This food does not exist')
-      }
+        recipeNameApi !== undefined ? res.status(200).json(recipeNameApi.concat(recipeNameDb)) : res.status(200).json(recipeNameDb)
     } else {
       res.status(404).send('This food does not exist')
     }
-    }
+  }
   } catch (error) {
     console.log(error)
   }
