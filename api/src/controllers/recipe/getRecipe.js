@@ -3,6 +3,7 @@ const { User, Recipe } = require('../../db')
 const byArea = require('./apiData/byArea')
 const byCategory = require('./apiData/byCategory')
 const byId = require('./apiData/byId')
+const byMainIngredient = require('./apiData/byMainIngredient')
 const byName = require('./apiData/byName')
 
 const getApiInfo = async() =>{
@@ -45,13 +46,6 @@ const getApiInfo = async() =>{
 
 const getDbInfo = async() => {
   return await Recipe.findAll({
-    // include:{
-    //   model: User,
-    //   attribute:['username'],
-    //   through: {
-    //     attributes: []
-    //   }
-    // }
   })
 }
 
@@ -239,19 +233,15 @@ const getRecipeByIngredient = async(req, res) => {
   const { ingredient } = req.params
   try {
     if(ingredient){
-      const apiUrl = await axios.get(`https://www.themealdb.com/api/json/v1/1/filter.php?i=${ingredient}`)
-      if(apiUrl.data.meals){
-      const recipeIngredient = await apiUrl.data.meals.map(r => {
-        return {
-          id: r.idMeal,
-          name_recipe: r.strMeal,
-          image: r.strMealThumb,
-        }
+      const recipeMainIngredientApi = await byMainIngredient(ingredient)
+      const recipeMainIngredientDb = await Recipe.findAll({ 
+        where: { ingredient1 : ingredient }
       })
-      res.status(200).json(recipeIngredient)    
-    } else {
-      res.status(500).send(`No ingredient found`)
-    }
+      recipeMainIngredientApi !== undefined ?
+      res.status(200).json(recipeMainIngredientApi.concat(recipeMainIngredientDb)) :
+      (recipeMainIngredientDb.length > 0 ? 
+      res.status(200).json(recipeMainIngredientDb) :
+      res.status(500).json("There are no recipes whit this ingredient."))
     }
   } catch (error) {
     console.log(error)
