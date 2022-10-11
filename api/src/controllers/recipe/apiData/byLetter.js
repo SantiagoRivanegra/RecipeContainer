@@ -1,9 +1,9 @@
 const axios = require('axios')
 
-const recipeRandom = async() => {
-  const recipeRandom = await axios.get(`https://www.themealdb.com/api/json/v1/1/random.php`)
-      if(recipeRandom.data.meals){
-      const random = await recipeRandom.data.meals.map(r => {
+const byLetter = async(letter) => {
+  const byLetter = await axios.get(`https://www.themealdb.com/api/json/v1/1/search.php?f=${letter}`)
+      if(byLetter.data.meals){
+      const recipeLetter = await byLetter.data.meals.map(r => {
         return {
           id: r.idMeal,
           name_recipe: r.strMeal,
@@ -55,8 +55,8 @@ const recipeRandom = async() => {
           measure20: r.strMeasure20 ? r.strMeasure20 : "",
         }
       })
-      return random
+      return recipeLetter
     }
   }
 
-  module.exports = recipeRandom;
+  module.exports = byLetter;
