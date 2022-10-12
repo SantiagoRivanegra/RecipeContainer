@@ -9,6 +9,7 @@ const byName = require('./apiData/byName')
 const recipeRandom = require('./apiData/random')
 
 const dbLetter = require('./dbData/dbLetter')
+const dbName = require('./dbData/dbName')
 
 const getApiInfo = async() =>{
     const apiUrl = await axios.get('https://www.themealdb.com/api/json/v1/1/search.php?s=')
@@ -75,13 +76,21 @@ const getRecipeByName = async(req, res) => {
   try {
     if(name){
       const recipeNameApi = await byName(name)
-      const recipeDb = await Recipe.findAll({ 
-        where: { name_recipe : nameDb }
-      })
+      const recipeDb = await dbName(nameDb)
+      const recipeDbName = []
+      let nameR = ""
+      for (let i = 0; i < recipeDb.length; i++) {
+        nameR = recipeDb[i].toLowerCase()
+        const recipe = await Recipe.findAll({ 
+          where: { name_recipe : nameR }
+        })
+        for (let i = 0; i < recipe.length; i++)
+        recipeDbName.push(recipe[i])
+      }
     recipeNameApi !== undefined ?
-    res.status(200).json(recipeNameApi.concat(recipeDb)) :
-    (recipeDb.length > 0 ? 
-    res.status(200).json(recipeDb) :
+    res.status(200).json(recipeNameApi.concat(recipeDbName)) :
+    (recipeDbName.length > 0 ? 
+    res.status(200).json(recipeDbName) :
     res.status(500).json("There are no recipes with that name"))
     }
   } catch (error) {
