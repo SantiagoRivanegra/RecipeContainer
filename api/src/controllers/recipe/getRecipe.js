@@ -127,12 +127,8 @@ const getRecipeByFirstLetter = async(req, res) => {
         const recipe = await Recipe.findAll({ 
           where: { name_recipe : name }
         })
-        //recipeDbName = recipe.split('')
-        // const recipe1 = []
-        // recipe1.concat(recipe)
-        recipeDbName.push(recipe)
-        //console.log(recipeDbName[i])
-
+        for (let i = 0; i < recipe.length; i++)
+        recipeDbName.push(recipe[i])
       }
       recipeLetterApi !== undefined ?
       res.status(200).json(recipeLetterApi.concat(recipeDbName)) :
