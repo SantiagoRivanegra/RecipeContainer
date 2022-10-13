@@ -1,13 +1,18 @@
 import React, { useState, useEffect } from 'react'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom' 
 
 import s from './Post.module.css'
-import { postRecipe } from '../../../redux/actions'
+import { postRecipe, getAreaList, getCategoryList, getIngredientList } from '../../../redux/actions'
 
 const Post = () => {
   const dispatch = useDispatch()
   const navigate = useNavigate()
+
+  const areaList = useSelector((state) => state.areaList)
+  const categoryList = useSelector((state) => state.categoryList)
+  const ingredientList = useSelector((state) => state.ingredientList)
+
   const [image, setImage] = useState("")
   const [loading, setLoading] = useState(false)
   const [recipe, setRecipe] = useState({
@@ -76,56 +81,56 @@ function handleSubmit(e){
       //   }
       setRecipe({
         name_recipe: "",
-    instructions: "",
-    category:"",
-    area:"",
-    video:"",
-    likes:0,
-    image: "",
-    comments: "",
-    tags:"",
-    ingredient1:"",
-    ingredient2:"",
-    ingredient3:"",
-    ingredient4:"",
-    ingredient5:"",
-    ingredient6:"",
-    ingredient7:"",
-    ingredient8:"",
-    ingredient9:"",
-    ingredient10:"",
-    ingredient11:"",
-    ingredient12:"",
-    ingredient13:"",
-    ingredient14:"",
-    ingredient15:"",
-    ingredient16:"",
-    ingredient17:"",
-    ingredient18:"",
-    ingredient19:"",
-    ingredient20:"",
-    measure1:"",
-    measure2:"",
-    measure3:"",
-    measure4:"",
-    measure5:"",
-    measure6:"",
-    measure7:"",
-    measure8:"",
-    measure9:"",
-    measure10:"",
-    measure11:"",
-    measure12:"",
-    measure13:"",
-    measure14:"",
-    measure15:"",
-    measure16:"",
-    measure17:"",
-    measure18:"",
-    measure19:"",
-    measure20:"",
-    createdInD:true,
-    userId: 1
+        instructions: "",
+        category:"",
+        area:"",
+        video:"",
+        likes:0,
+        image: "",
+        comments: "",
+        tags:"",
+        ingredient1:"",
+        ingredient2:"",
+        ingredient3:"",
+        ingredient4:"",
+        ingredient5:"",
+        ingredient6:"",
+        ingredient7:"",
+        ingredient8:"",
+        ingredient9:"",
+        ingredient10:"",
+        ingredient11:"",
+        ingredient12:"",
+        ingredient13:"",
+        ingredient14:"",
+        ingredient15:"",
+        ingredient16:"",
+        ingredient17:"",
+        ingredient18:"",
+        ingredient19:"",
+        ingredient20:"",
+        measure1:"",
+        measure2:"",
+        measure3:"",
+        measure4:"",
+        measure5:"",
+        measure6:"",
+        measure7:"",
+        measure8:"",
+        measure9:"",
+        measure10:"",
+        measure11:"",
+        measure12:"",
+        measure13:"",
+        measure14:"",
+        measure15:"",
+        measure16:"",
+        measure17:"",
+        measure18:"",
+        measure19:"",
+        measure20:"",
+        createdInD:true,
+        userId: 1
   });
   navigate('/')
   }
@@ -158,6 +163,26 @@ function handleSubmit(e){
     })
   }
 
+  function handleChangeArea(e) {
+    setRecipe({
+      ...recipe,
+      area: e.target.value,
+    })
+  }
+
+  function handleChangeCategory(e) {
+    setRecipe({
+      ...recipe,
+      category : e.target.value,
+    })
+  }
+
+  useEffect(() => {
+    dispatch(getAreaList())
+    dispatch(getCategoryList())
+    dispatch(getIngredientList())
+  }, [])
+
   return (
     <div className={s.bgPost}>
       <div>
@@ -167,8 +192,9 @@ function handleSubmit(e){
           {
             loading ? <h5>Loading image...</h5> : <img src={image} style={{width:"40%"}}/>
           } */}
+          <h6>(Soon you will be able to upload images and video from your PC/phone)</h6>
           <label>Image of Final Food: </label> 
-          <input onChange={(e) => handleChange(e)} type="text" value={recipe.image} name="image"/>
+          <input onChange={(e) => handleChange(e)} type="text" value={recipe.image} name="image" />
           <br />
           <label>Name of Recipe: </label> 
           <input onChange={(e) => handleChange(e)} type="text" value={recipe.name_recipe} name="name_recipe"/>
@@ -193,6 +219,34 @@ function handleSubmit(e){
           <br />
           <label>Tags: puedo traerlos por ruta</label> 
           <input onChange={(e) => handleChange(e)} type="text" value={recipe.tags} name="tags"/>
+          <br />
+          <label>Area: </label> 
+          <select onChange={(e) => handleChangeArea(e)}>
+            {
+              areaList.sort((a, b) => a.name_area.localeCompare(b.name_area))
+              .map(area => {
+                return(
+                  <option key={area.name_area} value={area.name_area}>
+                    {area.name_area}
+                  </option>
+                )
+              })
+            }
+          </select>
+          <br />
+          <label>Category: </label> 
+          <select onChange={(e) => handleChangeCategory(e)}>
+            {
+              categoryList.sort((a, b) => a.name_category.localeCompare(b.name_area))
+              .map(category => {
+                return(
+                  <option key={category.name_category} value={category.name_category}>
+                    {category.name_category}
+                  </option>
+                )
+              })
+            }
+          </select>
           <br />
           <button type="submit">Create Recipe</button>
         </form>

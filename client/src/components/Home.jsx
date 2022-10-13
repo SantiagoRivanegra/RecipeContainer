@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+import { useNavigate } from 'react-router-dom'
 
 import s from './styles/Home.module.css'
 
@@ -11,6 +12,7 @@ import { getRecipeName, getAreaList, getAreaRecipe, getRecipe, firstLetter, getC
 
 const Home = () => {
   const dispatch = useDispatch()
+  const navigate = useNavigate()
   const allRecipes = useSelector((state) => state.recipe)
   const areaList = useSelector((state) => state.areaList)
   const categoryList = useSelector((state) => state.categoryList)
@@ -74,7 +76,7 @@ const Home = () => {
           <div className={s.cardRandom}>
             <Random/>
           </div>
-
+          <button onClick={() => navigate('/post')}>Create your own recipe!</button>
           <input 
             type="search" 
             placeholder='Search food'
