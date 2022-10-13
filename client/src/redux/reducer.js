@@ -1,7 +1,9 @@
 const initialState = {
   recipe: [],
   allRecipe: [],
-  randomRecipe: []
+  randomRecipe: [],
+  areaList: [],
+  areaRecipe:[]
 }
 
 function reducer(state = initialState, { type, payload }){
@@ -18,6 +20,24 @@ function reducer(state = initialState, { type, payload }){
         ...state,
         randomRecipe: payload
       }
+
+    case 'GET_NAME_RECIPE':
+      return{
+        ...state,
+        recipe: payload
+      } 
+
+    case 'GET_AREA_LIST':
+      return{
+        ...state,
+        areaList: payload
+      }
+
+    case 'GET_AREA_RECIPE':
+      return{
+        ...state,
+        recipe: payload
+      }  
 
     case 'GET_RECIPE_LETTER':
       return{

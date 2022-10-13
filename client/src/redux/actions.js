@@ -20,6 +20,36 @@ export function getRandomRecipe(){
   }
 }
 
+export function getRecipeName(name){
+  return async function(dispatch){
+    let json = await axios.get(`http://localhost:3001/recipe/name/${name}`)
+    return dispatch({
+      type: 'GET_NAME_RECIPE',
+      payload: json.data
+    })
+  }
+}
+
+export function getAreaRecipe(area){
+  return async function(dispatch){
+    let json = await axios.get(`http://localhost:3001/recipe/area/${area}`)
+    return dispatch({
+      type: 'GET_AREA_RECIPE',
+      payload: json.data
+    })
+  }
+}
+
+export function getAreaList(){
+  return async function(dispatch){
+    let json = await axios.get(`http://localhost:3001/recipe/areas`)
+    return dispatch({
+      type: 'GET_AREA_LIST',
+      payload: json.data
+    })
+  }
+}
+
 export function firstLetter(letter){
   return async function(dispatch){
     try {

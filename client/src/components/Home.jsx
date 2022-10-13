@@ -7,11 +7,12 @@ import Card from './recipe/card/Card'
 import Random from './recipe/random/Random'
 import Paged from './Paged'
 
-import { getRecipe, firstLetter } from '../redux/actions'
+import { getRecipeName, getAreaList, getAreaRecipe, getRecipe, firstLetter } from '../redux/actions'
 
 const Home = () => {
   const dispatch = useDispatch()
   const allRecipes = useSelector((state) => state.recipe)
+  const areaList = useSelector((state) => state.areaList)
 
   const [currentPage, setCurrentPage] = useState(1)
   const [recipesPerPage, setRecipesPerPage] = useState(8)
@@ -19,17 +20,37 @@ const Home = () => {
   const indexOfFirstRecipe = indexOfLastRecipe - recipesPerPage
   const currentRecipe = allRecipes.slice(indexOfFirstRecipe, indexOfLastRecipe)
 
+  //SearchBar
+  const [name, setName] = useState('')
+  const handleName = (e) => {
+    e.preventDefault()
+    console.log(e.target.value)
+    setName(e.target.value)
+  }
+  const handleSubmit = () => {
+    dispatch(getRecipeName(name))
+    setName('')
+    setCurrentPage(1)
+  }
+
   const paged = (pageNumber) => {
     setCurrentPage(pageNumber)
     console.log(setCurrentPage)
   }
 
   const letter = (e) => {
-    dispatch(firstLetter(e.target.value))
+    dispatch(firstLetter(e.target.value))    
+    setCurrentPage(1)
+  }
+
+  const handleArea = (e) => {
+    dispatch(getAreaRecipe(e.target.value))
+    setCurrentPage(1)
   }
 
   useEffect(() => {
     dispatch(getRecipe())
+    dispatch(getAreaList())
   }, [])
   
   return (
@@ -40,15 +61,34 @@ const Home = () => {
             <Random/>
           </div>
 
-          <input type="text" placeholder='Search food'/>
+          <input 
+            type="text" 
+            placeholder='Search food'
+            value={name}
+            onChange={(e) =>handleName(e)}
+          />
+          <button
+            type="submit"
+            onClick={handleSubmit}
+          >Search</button>
+
           <h4>Ver como poner en los selects los inputs que se puede escribir y poner opciones tambien</h4>
-          <select>
+          <select onChange={(e) => handleArea(e)}>
             <option value="">Area</option>
+            {
+              areaList && areaList.map(area => {
+                return(
+                  <option key={area.name_area} value={area.name_area}>
+                    {area.name_area}
+                  </option>
+                )
+              })
+            }
           </select>
           <select>
             <option value="">Category</option>
           </select>
-          <input type="text" placeholder='Search ingredient'/>
+          <input type="text" placeholder='Search main ingredient'/>
           <select>
             <option value="">Ingredient</option>
           </select>
