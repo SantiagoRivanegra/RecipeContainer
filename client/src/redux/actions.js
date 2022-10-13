@@ -20,6 +20,18 @@ export function getRandomRecipe(){
   }
 }
 
+export function getRecipeDetail(id){
+  console.log(id)
+  return async function(dispatch){
+    let json = await axios.get(`http://localhost:3001/recipe/detail/${id}`)
+    console.log(json)
+    return dispatch({
+      type: 'GET_RECIPE_DETAIL',
+      payload: json.data[0]
+    })
+  }
+}
+
 export function getRecipeName(name){
   return async function(dispatch){
     let json = await axios.get(`http://localhost:3001/recipe/name/${name}`)
