@@ -50,6 +50,46 @@ export function getAreaList(){
   }
 }
 
+export function getCategoryRecipe(category){
+  return async function(dispatch){
+    let json = await axios.get(`http://localhost:3001/recipe/category/${category}`)
+    return dispatch({
+      type: 'GET_CATEGORY_RECIPE',
+      payload: json.data
+    })
+  }
+}
+
+export function getCategoryList(){
+  return async function(dispatch){
+    let json = await axios.get(`http://localhost:3001/recipe/categories`)
+    return dispatch({
+      type: 'GET_CATEGORY_LIST',
+      payload: json.data
+    })
+  }
+}
+
+export function getIngredientRecipe(ingredient){
+  return async function(dispatch){
+    let json = await axios.get(`http://localhost:3001/recipe/ingredient/main/${ingredient}`)
+    return dispatch({
+      type: 'GET_INGREDIENT_RECIPE',
+      payload: json.data
+    })
+  }
+}
+
+export function getIngredientList(){
+  return async function(dispatch){
+    let json = await axios.get(`http://localhost:3001/recipe/ingredients`)
+    return dispatch({
+      type: 'GET_INGREDIENT_LIST',
+      payload: json.data
+    })
+  }
+}
+
 export function firstLetter(letter){
   return async function(dispatch){
     try {

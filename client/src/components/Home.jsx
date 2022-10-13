@@ -7,12 +7,14 @@ import Card from './recipe/card/Card'
 import Random from './recipe/random/Random'
 import Paged from './Paged'
 
-import { getRecipeName, getAreaList, getAreaRecipe, getRecipe, firstLetter } from '../redux/actions'
+import { getRecipeName, getAreaList, getAreaRecipe, getRecipe, firstLetter, getCategoryRecipe, getCategoryList, getIngredientList, getIngredientRecipe } from '../redux/actions'
 
 const Home = () => {
   const dispatch = useDispatch()
   const allRecipes = useSelector((state) => state.recipe)
   const areaList = useSelector((state) => state.areaList)
+  const categoryList = useSelector((state) => state.categoryList)
+  const ingredientList = useSelector((state) => state.ingredientList)
 
   const [currentPage, setCurrentPage] = useState(1)
   const [recipesPerPage, setRecipesPerPage] = useState(8)
@@ -48,9 +50,21 @@ const Home = () => {
     setCurrentPage(1)
   }
 
+  const handleCategory = (e) => {
+    dispatch(getCategoryRecipe(e.target.value))
+    setCurrentPage(1)
+  }
+
+  const handleIngredient = (e) => {
+    dispatch(getIngredientRecipe(e.target.value))
+    setCurrentPage(1)
+  }
+
   useEffect(() => {
     dispatch(getRecipe())
     dispatch(getAreaList())
+    dispatch(getCategoryList())
+    dispatch(getIngredientList())
   }, [])
   
   return (
@@ -62,7 +76,7 @@ const Home = () => {
           </div>
 
           <input 
-            type="text" 
+            type="search" 
             placeholder='Search food'
             value={name}
             onChange={(e) =>handleName(e)}
@@ -85,12 +99,30 @@ const Home = () => {
               })
             }
           </select>
-          <select>
+          <select onChange={(e) => handleCategory(e)}>
             <option value="">Category</option>
+            {
+              categoryList && categoryList.map(category => {
+                return(
+                  <option key={category.name_category} value={category.name_category}>
+                    {category.name_category}
+                  </option>
+                )
+              })
+            }
           </select>
-          <input type="text" placeholder='Search main ingredient'/>
-          <select>
+          {/* <input type="text" placeholder='Search main ingredient'/> */}
+          <select onChange={(e) => handleIngredient(e)}>
             <option value="">Ingredient</option>
+            {
+              ingredientList && ingredientList.map(ingredient => {
+                return(
+                  <option key={ingredient.name_ingredient} value={ingredient.name_ingredient}>
+                    {ingredient.name_ingredient}
+                  </option>
+                )
+              })
+            }
           </select>
           
         </section>
