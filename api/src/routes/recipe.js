@@ -3,6 +3,7 @@ const { getRecipes, getRandomRecipe, getRecipeByName, getRecipeDetail, getRecipe
 const { deleteRecipe } = require('../controllers/recipe/deleteRecipe')
 const { postRecipe } = require('../controllers/recipe/postRecipe')
 const {  } = require('../controllers/recipe/putRecipe')
+const { tags } = require('../controllers/recipe/tags.js')
 
 const { ingredients } = require('../controllers/recipe/list/ingredients.js')
 const { categories } = require('../controllers/recipe/list/categories.js')
@@ -47,9 +48,8 @@ router.get('/ingredients/', ingredients)
 //Get Recipe by Main Ingredient
 router.get('/ingredient/main/:ingredient', getRecipeByIngredient)
 
-//List of All categories(have descirption - /categories.php)
-//List of area(/list.php?a=list)
-//List of ingredient(/list.php?i=list)
+//Get Tags
+router.get('/tags', tags)
 
 //Delete Recipe
 router.delete('/:id', deleteRecipe)
