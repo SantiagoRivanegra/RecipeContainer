@@ -202,31 +202,31 @@ function handleSubmit(e){
             loading ? <h5>Loading image...</h5> : <img src={image} style={{width:"40%"}}/>
           } */}
           <h6>(Soon you will be able to upload images and video from your PC/phone)</h6>
-          <label>Image of Final Food: </label> 
+          <label>* Image of Final Food: </label> 
           <input onChange={(e) => handleChange(e)} type="text" value={recipe.image} name="image" />
           <br />
-          <label>Name of Recipe: </label> 
+          <label className={s.redLabel}>* </label><label>Name of Recipe: </label> 
           <input onChange={(e) => handleChange(e)} type="text" value={recipe.name_recipe} name="name_recipe"/>
           <br />
-          <label>Instructions: </label> 
+          <label>* Instructions: </label> 
           <textarea onChange={(e) => handleChange(e)} type="text" value={recipe.instructions} name="instructions"></textarea>
           <br />
-          <label>Ingredient1: </label> 
+          <label>* Ingredient1: </label> 
           <input onChange={(e) => handleChange(e)} type="text" value={recipe.ingredient1} name="ingredient1"/>
-          <label>Measure1: </label> 
+          <label>* Measure1: </label> 
           <input onChange={(e) => handleChange(e)} type="text" value={recipe.measure1} name="measure1"/>
           <br />
-          <label>ingredient2: </label> 
+          <label>* ingredient2: </label> 
           <input onChange={(e) => handleChange(e)} type="text" value={recipe.ingredient2} name="ingredient2"/>
-          <label>Measure2: </label> 
+          <label>* Measure2: </label> 
           <input onChange={(e) => handleChange(e)} type="text" value={recipe.measure2} name="measure2"/>
           <br />
-          <label>Ingredient3: </label> 
+          <label>* Ingredient3: </label> 
           <input onChange={(e) => handleChange(e)} type="text" value={recipe.ingredient3} name="ingredient3"/>
-          <label>Measure3: </label> 
+          <label>* Measure3: </label> 
           <input onChange={(e) => handleChange(e)} type="text" value={recipe.measure3} name="measure3"/>
           <br />
-          <label>Tags: puedo traerlos por ruta</label> 
+          <label>Tag: </label> 
           {/* <input onChange={(e) => handleChange(e)} type="text" value={recipe.tags} name="tags"/> */}
           <select onChange={(e) => handleChangeTags(e)}>
             {
@@ -241,8 +241,10 @@ function handleSubmit(e){
             }
           </select>
           <br />
-          <label>Area: </label> 
+          <label>* Area: </label> 
           <select onChange={(e) => handleChangeArea(e)}>
+          <option>aaaa</option>
+          <option key='other' value='other'>other</option>
             {
               areaList.sort((a, b) => a.name_area.localeCompare(b.name_area))
               .map(area => {
@@ -255,8 +257,10 @@ function handleSubmit(e){
             }
           </select>
           <br />
-          <label>Category: </label> 
+          <label>* Category: </label> 
           <select onChange={(e) => handleChangeCategory(e)}>
+          <option>aaaa</option>
+          <option key='other' value='other'>other</option>
             {
               categoryList.sort((a, b) => a.name_category.localeCompare(b.name_area))
               .map(category => {

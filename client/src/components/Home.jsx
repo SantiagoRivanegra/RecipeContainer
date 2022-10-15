@@ -104,6 +104,7 @@ const Home = () => {
           <h4>Ver como poner en los selects los inputs que se puede escribir y poner opciones tambien</h4>
           <select onChange={(e) => handleArea(e)}>
             <option value="">Area</option>
+            <option key='other' value='other'>other</option>
             {
               areaList && areaList.map(area => {
                 return(
@@ -116,6 +117,7 @@ const Home = () => {
           </select>
           <select onChange={(e) => handleCategory(e)}>
             <option value="">Category</option>
+            <option key='other' value='other'>other</option>
             {
               categoryList && categoryList.map(category => {
                 return(
