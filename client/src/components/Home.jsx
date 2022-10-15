@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 
+import Swal from 'sweetalert2'
+
 import s from './styles/Home.module.css'
 
 import Card from './recipe/card/Card'
@@ -40,7 +42,11 @@ const Home = () => {
       setName('')
       setCurrentPage(1)      
     } else {
-      alert('Please INsert a food name')
+      Swal.fire({
+        text: 'Please INsert a food name',
+        width: '30%',
+      })
+      //alert('Please INsert a food name')
     }
   }
 

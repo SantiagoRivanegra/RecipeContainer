@@ -15,11 +15,11 @@ module.exports = (sequelize) => {
     },
     category: {
       type: DataTypes.STRING,
-      allowNull: true,
+      allowNull: false,
     },
     area: {
       type: DataTypes.STRING,
-      allowNull: true,
+      allowNull: false,
     },
     instructions: {
       type: DataTypes.TEXT,
@@ -35,7 +35,7 @@ module.exports = (sequelize) => {
     },
     tags: {
       type: DataTypes.STRING,
-      allowNull: false,
+      allowNull: true,
     },
     video: {
       type: DataTypes.STRING,
