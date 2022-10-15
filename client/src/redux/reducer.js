@@ -6,6 +6,7 @@ const initialState = {
   areaList: [],
   categoryList: [],
   ingredientList: [],
+  tags: [],
 }
 
 function reducer(state = initialState, { type, payload }){
@@ -21,6 +22,12 @@ function reducer(state = initialState, { type, payload }){
       return{
         ...state,
         randomRecipe: payload
+      }
+
+    case 'GET_RECIPE_TAGS':
+      return{
+        ...state,
+        tags: payload
       }
 
     case 'GET_RECIPE_DETAIL':

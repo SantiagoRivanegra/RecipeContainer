@@ -20,6 +20,16 @@ export function getRandomRecipe(){
   }
 }
 
+export function getRecipeTags(){
+  return async function(dispatch){
+    let json = await axios.get(`http://localhost:3001/recipe/tags`)
+    return dispatch({
+      type: 'GET_RECIPE_TAGS',
+      payload: json.data
+    })
+  }
+}
+
 export function getRecipeDetail(id){
   console.log(id)
   return async function(dispatch){
@@ -34,11 +44,15 @@ export function getRecipeDetail(id){
 
 export function getRecipeName(name){
   return async function(dispatch){
-    let json = await axios.get(`http://localhost:3001/recipe/name/${name}`)
-    return dispatch({
-      type: 'GET_NAME_RECIPE',
-      payload: json.data
-    })
+    try {
+      let json = await axios.get(`http://localhost:3001/recipe/name/${name}`)
+      return dispatch({
+        type: 'GET_NAME_RECIPE',
+        payload: json.data
+      })      
+    } catch (error) {
+      alert('This food no existe')
+    }
   }
 }
 

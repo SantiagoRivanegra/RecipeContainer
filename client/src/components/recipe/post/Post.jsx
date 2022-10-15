@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom' 
 
 import s from './Post.module.css'
-import { postRecipe, getAreaList, getCategoryList, getIngredientList } from '../../../redux/actions'
+import { postRecipe, getAreaList, getCategoryList, getIngredientList, getRecipeTags } from '../../../redux/actions'
 
 const Post = () => {
   const dispatch = useDispatch()
@@ -12,6 +12,7 @@ const Post = () => {
   const areaList = useSelector((state) => state.areaList)
   const categoryList = useSelector((state) => state.categoryList)
   const ingredientList = useSelector((state) => state.ingredientList)
+  const tags = useSelector((state) => state.tags)
 
   const [image, setImage] = useState("")
   const [loading, setLoading] = useState(false)
@@ -177,10 +178,18 @@ function handleSubmit(e){
     })
   }
 
+  function handleChangeTags(e) {
+    setRecipe({
+      ...recipe,
+      tags: e.target.value,
+    })
+  }
+
   useEffect(() => {
     dispatch(getAreaList())
     dispatch(getCategoryList())
     dispatch(getIngredientList())
+    dispatch(getRecipeTags())
   }, [])
 
   return (
@@ -218,7 +227,19 @@ function handleSubmit(e){
           <input onChange={(e) => handleChange(e)} type="text" value={recipe.measure3} name="measure3"/>
           <br />
           <label>Tags: puedo traerlos por ruta</label> 
-          <input onChange={(e) => handleChange(e)} type="text" value={recipe.tags} name="tags"/>
+          {/* <input onChange={(e) => handleChange(e)} type="text" value={recipe.tags} name="tags"/> */}
+          <select onChange={(e) => handleChangeTags(e)}>
+            {
+              tags.sort((a, b) => a.localeCompare(b))
+              .map(tag => {
+                return(
+                  <option key={tag} value={tag}>
+                    {tag}
+                  </option>
+                )
+              })
+            }
+          </select>
           <br />
           <label>Area: </label> 
           <select onChange={(e) => handleChangeArea(e)}>

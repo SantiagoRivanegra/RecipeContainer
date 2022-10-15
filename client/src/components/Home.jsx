@@ -9,6 +9,7 @@ import Random from './recipe/random/Random'
 import Paged from './Paged'
 
 import { getRecipeName, getAreaList, getAreaRecipe, getRecipe, firstLetter, getCategoryRecipe, getCategoryList, getIngredientList, getIngredientRecipe } from '../redux/actions'
+//import { getRecipeTags } from '../redux/actions'
 
 const Home = () => {
   const dispatch = useDispatch()
@@ -17,6 +18,7 @@ const Home = () => {
   const areaList = useSelector((state) => state.areaList)
   const categoryList = useSelector((state) => state.categoryList)
   const ingredientList = useSelector((state) => state.ingredientList)
+  //const tags = useSelector((state) => state.tags)  
 
   const [currentPage, setCurrentPage] = useState(1)
   const [recipesPerPage, setRecipesPerPage] = useState(8)
@@ -31,10 +33,15 @@ const Home = () => {
     console.log(e.target.value)
     setName(e.target.value)
   }
-  const handleSubmit = () => {
-    dispatch(getRecipeName(name))
-    setName('')
-    setCurrentPage(1)
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    if (name) {
+      dispatch(getRecipeName(name))
+      setName('')
+      setCurrentPage(1)      
+    } else {
+      alert('Please INsert a food name')
+    }
   }
 
   const paged = (pageNumber) => {
@@ -62,11 +69,17 @@ const Home = () => {
     setCurrentPage(1)
   }
 
+  // const handleTags = (e) => {
+  //   dispatch(getAreaRecipe(e.target.value))
+  //   setCurrentPage(1)
+  // }
+
   useEffect(() => {
     dispatch(getRecipe())
     dispatch(getAreaList())
     dispatch(getCategoryList())
     dispatch(getIngredientList())
+    //dispatch(getRecipeTags())
   }, [])
   
   return (
@@ -85,7 +98,7 @@ const Home = () => {
           />
           <button
             type="submit"
-            onClick={handleSubmit}
+            onClick={(e) => handleSubmit(e)}
           >Search</button>
 
           <h4>Ver como poner en los selects los inputs que se puede escribir y poner opciones tambien</h4>
@@ -126,6 +139,18 @@ const Home = () => {
               })
             }
           </select>
+          {/* <select onChange={(e) => handleTags(e)}>
+            <option value="">Tags</option>
+            {
+              tags && tags.map(tag => {
+                return(
+                  <option key={tag} value={tag}>
+                    {tag}
+                  </option>
+                )
+              })
+            }
+          </select> */}
           
         </section>
         <section className={s.section2}>
