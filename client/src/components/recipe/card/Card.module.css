@@ -1,6 +1,14 @@
+.cardContainer h3{
+  font-size: 1.5rem;
+  text-shadow: 2px 2px 3px black;
+  color: #F4E2D8;
+}
+
 .img{
   width:70%;
   height:40%;
+  box-shadow: 2px 2px 3px black;
+  border-radius: 10px;
 }
 
 .img:hover{

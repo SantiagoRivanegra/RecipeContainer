@@ -1,9 +1,22 @@
-.randomContainer img{
-  height: 50%;
-  width: 50%;
+.randomContainer{
+  display: flex;
+  flex-direction: column;
+  width: 10rem;
+  margin: 10px;
 }
 
-.img{
-  height: 50%;
-  width: 50%;
+.randomContainer name{
+  border: 10px solid;
+  font-size:50rem;  
+  color: #F4E2D8;
 }
+
+/* .randomContainer button{
+  background-color: #b29f94;
+  border-radius: 10px;
+  margin: 15px;
+  width: 7rem;
+  height: 5rem;
+  font-weight: bold;
+  font-size: 1rem;
+} */

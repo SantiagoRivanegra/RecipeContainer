@@ -11,7 +11,7 @@ import Card from './recipe/card/Card'
 import Random from './recipe/random/Random'
 import Paged from './Paged'
 
-import { getRecipeName, getAreaList, getAreaRecipe, getRecipe, firstLetter, getCategoryRecipe, getCategoryList, getIngredientList, getIngredientRecipe } from '../redux/actions'
+import { getRecipeName, getAreaList, getAreaRecipe, getRecipe, firstLetter, getCategoryRecipe, getCategoryList, getIngredientList, getIngredientRecipe, getRandomRecipe } from '../redux/actions'
 //import { getRecipeTags } from '../redux/actions'
 
 const Home = () => {
@@ -63,6 +63,11 @@ const Home = () => {
     setCurrentPage(1)
   }
 
+  const handleRandom = () => {
+    dispatch(getRandomRecipe())
+    setCurrentPage(1)
+  }
+
   const handleArea = (e) => {
     dispatch(getAreaRecipe(e.target.value))
     setCurrentPage(1)
@@ -96,78 +101,90 @@ const Home = () => {
     <div>
         <section className={s.section1}>
           <div className={s.cardRandom}>
-            <Random/>
+            <Random />
           </div>
-          <button onClick={() => navigate('/post')}>Create your own recipe!</button>
-          <input 
-            type="search" 
-            placeholder='Search food'
-            value={name}
-            onChange={(e) =>handleName(e)}
-          />
-          <button
-            type="submit"
-            onClick={(e) => handleSubmit(e)}
-          >Search</button>
+          <div>
+            <button 
+              onClick={() => navigate('/post')}
+              className={s.btn}
+            >Create your own recipe!</button>
+            <button
+              onClick={(handleRandom)}
+              className={s.btn}
+            >Other random Recipe</button>            
+          </div>
+          <div className={s.search}>
+            <input 
+              type="search" 
+              placeholder='Search...'
+              value={name}
+              onChange={(e) =>handleName(e)}
+            />
+            <button
+              type="submit"
+              onClick={(e) => handleSubmit(e)}
+            >Search</button>
+          </div>
 
-          <h4>Ver como poner en los selects los inputs que se puede escribir y poner opciones tambien</h4>
-          <select onChange={(e) => handleArea(e)}>
-            <option value="">{t('home.area')}</option>
-            <option key='other' value='other'>other</option>
-            {
-              areaList && areaList.map(area => {
-                return(
-                  <option key={area.name_area} value={area.name_area}>
-                    {area.name_area}
-                  </option>
-                )
-              })
-            }
-          </select>
-          <select onChange={(e) => handleCategory(e)}>
-            <option value="">{t('home.category')}</option>
-            <option key='other' value='other'>other</option>
-            {
-              categoryList && categoryList.map(category => {
-                return(
-                  <option key={category.name_category} value={category.name_category}>
-                    {category.name_category}
-                  </option>
-                )
-              })
-            }
-          </select>
-          {/* <input type="text" placeholder='Search main ingredient'/> */}
-          <select onChange={(e) => handleIngredient(e)}>
-            <option value="">Ingredient</option>
-            {
-              ingredientList && ingredientList.map(ingredient => {
-                return(
-                  <option key={ingredient.name_ingredient} value={ingredient.name_ingredient}>
-                    {ingredient.name_ingredient}
-                  </option>
-                )
-              })
-            }
-          </select>
-          {/* <select onChange={(e) => handleTags(e)}>
-            <option value="">Tags</option>
-            {
-              tags && tags.map(tag => {
-                return(
-                  <option key={tag} value={tag}>
-                    {tag}
-                  </option>
-                )
-              })
-            }
-          </select> */}
-          
+          {/* <h4>Ver como poner en los selects los inputs que se puede escribir y poner opciones tambien</h4> */}
+          <div className={s.filter}>
+            <select onChange={(e) => handleArea(e)}>
+              <option value="">{t('home.area')}</option>
+              <option key='other' value='other'>other</option>
+              {
+                areaList && areaList.map(area => {
+                  return(
+                    <option key={area.name_area} value={area.name_area}>
+                      {area.name_area}
+                    </option>
+                  )
+                })
+              }
+            </select>
+            <select onChange={(e) => handleCategory(e)}>
+              <option value="">{t('home.category')}</option>
+              <option key='other' value='other'>other</option>
+              {
+                categoryList && categoryList.map(category => {
+                  return(
+                    <option key={category.name_category} value={category.name_category}>
+                      {category.name_category}
+                    </option>
+                  )
+                })
+              }
+            </select>
+            {/* <input type="text" placeholder='Search main ingredient'/> */}
+            <select onChange={(e) => handleIngredient(e)}>
+              <option value="">Ingredient</option>
+              {
+                ingredientList && ingredientList.map(ingredient => {
+                  return(
+                    <option key={ingredient.name_ingredient} value={ingredient.name_ingredient}>
+                      {ingredient.name_ingredient}
+                    </option>
+                  )
+                })
+              }
+            </select>
+            {/* <select onChange={(e) => handleTags(e)}>
+              <option value="">Tags</option>
+              {
+                tags && tags.map(tag => {
+                  return(
+                    <option key={tag} value={tag}>
+                      {tag}
+                    </option>
+                  )
+                })
+              }
+            </select> */}
+          </div>
         </section>
         <section className={s.section2}>
           <h3>Carrusel</h3>
-          <button onClick={() => i18n.changeLanguage('es')}>ES</button>
-          <button onClick={() => i18n.changeLanguage('en')}>EN</button>
+          {/* <button onClick={() => i18n.changeLanguage('es')}>ES</button>
+          <button onClick={() => i18n.changeLanguage('en')}>EN</button> */}
           <div className={s.divLetter}>
             <button value="a" onClick={(e) => letter(e)}>a</button>
             <button value="b" onClick={(e) => letter(e)}>b</button>

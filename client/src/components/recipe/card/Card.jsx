@@ -6,8 +6,8 @@ const Card = ({ name, img, id }) => {
   const navigate = useNavigate()
 
   return (
-      <div>
-        <h3 className="color-red-500">{name}</h3>
+      <div className={s.cardContainer}>
+        <h3>{name}</h3>
         <img src={img} alt="nothing" className={s.img} onClick={() => navigate(`/detail/${id}`)}/>
       </div>
   )
