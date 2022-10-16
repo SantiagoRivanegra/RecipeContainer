@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 
 import Swal from 'sweetalert2'
+import { useTranslation } from 'react-i18next'
 
 import s from './styles/Home.module.css'
 
@@ -20,7 +21,9 @@ const Home = () => {
   const areaList = useSelector((state) => state.areaList)
   const categoryList = useSelector((state) => state.categoryList)
   const ingredientList = useSelector((state) => state.ingredientList)
-  //const tags = useSelector((state) => state.tags)  
+  //const tags = useSelector((state) => state.tags)
+  
+  const [t, i18n] = useTranslation('global')
 
   const [currentPage, setCurrentPage] = useState(1)
   const [recipesPerPage, setRecipesPerPage] = useState(8)
@@ -109,7 +112,7 @@ const Home = () => {
 
           <h4>Ver como poner en los selects los inputs que se puede escribir y poner opciones tambien</h4>
           <select onChange={(e) => handleArea(e)}>
-            <option value="">Area</option>
+            <option value="">{t('home.area')}</option>
             <option key='other' value='other'>other</option>
             {
               areaList && areaList.map(area => {
@@ -122,7 +125,7 @@ const Home = () => {
             }
           </select>
           <select onChange={(e) => handleCategory(e)}>
-            <option value="">Category</option>
+            <option value="">{t('home.category')}</option>
             <option key='other' value='other'>other</option>
             {
               categoryList && categoryList.map(category => {
@@ -163,6 +166,8 @@ const Home = () => {
         </section>
         <section className={s.section2}>
           <h3>Carrusel</h3>
+          <button onClick={() => i18n.changeLanguage('es')}>ES</button>
+          <button onClick={() => i18n.changeLanguage('en')}>EN</button>
           <div className={s.divLetter}>
             <button value="a" onClick={(e) => letter(e)}>a</button>
             <button value="b" onClick={(e) => letter(e)}>b</button>
