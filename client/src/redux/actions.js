@@ -2,7 +2,7 @@ import axios from 'axios'
 
 export function getRecipe(){
   return async function(dispatch){
-    let json = await axios.get(`http://localhost:3001/recipe`)
+    let json = await axios.get(`/recipe`)
     return dispatch({
       type: 'GET_RECIPE',
       payload: json.data
@@ -12,7 +12,7 @@ export function getRecipe(){
 
 export function getRandomRecipe(){
   return async function(dispatch){
-    let json = await axios.get(`http://localhost:3001/recipe/random`)
+    let json = await axios.get(`/recipe/random`)
     return dispatch({
       type: 'GET_RANDOM_RECIPE',
       payload: json.data
@@ -22,7 +22,7 @@ export function getRandomRecipe(){
 
 export function getRecipeTags(){
   return async function(dispatch){
-    let json = await axios.get(`http://localhost:3001/recipe/tags`)
+    let json = await axios.get(`/recipe/tags`)
     return dispatch({
       type: 'GET_RECIPE_TAGS',
       payload: json.data
@@ -33,7 +33,7 @@ export function getRecipeTags(){
 export function getRecipeDetail(id){
   console.log(id)
   return async function(dispatch){
-    let json = await axios.get(`http://localhost:3001/recipe/detail/${id}`)
+    let json = await axios.get(`/recipe/detail/${id}`)
     console.log(json)
     return dispatch({
       type: 'GET_RECIPE_DETAIL',
@@ -45,7 +45,7 @@ export function getRecipeDetail(id){
 export function getRecipeName(name){
   return async function(dispatch){
     try {
-      let json = await axios.get(`http://localhost:3001/recipe/name/${name}`)
+      let json = await axios.get(`/recipe/name/${name}`)
       return dispatch({
         type: 'GET_NAME_RECIPE',
         payload: json.data
@@ -58,7 +58,7 @@ export function getRecipeName(name){
 
 export function getAreaRecipe(area){
   return async function(dispatch){
-    let json = await axios.get(`http://localhost:3001/recipe/area/${area}`)
+    let json = await axios.get(`/recipe/area/${area}`)
     return dispatch({
       type: 'GET_AREA_RECIPE',
       payload: json.data
@@ -68,7 +68,7 @@ export function getAreaRecipe(area){
 
 export function getAreaList(){
   return async function(dispatch){
-    let json = await axios.get(`http://localhost:3001/recipe/areas`)
+    let json = await axios.get(`/recipe/areas`)
     return dispatch({
       type: 'GET_AREA_LIST',
       payload: json.data
@@ -78,7 +78,7 @@ export function getAreaList(){
 
 export function getCategoryRecipe(category){
   return async function(dispatch){
-    let json = await axios.get(`http://localhost:3001/recipe/category/${category}`)
+    let json = await axios.get(`/recipe/category/${category}`)
     return dispatch({
       type: 'GET_CATEGORY_RECIPE',
       payload: json.data
@@ -88,7 +88,7 @@ export function getCategoryRecipe(category){
 
 export function getCategoryList(){
   return async function(dispatch){
-    let json = await axios.get(`http://localhost:3001/recipe/categories`)
+    let json = await axios.get(`/recipe/categories`)
     return dispatch({
       type: 'GET_CATEGORY_LIST',
       payload: json.data
@@ -98,7 +98,7 @@ export function getCategoryList(){
 
 export function getIngredientRecipe(ingredient){
   return async function(dispatch){
-    let json = await axios.get(`http://localhost:3001/recipe/ingredient/main/${ingredient}`)
+    let json = await axios.get(`/recipe/ingredient/main/${ingredient}`)
     return dispatch({
       type: 'GET_INGREDIENT_RECIPE',
       payload: json.data
@@ -108,7 +108,7 @@ export function getIngredientRecipe(ingredient){
 
 export function getIngredientList(){
   return async function(dispatch){
-    let json = await axios.get(`http://localhost:3001/recipe/ingredients`)
+    let json = await axios.get(`/recipe/ingredients`)
     return dispatch({
       type: 'GET_INGREDIENT_LIST',
       payload: json.data
@@ -120,7 +120,7 @@ export function firstLetter(letter){
   return async function(dispatch){
     try {
       console.log(letter)
-      let json = await axios.get(`http://localhost:3001/recipe/letter/${letter}`)
+      let json = await axios.get(`/recipe/letter/${letter}`)
       return dispatch({
         type: 'GET_RECIPE_LETTER',
         payload: json.data
@@ -133,7 +133,7 @@ export function firstLetter(letter){
 
 export function postRecipe(payload){
   return async () => {
-    let res = await axios.post("http://localhost:3001/recipe", payload)
+    let res = await axios.post("/recipe", payload)
     console.log(res)
     return res
   }
