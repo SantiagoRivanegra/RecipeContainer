@@ -21,13 +21,14 @@ const Random = () => {
         random && random.map((r) => {
           return(
             <Card
-            key={r.id} 
-            name={r.name_recipe} 
-            img={r.image}/>
+              key={r.id} 
+              name={r.name_recipe} 
+              img={r.image}
+            />
           )
         })
       }
-      <button>Other random Recipe</button>
+      {/* <button>Other random Recipe</button> */}
     </div>
   )
 }

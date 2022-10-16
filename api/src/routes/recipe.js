@@ -3,6 +3,12 @@ const { getRecipes, getRandomRecipe, getRecipeByName, getRecipeDetail, getRecipe
 const { deleteRecipe } = require('../controllers/recipe/deleteRecipe')
 const { postRecipe } = require('../controllers/recipe/postRecipe')
 const {  } = require('../controllers/recipe/putRecipe')
+const { tags } = require('../controllers/recipe/tags.js')
+
+const { ingredients } = require('../controllers/recipe/list/ingredients.js')
+const { categories } = require('../controllers/recipe/list/categories.js')
+const { categoriesDescription } = require('../controllers/recipe/list/categoriesDescription.js')
+const { areas } = require('../controllers/recipe/list/areas.js')
 
 const router = Router()
 
@@ -21,18 +27,29 @@ router.get('/detail/:id', getRecipeDetail)
 //Get Recipe by First Letter
 router.get('/letter/:letter', getRecipeByFirstLetter)
 
+//Get List of Categories
+router.get('/categories', categories)
+
+//Get List of Categories Description
+router.get('/categories/description', categoriesDescription)
+
 //Get Recipe by Category
 router.get('/category/:category', getRecipeByCategory)
+
+//Get List of Areas
+router.get('/areas', areas)
 
 //Get Recipe by Area
 router.get('/area/:area', getRecipeByArea)
 
-//Get Recipe by Ingredient
-router.get('/ingredient/:ingredient', getRecipeByIngredient)
+//Get List of Ingredients
+router.get('/ingredients/', ingredients)
 
-//List of All categories(have descirption - /categories.php)
-//List of area(/list.php?a=list)
-//List of ingredient(/list.php?i=list)
+//Get Recipe by Main Ingredient
+router.get('/ingredient/main/:ingredient', getRecipeByIngredient)
+
+//Get Tags
+router.get('/tags', tags)
 
 //Delete Recipe
 router.delete('/:id', deleteRecipe)

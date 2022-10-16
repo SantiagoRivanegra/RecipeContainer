@@ -1,0 +1,23 @@
+.container{
+  background-image:url('../../../images/bg-detail.png');
+  height: 100vh;
+  width: 100vw;
+  position:absolute;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  display: flex;
+  flex-direction: column;
+}
+
+.container h6{
+  font-size: 15px;
+  font-weight: bold;
+  display: flex;
+  flex-direction: column;
+}
+
+.img{
+  width:70%;
+  height:40%;
+}

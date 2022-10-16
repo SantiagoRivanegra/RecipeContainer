@@ -18,6 +18,11 @@
   font-weight: bold;
 }
 
+.redLabel{
+  color: red;
+  font-weight: bold;
+}
+
 @media (max-width: 600px) {
   /* .bgPost{
     height: 100vh;
