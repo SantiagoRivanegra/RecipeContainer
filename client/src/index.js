@@ -1,5 +1,5 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import * as ReactDOMClient from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
@@ -30,7 +30,10 @@ i18next.init({
 dotenv.config();
 axios.defaults.baseURL = process.env.REACT_APP_API || 'http://localhost:3001';
 
-ReactDOM.render(
+const rootElemnt = document.getElementById('root');
+const root = ReactDOMClient.createRoot(rootElemnt)
+
+root.render(
   <I18nextProvider i18n={i18next}>
     <Provider store={store}>
       <React.StrictMode>
@@ -38,6 +41,5 @@ ReactDOM.render(
       </React.StrictMode>
     </Provider>
   </I18nextProvider>,
-document.getElementById('root')  
 );
 reportWebVitals();
