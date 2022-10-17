@@ -131,6 +131,7 @@ const Home = () => {
             <select onChange={(e) => handleArea(e)}>
               <option value="">{t('home.area')}</option>
               <option key='other' value='other'>other</option>
+              {console.log(areaList)}
               {
                 areaList ? areaList.map(area => {
                   return(
@@ -148,6 +149,7 @@ const Home = () => {
             <select onChange={(e) => handleCategory(e)}>
               <option value="">{t('home.category')}</option>
               <option key='other' value='other'>other</option>
+              {console.log(categoryList)}
               {
                 categoryList ? categoryList.map(category => {
                   return(
@@ -165,6 +167,7 @@ const Home = () => {
             {/* <input type="text" placeholder='Search main ingredient'/> */}
             <select onChange={(e) => handleIngredient(e)}>
               <option value="">Ingredient</option>
+              {console.log(ingredientList)}
               {
                 ingredientList ? ingredientList.map(ingredient => {
                   return(
@@ -231,6 +234,7 @@ const Home = () => {
             paged = {paged}
           />
         <div className={s.card}>
+        {console.log(currentRecipe)}
           {
             currentRecipe ? currentRecipe.map((r) =>{
               return(

@@ -17,6 +17,7 @@ const Random = () => {
 
   return (
     <div className={s.randomContainer}>
+      {console.log(random)}
       {
         random ? random.map((r) => {
           return(
