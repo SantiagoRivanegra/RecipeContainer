@@ -18,7 +18,7 @@ const Random = () => {
   return (
     <div className={s.randomContainer}>
       {
-        random && random.map((r) => {
+        random.length>0 && random.map((r) => {
           return(
             <Card
               key={r.id} 

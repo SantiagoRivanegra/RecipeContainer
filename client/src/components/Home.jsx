@@ -159,7 +159,7 @@ const Home = () => {
             <select onChange={(e) => handleIngredient(e)}>
               <option value="">Ingredient</option>
               {
-                ingredientList && ingredientList.map(ingredient => {
+                ingredientList.length>0 && ingredientList.map(ingredient => {
                   return(
                     <option key={ingredient.name_ingredient} value={ingredient.name_ingredient}>
                       {ingredient.name_ingredient}
@@ -221,7 +221,7 @@ const Home = () => {
           />
         <div className={s.card}>
           {
-            currentRecipe && currentRecipe.map((r) =>{
+            currentRecipe.length>0 && currentRecipe.map((r) =>{
               return(
                 <Card key={r.id} id={r.id} name={r.name_recipe} img={r.image}/>
               // <div>
