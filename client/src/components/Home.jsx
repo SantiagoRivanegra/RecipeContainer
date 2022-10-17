@@ -132,7 +132,7 @@ const Home = () => {
               <option value="">{t('home.area')}</option>
               <option key='other' value='other'>other</option>
               {
-                areaList && areaList.map(area => {
+                areaList.length>0 && areaList.map(area => {
                   return(
                     <option key={area.name_area} value={area.name_area}>
                       {area.name_area}
@@ -145,7 +145,7 @@ const Home = () => {
               <option value="">{t('home.category')}</option>
               <option key='other' value='other'>other</option>
               {
-                categoryList && categoryList.map(category => {
+                categoryList.length>0 && categoryList.map(category => {
                   return(
                     <option key={category.name_category} value={category.name_category}>
                       {category.name_category}
@@ -153,6 +153,7 @@ const Home = () => {
                   )
                 })
               }
+              {console.log(categoryList)}
             </select>
             {/* <input type="text" placeholder='Search main ingredient'/> */}
             <select onChange={(e) => handleIngredient(e)}>
