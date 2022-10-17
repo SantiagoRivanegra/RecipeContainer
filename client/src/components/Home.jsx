@@ -132,40 +132,51 @@ const Home = () => {
               <option value="">{t('home.area')}</option>
               <option key='other' value='other'>other</option>
               {
-                areaList.length>0 && areaList.map(area => {
+                areaList ? areaList.map(area => {
                   return(
                     <option key={area.name_area} value={area.name_area}>
                       {area.name_area}
                     </option>
                   )
-                })
+                }) : (
+                  <div>
+                    <h3>Loading...</h3>
+                  </div>
+                )
               }
             </select>
             <select onChange={(e) => handleCategory(e)}>
               <option value="">{t('home.category')}</option>
               <option key='other' value='other'>other</option>
               {
-                categoryList.length>0 && categoryList.map(category => {
+                categoryList ? categoryList.map(category => {
                   return(
                     <option key={category.name_category} value={category.name_category}>
                       {category.name_category}
                     </option>
                   )
-                })
+                }) : (
+                  <div>
+                    <h3>Loading...</h3>
+                  </div>
+                )
               }
-              {console.log(categoryList)}
             </select>
             {/* <input type="text" placeholder='Search main ingredient'/> */}
             <select onChange={(e) => handleIngredient(e)}>
               <option value="">Ingredient</option>
               {
-                ingredientList.length>0 && ingredientList.map(ingredient => {
+                ingredientList ? ingredientList.map(ingredient => {
                   return(
                     <option key={ingredient.name_ingredient} value={ingredient.name_ingredient}>
                       {ingredient.name_ingredient}
                     </option>
                   )
-                })
+                }) : (
+                  <div>
+                    <h3>Loading...</h3>
+                  </div>
+                )
               }
             </select>
             {/* <select onChange={(e) => handleTags(e)}>
@@ -221,7 +232,7 @@ const Home = () => {
           />
         <div className={s.card}>
           {
-            currentRecipe.length>0 && currentRecipe.map((r) =>{
+            currentRecipe ? currentRecipe.map((r) =>{
               return(
                 <Card key={r.id} id={r.id} name={r.name_recipe} img={r.image}/>
               // <div>
@@ -229,7 +240,11 @@ const Home = () => {
               //   <img src={r.image} alt=''/>
               // </div>
               )
-            })
+            }) : (
+              <div>
+                <h3>Loading...</h3>
+              </div>
+            )
           }
         </div>
         </section>

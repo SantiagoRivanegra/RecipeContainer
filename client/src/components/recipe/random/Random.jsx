@@ -18,7 +18,7 @@ const Random = () => {
   return (
     <div className={s.randomContainer}>
       {
-        random.length>0 && random.map((r) => {
+        random ? random.map((r) => {
           return(
             <Card
               key={r.id} 
@@ -26,7 +26,11 @@ const Random = () => {
               img={r.image}
             />
           )
-        })
+        }) : (
+          <div>
+            <h3>Loading...</h3>
+          </div>
+        )
       }
       {/* <button>Other random Recipe</button> */}
     </div>
