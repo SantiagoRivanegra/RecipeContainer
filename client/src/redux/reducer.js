@@ -89,6 +89,11 @@ function reducer(state = initialState, { type, payload }){
         ...state,
       }   
 
+    case 'POST_USER':
+      return{
+        ...state,
+      } 
+
     default: return state
   }
 

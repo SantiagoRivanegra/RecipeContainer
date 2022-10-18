@@ -6,6 +6,26 @@
     "search": "Buscar",
     "area": "Area",
     "category": "Categoria",
-    "ingredient": "Ingredient"
+    "ingredient": "Ingredientes"
+  },
+  "post":{
+    "imgSoon": "(Pronto podra cargar images desde su PC/Celular)",
+    "img": "Imagen Final de la Receta",
+    "name": "Nombre de la Receta",
+    "instructions": "Instrucciones",
+    "ingredient": "Ingrediente",
+    "measure": "Medida",
+    "tag": "Etiqueta",
+    "area": "Area",
+    "category": "Categoria"
+  },
+  "detail":{
+    "create": "Crea tu propia receta!",
+    "random": "Ver otra receta aleatoria",
+    "searchPlaceHolder": "Buscar...",
+    "search": "Buscar",
+    "area": "Area",
+    "category": "Categoria",
+    "ingredient": "Ingredientes"
   }
 }

@@ -138,3 +138,11 @@ export function postRecipe(payload){
     return res
   }
 }
+
+export function postUser(payload){
+  return async () => {
+    let res = await axios.post("/user", payload)
+    console.log(res)
+    return res
+  }
+}
