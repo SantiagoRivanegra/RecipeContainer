@@ -1,6 +1,34 @@
 {
   "home":{
-    "area": "area",
-    "category": "category"
+    "create": "Create your own recipe!",
+    "random": "See another random recipe",
+    "searchPlaceHolder": "Search...",
+    "search": "Search",
+    "area": "Area",
+    "category": "Category",
+    "ingredient": "Ingredients"
+  },
+  "post":{
+    "back":"Back to Home",
+    "imgSoon": "(Soon you will be able to upload images and video from your PC/phone)",
+    "img": "Final Recipe Image: ",
+    "name": "Name of Recipe: ",
+    "instructions": "Instructions: ",
+    "ingredient": "Ingredient: ",
+    "measure": "Measure: ",
+    "tag": "Tags: ",
+    "area": "Area: ",
+    "category": "Category: "
+  },
+  "detail":{
+    "img": "Final Recipe Image: ",
+    "name": "Name of Recipe: ",
+    "instructions": "Instructions: ",
+    "ingredient": "Ingredient: ",
+    "measure": "Measure: ",
+    "tag": "Tags: ",
+    "area": "Area: ",
+    "category": "Category: ",
+    "userId": "Id of User: "
   }
 }
