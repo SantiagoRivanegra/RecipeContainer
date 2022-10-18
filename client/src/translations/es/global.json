@@ -1,6 +1,11 @@
 {
   "home":{
-    "area": "area",
-    "category": "categoria"
+    "create": "Crea tu propia receta!",
+    "random": "Ver otra receta aleatoria",
+    "searchPlaceHolder": "Buscar...",
+    "search": "Buscar",
+    "area": "Area",
+    "category": "Categoria",
+    "ingredient": "Ingredient"
   }
 }

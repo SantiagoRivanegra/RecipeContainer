@@ -107,23 +107,23 @@ const Home = () => {
             <button 
               onClick={() => navigate('/post')}
               className={s.btn}
-            >Create your own recipe!</button>
+            >{t('home.create')}</button>
             <button
               onClick={(handleRandom)}
               className={s.btn}
-            >Other random Recipe</button>            
+            >{t('home.random')}</button>            
           </div>
           <div className={s.search}>
             <input 
               type="search" 
-              placeholder='Search...'
+              placeholder={t('home.searchPlaceHolder')}
               value={name}
               onChange={(e) =>handleName(e)}
             />
             <button
               type="submit"
               onClick={(e) => handleSubmit(e)}
-            >Search</button>
+            >{t('home.search')}</button>
           </div>
 
           {/* <h4>Ver como poner en los selects los inputs que se puede escribir y poner opciones tambien</h4> */}
@@ -131,7 +131,6 @@ const Home = () => {
             <select onChange={(e) => handleArea(e)}>
               <option value="">{t('home.area')}</option>
               <option key='other' value='other'>other</option>
-              {console.log(areaList)}
               {
                 areaList ? areaList.map(area => {
                   return(
@@ -149,7 +148,6 @@ const Home = () => {
             <select onChange={(e) => handleCategory(e)}>
               <option value="">{t('home.category')}</option>
               <option key='other' value='other'>other</option>
-              {console.log(categoryList)}
               {
                 categoryList ? categoryList.map(category => {
                   return(
@@ -166,8 +164,7 @@ const Home = () => {
             </select>
             {/* <input type="text" placeholder='Search main ingredient'/> */}
             <select onChange={(e) => handleIngredient(e)}>
-              <option value="">Ingredient</option>
-              {console.log(ingredientList)}
+              <option value="">{t('home.ingredient')}</option>
               {
                 ingredientList ? ingredientList.map(ingredient => {
                   return(
@@ -234,7 +231,6 @@ const Home = () => {
             paged = {paged}
           />
         <div className={s.card}>
-        {console.log(currentRecipe)}
           {
             currentRecipe ? currentRecipe.map((r) =>{
               return(
