@@ -4,7 +4,7 @@ import { useParams } from 'react-router-dom'
 
 import { useTranslation } from 'react-i18next'
 
-import { getRecipeDetail, getUserById } from '../../../redux/actions'
+import { getRecipeDetail } from '../../../redux/actions'
 
 import s from './CardDetail.module.css'
 
@@ -12,7 +12,7 @@ const CardDetail = () => {
   const dispatch = useDispatch()
   const recipeDetail = useSelector((state) => state.recipeDetail)
   
-  const [t, i18n] = useTranslation('global')
+  const [t] = useTranslation('global')
   
   const {id} = useParams()
   

@@ -23,6 +23,11 @@
   font-weight: bold;
 }
 
+.img{
+  width: 200px;
+  height: 200px;
+}
+
 @media (max-width: 600px) {
   /* .bgPost{
     height: 100vh;

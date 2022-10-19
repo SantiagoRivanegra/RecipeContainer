@@ -9,9 +9,11 @@
     "ingredient": "Ingrédients"
   },
   "post":{
+    "created":"Recette créée avec succès",
     "back":"Retour au début",
     "imgSoon": "(Bientôt, vous pourrez télécharger des images depuis votre PC/téléphone mobile)",
     "img": "Image de la recette finale.: ",
+    "imgAlt": "Image de la Recette",
     "name": "Nom de la recette: ",
     "instructions": "Des instructions: ",
     "ingredient": "Ingrédients: ",

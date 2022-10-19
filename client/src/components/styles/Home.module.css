@@ -18,9 +18,15 @@
 
 .section1{
   display: flex;
+  text-align: left;
   flex-direction: column;
   float: left;
-  width: 25%;
+  width: 30%;
+}
+
+.divButtons{
+  display: flex;
+  flex-direction: row;
 }
 
 .btn{
@@ -65,11 +71,24 @@
   cursor: pointer;
 }
 
+.contact{
+  font-weight: bold;
+  color: black;
+}
+
+.lang{
+  background-color: rgb(175, 109, 66);
+  border-radius: 10px;
+  font-weight: bold;
+  color: black;
+}
+
 .section2{
   display: flex;
   flex-direction: column;
   float: right;
-  width: 75%;
+  width: 70%;
+  margin-top: 75px;
 }
 
 .divLetter{
@@ -84,9 +103,9 @@
 
 .card{
   display: grid;
-  gap: 1rem;
-  grid-auto-rows: 22rem;
-  grid-template-columns: repeat(auto-fill, minmax(10rem, 1fr))
+  gap: 0.5rem;
+  grid-auto-rows: 17rem;
+  grid-template-columns: repeat(auto-fill, minmax(8rem, 1fr))
 }
 
 .cardRandom{

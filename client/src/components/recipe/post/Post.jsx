@@ -3,6 +3,8 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom' 
 import { useTranslation } from 'react-i18next'
 
+import Swal from 'sweetalert2'
+
 import s from './Post.module.css'
 import { postRecipe, getAreaList, getCategoryList, getIngredientList, getRecipeTags } from '../../../redux/actions'
 
@@ -41,7 +43,7 @@ const Post = () => {
   const ingredientList = useSelector((state) => state.ingredientList)
   const tags = useSelector((state) => state.tags)
 
-  const [t, i18n] = useTranslation('global')
+  const [t] = useTranslation('global')
 
   const [error, setError] = useState({})
   const [image, setImage] = useState("")
@@ -174,6 +176,10 @@ function handleSubmit(e){
         createdInD:true,
         userId: 1
       });
+      Swal.fire({
+        text: `${t('post.created')}`,
+        width: '30%',
+      })
       navigate('/')
     }
   }
@@ -252,8 +258,9 @@ function handleSubmit(e){
         <button onClick={() => navigate('/')}>{t('post.back')}</button>
         <form onSubmit={(e) => handleSubmit(e)}>
           <input onChange={uploadImage} type="file" name="image"/>
+          <label>{t('post.img')}</label>
           {
-            loading ? <h5>Loading image...</h5> : <img src={image} style={{width:"40%"}}/>
+            loading ? <h5>Loading image...</h5> : <img src={image} alt={t('post.imgAlt')} className={s.img}/>
           }
           {/* <h6>{t('post.imgSoon')}</h6>
           <label className={s.redLabel}>* </label><label>{t('post.img')}</label> 

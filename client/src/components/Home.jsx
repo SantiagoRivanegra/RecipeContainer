@@ -109,7 +109,7 @@ const Home = () => {
           <div className={s.cardRandom}>
             <Random />
           </div>
-          <div>
+          <div className={s.divButtons}>
             <button 
               onClick={() => navigate('/post')}
               className={s.btn}
@@ -199,8 +199,8 @@ const Home = () => {
             </select> */}
           </div>
           <div>
-            <a href="https://santiagorivanegra.netlify.app/" target="_blank">contact</a>
-            <select onChange={(e) => handleLanguage(e)}>
+            <a href="https://santiagorivanegra.netlify.app/" target="_blank" className={s.contact}>contact</a>
+            <select onChange={(e) => handleLanguage(e)} className={s.lang}>
               <option value='es'>ES</option>
               <option value='en'>EN</option>
               <option value='fr'>FR</option>
@@ -209,7 +209,7 @@ const Home = () => {
           </div>
         </section>
         <section className={s.section2}>
-          <h3>Carrusel</h3>
+          {/* <h3>Carrusel</h3> */}
           <div className={s.divLetter}>
             <button value="a" onClick={(e) => letter(e)}>a</button>
             <button value="b" onClick={(e) => letter(e)}>b</button>
