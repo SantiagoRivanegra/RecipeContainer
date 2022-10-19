@@ -88,6 +88,13 @@ const Home = () => {
   //   setCurrentPage(1)
   // }
 
+  const handleLanguage = (lang) => {
+    if(lang.target.value === 'es') i18n.changeLanguage('es')
+    if(lang.target.value === 'en') i18n.changeLanguage('en')
+    if(lang.target.value === 'fr') i18n.changeLanguage('fr')
+    if(lang.target.value === 'pt') i18n.changeLanguage('pt')
+  }
+
   useEffect(() => {
     dispatch(getRecipe())
     dispatch(getAreaList())
@@ -192,11 +199,18 @@ const Home = () => {
               }
             </select> */}
           </div>
+          <div>
+            <h3>contact</h3>
+            <select onChange={(e) => handleLanguage(e)}>
+              <option value='es'>ES</option>
+              <option value='en'>EN</option>
+              <option value='fr'>FR</option>
+              <option value='pt'>PT</option>
+            </select>
+          </div>
         </section>
         <section className={s.section2}>
           <h3>Carrusel</h3>
-          {/* <button onClick={() => i18n.changeLanguage('es')}>ES</button>
-          <button onClick={() => i18n.changeLanguage('en')}>EN</button> */}
           <div className={s.divLetter}>
             <button value="a" onClick={(e) => letter(e)}>a</button>
             <button value="b" onClick={(e) => letter(e)}>b</button>
