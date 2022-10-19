@@ -181,7 +181,7 @@ function handleSubmit(e){
     const uploadImage = async(e) => {
       console.log(e.target.files[0].name)
       const files = e.target.files
-    const data = new FormData()
+      const data = new FormData()
 
     data.append("file", files[0])
     data.append("upload_preset", "recipeContainer")
@@ -251,13 +251,13 @@ function handleSubmit(e){
       <div>
         <button onClick={() => navigate('/')}>{t('post.back')}</button>
         <form onSubmit={(e) => handleSubmit(e)}>
-          {/* <input onChange={uploadImage} type="file" name="image"/>
+          <input onChange={uploadImage} type="file" name="image"/>
           {
             loading ? <h5>Loading image...</h5> : <img src={image} style={{width:"40%"}}/>
-          } */}
-          <h6>{t('post.imgSoon')}</h6>
+          }
+          {/* <h6>{t('post.imgSoon')}</h6>
           <label className={s.redLabel}>* </label><label>{t('post.img')}</label> 
-          <input onChange={(e) => handleChange(e)} type="url" value={recipe.image} name="image" />
+          <input onChange={(e) => handleChange(e)} type="url" value={recipe.image} name="image" /> */}
           <br />
           <label className={s.redLabel}>* </label><label>{t('post.name')}</label> 
           <input onChange={(e) => handleChange(e)} type="text" value={recipe.name_recipe} name="name_recipe"/>

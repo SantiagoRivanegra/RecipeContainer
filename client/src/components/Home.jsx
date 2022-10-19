@@ -55,7 +55,6 @@ const Home = () => {
 
   const paged = (pageNumber) => {
     setCurrentPage(pageNumber)
-    console.log(setCurrentPage)
   }
 
   const letter = (e) => {
@@ -200,7 +199,7 @@ const Home = () => {
             </select> */}
           </div>
           <div>
-            <h3>contact</h3>
+            <a href="https://santiagorivanegra.netlify.app/" target="_blank">contact</a>
             <select onChange={(e) => handleLanguage(e)}>
               <option value='es'>ES</option>
               <option value='en'>EN</option>
