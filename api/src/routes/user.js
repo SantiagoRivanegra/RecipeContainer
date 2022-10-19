@@ -1,5 +1,5 @@
 const { Router } = require('express')
-const { getUser } = require('../controllers/user/getUser')
+const { getUser, getUserById } = require('../controllers/user/getUser')
 const { deleteUser } = require('../controllers/user/deleteUser') 
 const { postUser } = require('../controllers/user/postUser') 
 const { putUsername } = require('../controllers/user/putUser') 
@@ -8,6 +8,9 @@ const router = Router()
 
 //Get Users for Admin
 router.get('/', getUser)
+
+//Get User by Id
+router.get('/:id', getUserById)
 
 // //Get User Profile
 // router.get('/profile/:id', getUserProfile)

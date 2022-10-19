@@ -59,7 +59,7 @@ const Home = () => {
   }
 
   const letter = (e) => {
-    dispatch(firstLetter(e.target.value))    
+    dispatch(firstLetter(e.target.value))
     setCurrentPage(1)
   }
 
@@ -234,11 +234,7 @@ const Home = () => {
           {
             currentRecipe ? currentRecipe.map((r) =>{
               return(
-                <Card key={r.id} id={r.id} name={r.name_recipe} img={r.image}/>
-              // <div>
-              //   <h3>{r.name_recipe}</h3>
-              //   <img src={r.image} alt=''/>
-              // </div>
+                <Card key={r.id} id={r.id} name={r.name_recipe} img={r.image} userId={r.userId}/>
               )
             }) : (
               <div>

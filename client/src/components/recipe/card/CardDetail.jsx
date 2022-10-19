@@ -4,23 +4,22 @@ import { useParams } from 'react-router-dom'
 
 import { useTranslation } from 'react-i18next'
 
-import { getRecipeDetail } from '../../../redux/actions'
+import { getRecipeDetail, getUserById } from '../../../redux/actions'
 
 import s from './CardDetail.module.css'
 
 const CardDetail = () => {
   const dispatch = useDispatch()
   const recipeDetail = useSelector((state) => state.recipeDetail)
-
+  
   const [t, i18n] = useTranslation('global')
-
+  
   const {id} = useParams()
-  console.log(id.toString())
-
+  
   useEffect(() => {
     dispatch(getRecipeDetail(id))
   }, [])
-
+  
   return (
     <div className={s.container}>
       {t('detail.img')}
@@ -39,16 +38,20 @@ const CardDetail = () => {
         <h6>{recipeDetail.ingredient1}</h6> :
         ""
       }
-      {t('detail.ingredient')}
       {
         recipeDetail.ingredient20 ?
-        <h6>{recipeDetail.ingredient20}</h6> :
+        
+        <h6> {t('detail.ingredient')} {recipeDetail.ingredient20}</h6> :
         ""
       }
-      {t('detail.userId')}
       {
         recipeDetail.userId ?
-        <h6>{recipeDetail.userId}</h6> :
+        <h6>{t('detail.userId')}  {recipeDetail.userId}</h6> :
+        ""
+      }
+      {
+        recipeDetail.userId ?
+        <h6>{t('detail.userId')}  {recipeDetail.userId}</h6> :
         ""
       }
     </div>
