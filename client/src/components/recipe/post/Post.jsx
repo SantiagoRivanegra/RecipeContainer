@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom' 
+import { useTranslation } from 'react-i18next'
 
 import s from './Post.module.css'
 import { postRecipe, getAreaList, getCategoryList, getIngredientList, getRecipeTags } from '../../../redux/actions'
@@ -40,6 +41,7 @@ const Post = () => {
   const ingredientList = useSelector((state) => state.ingredientList)
   const tags = useSelector((state) => state.tags)
 
+  const [t, i18n] = useTranslation('global')
 
   const [error, setError] = useState({})
   const [image, setImage] = useState("")
@@ -179,7 +181,7 @@ function handleSubmit(e){
     const uploadImage = async(e) => {
       console.log(e.target.files[0].name)
       const files = e.target.files
-    const data = new FormData()
+      const data = new FormData()
 
     data.append("file", files[0])
     data.append("upload_preset", "recipeContainer")
@@ -247,39 +249,39 @@ function handleSubmit(e){
   return (
     <div className={s.bgPost}>
       <div>
-        <button onClick={() => navigate('/')}>Back to Home</button>
+        <button onClick={() => navigate('/')}>{t('post.back')}</button>
         <form onSubmit={(e) => handleSubmit(e)}>
-          {/* <input onChange={uploadImage} type="file" name="image"/>
+          <input onChange={uploadImage} type="file" name="image"/>
           {
             loading ? <h5>Loading image...</h5> : <img src={image} style={{width:"40%"}}/>
-          } */}
-          <h6>(Soon you will be able to upload images and video from your PC/phone)</h6>
-          <label className={s.redLabel}>* </label><label>Image of Final Food: </label> 
-          <input onChange={(e) => handleChange(e)} type="url" value={recipe.image} name="image" />
+          }
+          {/* <h6>{t('post.imgSoon')}</h6>
+          <label className={s.redLabel}>* </label><label>{t('post.img')}</label> 
+          <input onChange={(e) => handleChange(e)} type="url" value={recipe.image} name="image" /> */}
           <br />
-          <label className={s.redLabel}>* </label><label>Name of Recipe: </label> 
+          <label className={s.redLabel}>* </label><label>{t('post.name')}</label> 
           <input onChange={(e) => handleChange(e)} type="text" value={recipe.name_recipe} name="name_recipe"/>
           {/* {error.name_recipe && (<p className={s.redLabel}>{error.name_recipe}</p>)} */}
           <br />
-          <label className={s.redLabel}>* </label><label>Instructions: </label> 
+          <label className={s.redLabel}>* </label><label>{t('post.instructions')}</label> 
           <textarea onChange={(e) => handleChange(e)} type="text" value={recipe.instructions} name="instructions"></textarea>
           <br />
-          <label className={s.redLabel}>* </label><label>Ingredient1: </label> 
+          <label className={s.redLabel}>* </label><label>{t('post.ingredient')}</label> 
           <input onChange={(e) => handleChange(e)} type="text" value={recipe.ingredient1} name="ingredient1"/>
-          <label className={s.redLabel}>* </label><label>Measure1: </label> 
+          <label className={s.redLabel}>* </label><label>{t('post.measure')}</label> 
           <input onChange={(e) => handleChange(e)} type="text" value={recipe.measure1} name="measure1"/>
           <br />
-          <label className={s.redLabel}>* </label><label>ingredient2: </label> 
+          <label className={s.redLabel}>* </label><label>{t('post.ingredient')}</label> 
           <input onChange={(e) => handleChange(e)} type="text" value={recipe.ingredient2} name="ingredient2"/>
-          <label className={s.redLabel}>* </label><label>Measure2: </label> 
+          <label className={s.redLabel}>* </label><label>{t('post.measure')}</label> 
           <input onChange={(e) => handleChange(e)} type="text" value={recipe.measure2} name="measure2"/>
           <br />
-          <label className={s.redLabel}>* </label><label>Ingredient3: </label> 
+          <label className={s.redLabel}>* </label><label>{t('post.ingredient')}</label> 
           <input onChange={(e) => handleChange(e)} type="text" value={recipe.ingredient3} name="ingredient3"/>
-          <label className={s.redLabel}>* </label><label>Measure3: </label> 
+          <label className={s.redLabel}>* </label><label>{t('post.measure')}</label> 
           <input onChange={(e) => handleChange(e)} type="text" value={recipe.measure3} name="measure3"/>
           <br />
-          <label>Tag: </label> 
+          <label>{t('post.tag')}</label> 
           {/* <input onChange={(e) => handleChange(e)} type="text" value={recipe.tags} name="tags"/> */}
           <select onChange={(e) => handleChangeTags(e)}>
             {
@@ -294,7 +296,7 @@ function handleSubmit(e){
             }
           </select>
           <br />
-          <label className={s.redLabel}>* </label><label>Area: </label> 
+          <label className={s.redLabel}>* </label><label>{t('post.area')}</label> 
           <select onChange={(e) => handleChangeArea(e)}>
           <option>aaaa</option>
           <option key='other' value='other'>other</option>
@@ -310,7 +312,7 @@ function handleSubmit(e){
             }
           </select>
           <br />
-          <label className={s.redLabel}>* </label><label>Category: </label> 
+          <label className={s.redLabel}>* </label><label>{t('post.category')}</label> 
           <select onChange={(e) => handleChangeCategory(e)}>
           <option>aaaa</option>
           <option key='other' value='other'>other</option>

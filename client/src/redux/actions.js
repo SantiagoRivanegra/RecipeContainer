@@ -31,10 +31,8 @@ export function getRecipeTags(){
 }
 
 export function getRecipeDetail(id){
-  console.log(id)
   return async function(dispatch){
     let json = await axios.get(`/recipe/detail/${id}`)
-    console.log(json)
     return dispatch({
       type: 'GET_RECIPE_DETAIL',
       payload: json.data[0]
@@ -144,5 +142,15 @@ export function postUser(payload){
     let res = await axios.post("/user", payload)
     console.log(res)
     return res
+  }
+}
+
+export function getUserById(id){
+  return async function(dispatch){
+    let json = await axios.get(`/user/${id}`)
+    return dispatch({
+      type: 'GET_USER_ID',
+      payload: json.data
+    })
   }
 }

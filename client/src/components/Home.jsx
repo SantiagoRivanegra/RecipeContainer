@@ -55,11 +55,10 @@ const Home = () => {
 
   const paged = (pageNumber) => {
     setCurrentPage(pageNumber)
-    console.log(setCurrentPage)
   }
 
   const letter = (e) => {
-    dispatch(firstLetter(e.target.value))    
+    dispatch(firstLetter(e.target.value))
     setCurrentPage(1)
   }
 
@@ -87,6 +86,13 @@ const Home = () => {
   //   dispatch(getAreaRecipe(e.target.value))
   //   setCurrentPage(1)
   // }
+
+  const handleLanguage = (lang) => {
+    if(lang.target.value === 'es') i18n.changeLanguage('es')
+    if(lang.target.value === 'en') i18n.changeLanguage('en')
+    if(lang.target.value === 'fr') i18n.changeLanguage('fr')
+    if(lang.target.value === 'pt') i18n.changeLanguage('pt')
+  }
 
   useEffect(() => {
     dispatch(getRecipe())
@@ -192,11 +198,18 @@ const Home = () => {
               }
             </select> */}
           </div>
+          <div>
+            <a href="https://santiagorivanegra.netlify.app/" target="_blank">contact</a>
+            <select onChange={(e) => handleLanguage(e)}>
+              <option value='es'>ES</option>
+              <option value='en'>EN</option>
+              <option value='fr'>FR</option>
+              <option value='pt'>PT</option>
+            </select>
+          </div>
         </section>
         <section className={s.section2}>
           <h3>Carrusel</h3>
-          {/* <button onClick={() => i18n.changeLanguage('es')}>ES</button>
-          <button onClick={() => i18n.changeLanguage('en')}>EN</button> */}
           <div className={s.divLetter}>
             <button value="a" onClick={(e) => letter(e)}>a</button>
             <button value="b" onClick={(e) => letter(e)}>b</button>
@@ -234,11 +247,7 @@ const Home = () => {
           {
             currentRecipe ? currentRecipe.map((r) =>{
               return(
-                <Card key={r.id} id={r.id} name={r.name_recipe} img={r.image}/>
-              // <div>
-              //   <h3>{r.name_recipe}</h3>
-              //   <img src={r.image} alt=''/>
-              // </div>
+                <Card key={r.id} id={r.id} name={r.name_recipe} img={r.image} userId={r.userId}/>
               )
             }) : (
               <div>
