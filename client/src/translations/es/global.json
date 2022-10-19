@@ -1,7 +1,7 @@
 {
   "home":{
     "create": "Crea tu propia receta!",
-    "random": "Ver otra receta aleatoria",
+    "random": "Ver otra receta al azar",
     "searchPlaceHolder": "Buscar...",
     "search": "Buscar",
     "area": "Area",
@@ -29,6 +29,6 @@
     "tag": "Etiqueta: ",
     "area": "Area: ",
     "category": "Categoria: ",
-    "userId": "Id de Usuario: "
+    "userId": "Creado por: "
   }
 }

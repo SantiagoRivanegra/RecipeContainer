@@ -1,0 +1,34 @@
+{
+  "home":{
+    "create": "Créez votre propre recette!",
+    "random": "Voir une autre recette au hasard",
+    "searchPlaceHolder": "Chercher...",
+    "search": "Chercher",
+    "area": "Zone",
+    "category": "Catégorie",
+    "ingredient": "Ingrédients"
+  },
+  "post":{
+    "back":"Retour au début",
+    "imgSoon": "(Bientôt, vous pourrez télécharger des images depuis votre PC/téléphone mobile)",
+    "img": "Image de la recette finale.: ",
+    "name": "Nom de la recette: ",
+    "instructions": "Des instructions: ",
+    "ingredient": "Ingrédients: ",
+    "measure": "Mesure: ",
+    "tag": "Étiquette: ",
+    "area": "Zone: ",
+    "category": "Catégorie: "
+  },
+  "detail":{
+    "img": "Image de la recette finale.: ",
+    "name": "Nom de la recette: ",
+    "instructions": "Des instructions: ",
+    "ingredient": "Ingrédients: ",
+    "measure": "Mesure: ",
+    "tag": "Étiquette: ",
+    "area": "Zone: ",
+    "category": "Catégorie: ",
+    "userId": "Créé par: "
+  }
+}
