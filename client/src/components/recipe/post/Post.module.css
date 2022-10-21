@@ -34,6 +34,7 @@
 .bgPost label{
   font-size: 15px;
   font-weight: bold;
+  text-shadow: 2px 2px 3px #b29f94;
 }
 
 .redLabel{

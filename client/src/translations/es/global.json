@@ -1,8 +1,8 @@
 {
   "helmet":{
     "home":"Recipe Container",
-    "post":"Recipe Container - Crea tu Receta",
-    "detail":"Recipe Container - Detalle de la Receta"
+    "post":"Crea tu Receta - Recipe Container",
+    "detail":"Detalle de la Receta - Recipe Container"
   },
   "home":{
     "create": "Crea tu propia receta!",
