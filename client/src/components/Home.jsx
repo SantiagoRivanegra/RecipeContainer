@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, Fragment } from 'react'
+import { Helmet } from 'react-helmet'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 
@@ -55,11 +56,10 @@ const Home = () => {
 
   const paged = (pageNumber) => {
     setCurrentPage(pageNumber)
-    console.log(setCurrentPage)
   }
 
   const letter = (e) => {
-    dispatch(firstLetter(e.target.value))    
+    dispatch(firstLetter(e.target.value))
     setCurrentPage(1)
   }
 
@@ -88,6 +88,13 @@ const Home = () => {
   //   setCurrentPage(1)
   // }
 
+  const handleLanguage = (lang) => {
+    if(lang.target.value === 'es') i18n.changeLanguage('es')
+    if(lang.target.value === 'en') i18n.changeLanguage('en')
+    if(lang.target.value === 'fr') i18n.changeLanguage('fr')
+    if(lang.target.value === 'pt') i18n.changeLanguage('pt')
+  }
+
   useEffect(() => {
     dispatch(getRecipe())
     dispatch(getAreaList())
@@ -97,13 +104,19 @@ const Home = () => {
   }, [])
   
   return (
+    <Fragment>
+      <Helmet>
+        <title>
+        {t('helmet.home')}
+        </title>
+      </Helmet>
     <div className={s.bgHome}>
     <div>
         <section className={s.section1}>
           <div className={s.cardRandom}>
             <Random />
           </div>
-          <div>
+          <div className={s.divButtons}>
             <button 
               onClick={() => navigate('/post')}
               className={s.btn}
@@ -192,11 +205,18 @@ const Home = () => {
               }
             </select> */}
           </div>
+          <div>
+            <a href="https://santiagorivanegra.netlify.app/" target="_blank" className={s.contact}>{t('home.contact')}</a>
+            <select onChange={(e) => handleLanguage(e)} className={s.lang}>
+              <option value='es'>ES</option>
+              <option value='en'>EN</option>
+              <option value='fr'>FR</option>
+              <option value='pt'>PT</option>
+            </select>
+          </div>
         </section>
         <section className={s.section2}>
-          <h3>Carrusel</h3>
-          {/* <button onClick={() => i18n.changeLanguage('es')}>ES</button>
-          <button onClick={() => i18n.changeLanguage('en')}>EN</button> */}
+          {/* <h3>Carrusel</h3> */}
           <div className={s.divLetter}>
             <button value="a" onClick={(e) => letter(e)}>a</button>
             <button value="b" onClick={(e) => letter(e)}>b</button>
@@ -234,11 +254,7 @@ const Home = () => {
           {
             currentRecipe ? currentRecipe.map((r) =>{
               return(
-                <Card key={r.id} id={r.id} name={r.name_recipe} img={r.image}/>
-              // <div>
-              //   <h3>{r.name_recipe}</h3>
-              //   <img src={r.image} alt=''/>
-              // </div>
+                <Card key={r.id} id={r.id} name={r.name_recipe} img={r.image} userId={r.userId}/>
               )
             }) : (
               <div>
@@ -250,6 +266,7 @@ const Home = () => {
         </section>
         </div>
     </div>
+    </Fragment>
   )
 }
 

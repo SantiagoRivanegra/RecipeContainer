@@ -12,6 +12,8 @@ import i18next from 'i18next'
 
 import global_es from './translations/es/global.json'
 import global_en from './translations/en/global.json'
+import global_fr from './translations/fr/global.json'
+import global_pt from './translations/pt/global.json'
 import axios from 'axios';
 
 i18next.init({
@@ -23,6 +25,12 @@ i18next.init({
     },
     en: {
       global: global_en
+    },
+    fr: {
+      global: global_fr
+    },
+    pt: {
+      global: global_pt
     },
   }
 })

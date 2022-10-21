@@ -7,6 +7,7 @@ const initialState = {
   categoryList: [],
   ingredientList: [],
   tags: [],
+  userId: []
 }
 
 function reducer(state = initialState, { type, payload }){
@@ -92,7 +93,13 @@ function reducer(state = initialState, { type, payload }){
     case 'POST_USER':
       return{
         ...state,
-      } 
+      }
+       
+    case 'GET_USER_ID':
+      return{
+        ...state,
+        userId: payload
+      }  
 
     default: return state
   }

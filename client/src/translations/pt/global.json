@@ -1,0 +1,40 @@
+{
+  "helmet":{
+    "home":"Recipe Container"
+  },
+  "home":{
+    "create": "Crie sua própria receita!",
+    "random": "Veja outra receita aleatória",
+    "searchPlaceHolder": "Procurar...",
+    "search": "Procurar",
+    "area": "Area",
+    "category": "Categoria",
+    "ingredient": "Ingredientes",
+    "contact": "Contato"
+  },
+  "post":{
+    "created":"Receita criada com sucesso",
+    "back":"Volte para o começo",
+    "imgSoon": "(Em breve você poderá fazer upload de imagens do seu PC/Celular)",
+    "img": "Imagem final da receita: ",
+    "imgAlt": "Imagem da Receita",
+    "name": "Nome da receita: ",
+    "instructions": "Instruções: ",
+    "ingredient": "Ingrediente: ",
+    "measure": "Medida: ",
+    "tag": "Etiqueta: ",
+    "area": "Area: ",
+    "category": "Categoria: "
+  },
+  "detail":{
+    "img": "Imagem final da receita: ",
+    "name": "Nome da receita: ",
+    "instructions": "Instruções: ",
+    "ingredient": "Ingrediente: ",
+    "measure": "Medida: ",
+    "tag": "Etiqueta: ",
+    "area": "Area: ",
+    "category": "Categoria: ",
+    "userId": "Criado pela: "
+  }
+}
