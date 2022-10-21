@@ -1,4 +1,9 @@
 {
+  "helmet":{
+    "home":"Recipe Container",
+    "post":"Recipe Container - Crea tu Receta",
+    "detail":"Recipe Container - Detalle de la Receta"
+  },
   "home":{
     "create": "Crea tu propia receta!",
     "random": "Ver otra receta al azar",
@@ -6,7 +11,8 @@
     "search": "Buscar",
     "area": "Area",
     "category": "Categoria",
-    "ingredient": "Ingredientes"
+    "ingredient": "Ingredientes",
+    "contact": "Contacto"
   },
   "post":{
     "created":"Receta Creada con Exito",

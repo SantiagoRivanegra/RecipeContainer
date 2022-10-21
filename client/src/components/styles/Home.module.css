@@ -72,8 +72,14 @@
 }
 
 .contact{
+  background-color:#b29f94;
+  border: 1px solid;
+  border-radius: 10px;
   font-weight: bold;
   color: black;
+  margin-right: 10px;
+  cursor: pointer;
+  text-decoration: none;
 }
 
 .lang{

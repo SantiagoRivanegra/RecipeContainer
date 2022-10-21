@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, Fragment } from 'react'
+import { Helmet } from 'react-helmet'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 
@@ -103,6 +104,12 @@ const Home = () => {
   }, [])
   
   return (
+    <Fragment>
+      <Helmet>
+        <title>
+        {t('helmet.home')}
+        </title>
+      </Helmet>
     <div className={s.bgHome}>
     <div>
         <section className={s.section1}>
@@ -199,7 +206,7 @@ const Home = () => {
             </select> */}
           </div>
           <div>
-            <a href="https://santiagorivanegra.netlify.app/" target="_blank" className={s.contact}>contact</a>
+            <a href="https://santiagorivanegra.netlify.app/" target="_blank" className={s.contact}>{t('home.contact')}</a>
             <select onChange={(e) => handleLanguage(e)} className={s.lang}>
               <option value='es'>ES</option>
               <option value='en'>EN</option>
@@ -259,6 +266,7 @@ const Home = () => {
         </section>
         </div>
     </div>
+    </Fragment>
   )
 }
 
