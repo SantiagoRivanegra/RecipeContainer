@@ -40,7 +40,7 @@ export function getRecipeDetail(id){
   }
 }
 
-export function getRecipeName(name, dontFound){
+export function getRecipeName(name){
   return async function(dispatch){
     try {
       let json = await axios.get(`/recipe/name/${name}`)
@@ -49,8 +49,6 @@ export function getRecipeName(name, dontFound){
         payload: json.data
       })      
     } catch (error) {
-      //alert('This food no existe')
-      return dontFound
     }
   }
 }
@@ -116,16 +114,15 @@ export function getIngredientList(){
 }
 
 export function firstLetter(letter){
+  
   return async function(dispatch){
     try {
-      console.log(letter)
       let json = await axios.get(`/recipe/letter/${letter}`)
       return dispatch({
         type: 'GET_RECIPE_LETTER',
         payload: json.data
       })      
     } catch (error) {
-      alert('His food does not exist')
     }
   }
 }

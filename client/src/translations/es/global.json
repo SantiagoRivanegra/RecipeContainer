@@ -30,6 +30,20 @@
     "area": "Area: ",
     "category": "Categoria: "
   },
+  "postError":{
+    "image":"Receta Creada con Exito",
+    "name":"Volver al Inicio",
+    "instructions": "(Pronto podra cargar images desde su PC/Celular)",
+    "ing1": "Imagen Final de la Receta: ",
+    "meas1": "Imagen de la Receta",
+    "ing2": "Nombre de la Receta: ",
+    "meas2": "Instrucciones: ",
+    "ingredient": "Ingrediente: ",
+    "ing3": "Medida: ",
+    "meas3": "Etiqueta: ",
+    "area": "Area: ",
+    "category": "Categoria: "
+  },
   "detail":{
     "img": "Imagen Final de la Receta: ",
     "name": "Nombre de la Receta: ",

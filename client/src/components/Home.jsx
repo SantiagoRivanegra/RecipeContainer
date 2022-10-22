@@ -41,12 +41,8 @@ const Home = () => {
   }
   const handleSubmit = (e) => {
     e.preventDefault()
-    const dontFound = Swal.fire({
-      text: `${t('home.notFound') + ': ' + name}`,
-      width: '30%',
-    })
     if (name) {
-      dispatch(getRecipeName(name, dontFound))
+      dispatch(getRecipeName(name))
       setName('')
       setCurrentPage(1)      
     } else {
@@ -54,7 +50,6 @@ const Home = () => {
         text: `${t('home.emptySearch')}`,
         width: '30%',
       })
-      //alert('Please INsert a food name')
     }
   }
 

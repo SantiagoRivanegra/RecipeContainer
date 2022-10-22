@@ -206,6 +206,15 @@ function handleSubmit(e){
       setLoading(false)
   }
 
+  const handleDeleteImg = () => {
+    console.log('click')
+    setImage("")
+    setRecipe({
+      ...recipe,
+      image: "",
+    })
+  }
+
   function handleChange(e) {
     setRecipe({
       ...recipe,
@@ -361,7 +370,11 @@ function handleSubmit(e){
       </div>
       <div className={s.containerImg}>
         {
-          loading ? <h5>Loading image...</h5> : <img src={image} alt={t('post.imgAlt')} className={s.img}/>
+          loading ? <h5>Loading image...</h5> : (<img src={image} alt={t('post.imgAlt')} className={s.img}/>
+          )
+        }
+        {
+         image ? <button onClick={handleDeleteImg}>X</button> : "" 
         }
       </div>
     </div>
