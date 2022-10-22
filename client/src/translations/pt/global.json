@@ -1,12 +1,16 @@
 {
   "helmet":{
-    "home":"Recipe Container"
+    "home":"Recipe Container",
+    "post":"Crie sua Receita - Recipe Container",
+    "detail":"Detalhe da Receita - Recipe Container"
   },
   "home":{
     "create": "Crie sua própria receita!",
     "random": "Veja outra receita aleatória",
     "searchPlaceHolder": "Procurar...",
     "search": "Procurar",
+    "notFound":"Esta receita não foi encontrada",
+    "emptySearch":"Digite uma receita para pesquisar",
     "area": "Area",
     "category": "Categoria",
     "ingredient": "Ingredientes",

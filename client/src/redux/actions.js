@@ -40,7 +40,7 @@ export function getRecipeDetail(id){
   }
 }
 
-export function getRecipeName(name){
+export function getRecipeName(name, dontFound){
   return async function(dispatch){
     try {
       let json = await axios.get(`/recipe/name/${name}`)
@@ -49,7 +49,8 @@ export function getRecipeName(name){
         payload: json.data
       })      
     } catch (error) {
-      alert('This food no existe')
+      //alert('This food no existe')
+      return dontFound
     }
   }
 }

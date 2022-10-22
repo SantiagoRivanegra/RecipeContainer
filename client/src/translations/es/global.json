@@ -9,6 +9,8 @@
     "random": "Ver otra receta al azar",
     "searchPlaceHolder": "Buscar...",
     "search": "Buscar",
+    "notFound":"Esta receta no fue encontrada",
+    "emptySearch":"Por favor ingrese una receta para buscar",
     "area": "Area",
     "category": "Categoria",
     "ingredient": "Ingredientes",

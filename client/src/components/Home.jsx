@@ -41,13 +41,17 @@ const Home = () => {
   }
   const handleSubmit = (e) => {
     e.preventDefault()
+    const dontFound = Swal.fire({
+      text: `${t('home.notFound') + ': ' + name}`,
+      width: '30%',
+    })
     if (name) {
-      dispatch(getRecipeName(name))
+      dispatch(getRecipeName(name, dontFound))
       setName('')
       setCurrentPage(1)      
     } else {
       Swal.fire({
-        text: 'Please INsert a food name',
+        text: `${t('home.emptySearch')}`,
         width: '30%',
       })
       //alert('Please INsert a food name')
@@ -205,8 +209,8 @@ const Home = () => {
               }
             </select> */}
           </div>
-          <div>
-            <a href="https://santiagorivanegra.netlify.app/" target="_blank" className={s.contact}>{t('home.contact')}</a>
+          <div className={s.contactLang}>
+            <button href="https://santiagorivanegra.netlify.app/" target="_blank" className={s.contact}>{t('home.contact')}</button>
             <select onChange={(e) => handleLanguage(e)} className={s.lang}>
               <option value='es'>ES</option>
               <option value='en'>EN</option>
