@@ -1,17 +1,25 @@
 {
+  "helmet":{
+    "home":"Recipe Container",
+    "post":"Crea tu Receta - Recipe Container",
+    "detail":"Detalle de la Receta - Recipe Container"
+  },
   "home":{
     "create": "Crea tu propia receta!",
-    "random": "Ver otra receta aleatoria",
+    "random": "Ver otra receta al azar",
     "searchPlaceHolder": "Buscar...",
     "search": "Buscar",
     "area": "Area",
     "category": "Categoria",
-    "ingredient": "Ingredientes"
+    "ingredient": "Ingredientes",
+    "contact": "Contacto"
   },
   "post":{
+    "created":"Receta Creada con Exito",
     "back":"Volver al Inicio",
     "imgSoon": "(Pronto podra cargar images desde su PC/Celular)",
     "img": "Imagen Final de la Receta: ",
+    "imgAlt": "Imagen de la Receta",
     "name": "Nombre de la Receta: ",
     "instructions": "Instrucciones: ",
     "ingredient": "Ingrediente: ",
@@ -29,6 +37,6 @@
     "tag": "Etiqueta: ",
     "area": "Area: ",
     "category": "Categoria: ",
-    "userId": "Id de Usuario: "
+    "userId": "Creado por: "
   }
 }

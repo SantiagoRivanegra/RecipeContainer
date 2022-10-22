@@ -1,7 +1,10 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, Fragment } from 'react'
+import { Helmet } from 'react-helmet'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom' 
 import { useTranslation } from 'react-i18next'
+
+import Swal from 'sweetalert2'
 
 import s from './Post.module.css'
 import { postRecipe, getAreaList, getCategoryList, getIngredientList, getRecipeTags } from '../../../redux/actions'
@@ -41,7 +44,7 @@ const Post = () => {
   const ingredientList = useSelector((state) => state.ingredientList)
   const tags = useSelector((state) => state.tags)
 
-  const [t, i18n] = useTranslation('global')
+  const [t] = useTranslation('global')
 
   const [error, setError] = useState({})
   const [image, setImage] = useState("")
@@ -174,6 +177,10 @@ function handleSubmit(e){
         createdInD:true,
         userId: 1
       });
+      Swal.fire({
+        text: `${t('post.created')}`,
+        width: '30%',
+      })
       navigate('/')
     }
   }
@@ -247,23 +254,27 @@ function handleSubmit(e){
   }, [])
 
   return (
+    <Fragment>
+      <Helmet>
+        <title>
+          {t('helmet.post')}
+        </title>
+      </Helmet>
     <div className={s.bgPost}>
       <div>
         <button onClick={() => navigate('/')}>{t('post.back')}</button>
         <form onSubmit={(e) => handleSubmit(e)}>
+          <label className={s.redLabel}>* </label><label>{t('post.img')}</label>
           <input onChange={uploadImage} type="file" name="image"/>
-          {
-            loading ? <h5>Loading image...</h5> : <img src={image} style={{width:"40%"}}/>
-          }
           {/* <h6>{t('post.imgSoon')}</h6>
           <label className={s.redLabel}>* </label><label>{t('post.img')}</label> 
-          <input onChange={(e) => handleChange(e)} type="url" value={recipe.image} name="image" /> */}
+        <input onChange={(e) => handleChange(e)} type="url" value={recipe.image} name="image" /> */}
           <br />
           <label className={s.redLabel}>* </label><label>{t('post.name')}</label> 
           <input onChange={(e) => handleChange(e)} type="text" value={recipe.name_recipe} name="name_recipe"/>
           {/* {error.name_recipe && (<p className={s.redLabel}>{error.name_recipe}</p>)} */}
           <br />
-          <label className={s.redLabel}>* </label><label>{t('post.instructions')}</label> 
+          <label className={s.redLabel}>* </label><label>{t('post.instructions')}</label><br />
           <textarea onChange={(e) => handleChange(e)} type="text" value={recipe.instructions} name="instructions"></textarea>
           <br />
           <label className={s.redLabel}>* </label><label>{t('post.ingredient')}</label> 
@@ -298,7 +309,7 @@ function handleSubmit(e){
           <br />
           <label className={s.redLabel}>* </label><label>{t('post.area')}</label> 
           <select onChange={(e) => handleChangeArea(e)}>
-          <option>aaaa</option>
+          <option>----</option>
           <option key='other' value='other'>other</option>
             {
               areaList.sort((a, b) => a.name_area.localeCompare(b.name_area))
@@ -314,7 +325,7 @@ function handleSubmit(e){
           <br />
           <label className={s.redLabel}>* </label><label>{t('post.category')}</label> 
           <select onChange={(e) => handleChangeCategory(e)}>
-          <option>aaaa</option>
+          <option>----</option>
           <option key='other' value='other'>other</option>
             {
               categoryList.sort((a, b) => a.name_category.localeCompare(b.name_area))
@@ -327,6 +338,8 @@ function handleSubmit(e){
               })
             }
           </select>
+          <br />
+          <br />
           <br />
           {
             !recipe.image ||
@@ -346,7 +359,13 @@ function handleSubmit(e){
           }
         </form>
       </div>
+      <div className={s.containerImg}>
+        {
+          loading ? <h5>Loading image...</h5> : <img src={image} alt={t('post.imgAlt')} className={s.img}/>
+        }
+      </div>
     </div>
+    </Fragment>
   )
 }
 
