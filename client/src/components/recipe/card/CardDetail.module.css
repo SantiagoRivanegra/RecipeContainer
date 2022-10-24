@@ -3,40 +3,83 @@
     0deg,
     rgba(0, 0, 0, 0.4),
     rgba(0, 0, 0, 0.4)
-  ), url('../../../images/bg-detail.png');
-  height: 100vh;
-  width: 100vw;
-  position:absolute;
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center;
+    ), url('../../../images/post-recipe.jpg');
+    /* ), url('../../../images/bg-detail.png'); */
+    height: 100vh;
+    width: 100vw;
+    position:absolute;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+.img{
+  width:20%;
+  height:20%;
   display: flex;
-  flex-direction: column;
+}
+
+.attributes{
+  display: flex;
 }
 
 .texto{
   font-size: 1.5em;
-  margin-top: 0.5em;
-  margin-bottom: 0
+  margin:  0.5em 0 0 0;
 }
-.texto1{
+.name{
+  font-size: 1.5em;
+  margin:  0.5em 0.5em 0 0;
+  font-weight: 500;
+}
+.area{
+  font-size: 1.5em;
+  margin:  0.5em 0.5em 0 0;
+  font-weight: 500;
+}
+.category{
+  font-size: 1.5em;
+  margin:  0.5em 0 0 0;
+  font-weight: 500;
+}
+/* .texto1{
   font-size: 1.5em;
   margin: 0;
-}
-.instructions{
-  font-size: 1.5em;
-  margin: 0;
-  width: 50%;
-}
+} */
 
-.container h6{
+/* .container h6{
   font-size: 15px;
   font-weight: bold;
   display: flex;
   flex-direction: column;
+} */
+
+.intructionsIngredient{
+  display: flex;
+  text-align: center;
+  justify-content: center;
 }
 
-.img{
-  width:20%;
-  height:20%;
+.section1{
+  float: left;
+  width: 50%;
+  margin-left: 100px;
+}
+.instructions{
+  font-size: 1em;
+  margin: 0;
+  width: 100%;
+}
+
+.section2{
+  float: right;
+  width: 50%;
+  font-weight: bold;
+}
+.section2 ul{
+  margin: 0;
+  font-weight: bold;
 }
