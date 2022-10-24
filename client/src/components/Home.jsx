@@ -11,6 +11,7 @@ import s from './styles/Home.module.css'
 import Card from './recipe/card/Card'
 import Random from './recipe/random/Random'
 import Paged from './Paged'
+import CardNotFound from './recipe/card/CardNotFound'
 
 import { getRecipeName, getAreaList, getAreaRecipe, getRecipe, firstLetter, getCategoryRecipe, getCategoryList, getIngredientList, getIngredientRecipe, getRandomRecipe } from '../redux/actions'
 //import { getRecipeTags } from '../redux/actions'
@@ -31,7 +32,7 @@ const Home = () => {
   const [recipesPerPage, setRecipesPerPage] = useState(8)
   const indexOfLastRecipe = currentPage * recipesPerPage
   const indexOfFirstRecipe = indexOfLastRecipe - recipesPerPage
-  const currentRecipe = allRecipes.slice(indexOfFirstRecipe, indexOfLastRecipe)
+  const currentRecipe = allRecipes && allRecipes.slice(indexOfFirstRecipe, indexOfLastRecipe)
 
   //SearchBar
   const [name, setName] = useState('')
@@ -249,7 +250,7 @@ const Home = () => {
           </div>
           <Paged 
             recipesPerPage = {recipesPerPage}
-            allRecipes = {allRecipes.length}
+            allRecipes = {allRecipes && allRecipes.length}
             paged = {paged}
           />
         <div className={s.card}>
@@ -260,6 +261,7 @@ const Home = () => {
               )
             }) : (
               <div>
+                <CardNotFound/>
                 <h3>Loading...</h3>
               </div>
             )

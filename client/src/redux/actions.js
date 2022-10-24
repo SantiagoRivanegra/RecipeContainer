@@ -49,7 +49,10 @@ export function getRecipeName(name){
         payload: json.data
       })      
     } catch (error) {
-      alert('No existen recetas con este nombre: ' + name)
+      // alert('No existen recetas con este nombre: ' + name)
+      return dispatch({
+        type: 'GET_NAME_RECIPE'
+      }) 
     }
   }
 }

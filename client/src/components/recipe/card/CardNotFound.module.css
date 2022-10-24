@@ -1,0 +1,24 @@
+.cardContainer{
+  font-size: 1.5rem;
+  text-shadow: 2px 2px 3px black;
+  color: #F4E2D8;
+  border-radius: 10px;
+  border: 1px solid
+}
+
+.name{
+  font-size: 1em;
+}
+
+.img{
+  width:70%;
+  height:40%;
+  box-shadow: 2px 2px 3px black;
+  border-radius: 10px;
+}
+
+.img:hover{
+  width:75%;
+  height:42%;
+  cursor: pointer;
+}
