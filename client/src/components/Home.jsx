@@ -95,7 +95,9 @@ const Home = () => {
     if(lang.target.value === 'fr') i18n.changeLanguage('fr')
     if(lang.target.value === 'pt') i18n.changeLanguage('pt')
     setLang(lang.target.value)
+    localStorage.setItem('lang', lang.target.value)
   }
+  const idioma = localStorage.getItem('lang')
 
   useEffect(() => {
     dispatch(getRecipe())
@@ -210,7 +212,7 @@ const Home = () => {
           <div className={s.contactLang}>
             <button href="https://santiagorivanegra.netlify.app/" target="_blank" className={s.contact}>{t('home.contact')}</button>
             <b className={s.lang}>{t('home.language')}:</b>
-            <select onChange={(e) => handleLanguage(e)} className={s.langSelect}>            
+            <select onChange={(e) => handleLanguage(e)} className={s.langSelect} defaultValue={idioma}>            
               <option value='es'>ES</option>
               <option value='en'>EN</option>
               <option value='fr'>FR</option>
