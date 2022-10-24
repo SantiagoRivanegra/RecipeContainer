@@ -4,6 +4,13 @@
   color: #F4E2D8;
 }
 
+.name{
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+}
+
 .img{
   width:70%;
   height:40%;
