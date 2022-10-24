@@ -1,6 +1,7 @@
 import React, { useEffect, Fragment } from 'react'
 import { Helmet } from 'react-helmet'
 import { useDispatch, useSelector } from 'react-redux'
+import { useNavigate } from 'react-router-dom' 
 import { useParams } from 'react-router-dom'
 
 import { useTranslation } from 'react-i18next'
@@ -12,6 +13,8 @@ import s from './CardDetail.module.css'
 const CardDetail = () => {
   const dispatch = useDispatch()
   const recipeDetail = useSelector((state) => state.recipeDetail)
+  const navigate = useNavigate()
+
   
   const [t] = useTranslation('global')
   
@@ -29,18 +32,28 @@ const CardDetail = () => {
         </title>
       </Helmet>
       <div className={s.container}>
-        <h4 className={s.texto}>{t('detail.img')}</h4>
-        <img src={recipeDetail.image} alt="nothing" className={s.img}/>
-
+        <button className={s.back} onClick={() => navigate(`/`)}>{t('post.back')}</button>
+        <div>
+        <div className={s.image}>
+          <h4 className={s.texto}>{t('detail.img')}</h4>
+          <img src={recipeDetail.image} alt="nothing" className={s.img}/>
+        </div>
         <div className={s.attributes}>
-          <h4 className={s.texto}>{t('detail.name')}</h4>
-          <h4 className={s.name}>{recipeDetail.name_recipe} - </h4>
+          <ul>
+            <h4 className={s.texto}>{t('detail.name')}&ensp;</h4>
+            <h4 className={s.name}>{recipeDetail.name_recipe}</h4>
+          </ul>
 
-          <h4 className={s.texto}>{t('detail.area')}</h4>
-          <h6 className={s.area}>{recipeDetail.area} - </h6>
+          <ul>
+            <h4 className={s.texto}>{t('detail.area')}&ensp;</h4>
+            <h6 className={s.area}>{recipeDetail.area}</h6>
+          </ul>
 
-          <h4 className={s.texto}>{t('detail.category')}</h4>
-          <h6 className={s.category}>{recipeDetail.category} - </h6>
+          <ul>
+              <h4 className={s.texto}>{t('detail.category')}&ensp;</h4>
+              <h6 className={s.category}>{recipeDetail.category}</h6>
+          </ul>
+          </div>
         </div>
 
         <div className={s.intructionsIngredient}>
@@ -48,7 +61,7 @@ const CardDetail = () => {
         <h4 className={s.texto}>{t('detail.instructions')}</h4>
         <h6 className={s.instructions}>{recipeDetail.instructions}</h6>
         </section>
-        <h4>  -  </h4>
+        <h4 className={s.space}>¯</h4>
         <section className={s.section2}>
         <h4 className={s.texto}>{t('detail.ingredient')}</h4>
         {
