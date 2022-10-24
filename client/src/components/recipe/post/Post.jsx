@@ -271,10 +271,16 @@ function handleSubmit(e){
       </Helmet>
     <div className={s.bgPost}>
       <div>
-        <button onClick={() => navigate('/')}>{t('post.back')}</button>
+        {/* <button onClick={() => navigate('/')}>{t('post.back')}</button> */}
         <form onSubmit={(e) => handleSubmit(e)}>
+          <label className={s.redLabel}>* </label><span className={s.required}>{t('post.required')}</span>
+          <br />
           <label className={s.redLabel}>* </label><label>{t('post.img')}</label>
           <input onChange={uploadImage} type="file" name="image"/>
+          <br />
+          {
+          image ? <button onClick={handleDeleteImg} className={s.imgDelete}>{t('post.imgDelete')}</button> : "" 
+          }
           {/* <h6>{t('post.imgSoon')}</h6>
           <label className={s.redLabel}>* </label><label>{t('post.img')}</label> 
         <input onChange={(e) => handleChange(e)} type="url" value={recipe.image} name="image" /> */}
@@ -300,6 +306,13 @@ function handleSubmit(e){
           <input onChange={(e) => handleChange(e)} type="text" value={recipe.ingredient3} name="ingredient3"/>
           <label className={s.redLabel}>* </label><label>{t('post.measure')}</label> 
           <input onChange={(e) => handleChange(e)} type="text" value={recipe.measure3} name="measure3"/>
+          <br />
+          <button
+            className={s.info}
+            data-bs-toggle="tooltip" 
+            data-bs-placement="right" 
+            title={t('post.info')}
+          >i</button>
           <br />
           <label>{t('post.tag')}</label> 
           {/* <input onChange={(e) => handleChange(e)} type="text" value={recipe.tags} name="tags"/> */}
@@ -350,6 +363,7 @@ function handleSubmit(e){
           <br />
           <br />
           <br />
+          <button onClick={() => navigate('/')} className={s.back}>{t('post.back')}</button>
           {
             !recipe.image ||
             !recipe.name_recipe ||
@@ -372,9 +386,6 @@ function handleSubmit(e){
         {
           loading ? <h5>Loading image...</h5> : (<img src={image} alt={t('post.imgAlt')} className={s.img}/>
           )
-        }
-        {
-         image ? <button onClick={handleDeleteImg}>X</button> : "" 
         }
       </div>
     </div>

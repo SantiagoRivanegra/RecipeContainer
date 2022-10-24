@@ -14,18 +14,22 @@
     "area": "Area",
     "category": "Categoria",
     "ingredient": "Ingredientes",
-    "contact": "Contato"
+    "contact": "Contato",
+    "language": "Mudar Idioma"
   },
   "post":{
+    "required":"Campos obrigatórios",
     "created":"Receita criada com sucesso",
     "back":"Volte para o começo",
     "imgSoon": "(Em breve você poderá fazer upload de imagens do seu PC/Celular)",
     "img": "Imagem final da receita: ",
     "imgAlt": "Imagem da Receita",
+    "imgDelete": "Excluir imagem",
     "name": "Nome da receita: ",
     "instructions": "Instruções: ",
     "ingredient": "Ingrediente: ",
     "measure": "Medida: ",
+    "info": "Em breve você poderá inserir mais ingredientes",
     "tag": "Etiqueta: ",
     "area": "Area: ",
     "category": "Categoria: "

@@ -23,6 +23,7 @@ const Home = () => {
   const categoryList = useSelector((state) => state.categoryList)
   const ingredientList = useSelector((state) => state.ingredientList)
   //const tags = useSelector((state) => state.tags)
+  const [lang, setLang] = useState("")
   
   const [t, i18n] = useTranslation('global')
 
@@ -92,6 +93,7 @@ const Home = () => {
     if(lang.target.value === 'en') i18n.changeLanguage('en')
     if(lang.target.value === 'fr') i18n.changeLanguage('fr')
     if(lang.target.value === 'pt') i18n.changeLanguage('pt')
+    setLang(lang.target.value)
   }
 
   useEffect(() => {
@@ -206,7 +208,8 @@ const Home = () => {
           </div>
           <div className={s.contactLang}>
             <button href="https://santiagorivanegra.netlify.app/" target="_blank" className={s.contact}>{t('home.contact')}</button>
-            <select onChange={(e) => handleLanguage(e)} className={s.lang}>
+            <b className={s.lang}>{t('home.language')}:</b>
+            <select onChange={(e) => handleLanguage(e)} className={s.langSelect}>            
               <option value='es'>ES</option>
               <option value='en'>EN</option>
               <option value='fr'>FR</option>

@@ -49,6 +49,7 @@ export function getRecipeName(name){
         payload: json.data
       })      
     } catch (error) {
+      alert('No existen recetas con este nombre: ' + name)
     }
   }
 }

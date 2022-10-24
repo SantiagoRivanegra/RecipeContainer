@@ -29,16 +29,21 @@ const CardDetail = () => {
         </title>
       </Helmet>
       <div className={s.container}>
-        {t('detail.img')}
+        <h4 className={s.texto}>{t('detail.img')}</h4>
         <img src={recipeDetail.image} alt="nothing" className={s.img}/>
-        {t('detail.name')}
-        <h6>{recipeDetail.name_recipe}</h6>
-        {t('detail.instructions')}
-        <h6>{recipeDetail.instructions}</h6>
-        {t('detail.area')}
-        <h6>{recipeDetail.area}</h6>
-        {t('detail.category')}
-        <h6>{recipeDetail.category}</h6>
+
+        <h4 className={s.texto}>{t('detail.name')}</h4>
+        <h6 className={s.texto1}>{recipeDetail.name_recipe}</h6>
+
+        <h4 className={s.texto}>{t('detail.instructions')}</h4>
+        <h6 className={s.instructions}>{recipeDetail.instructions}</h6>
+
+        <h4 className={s.texto}>{t('detail.area')}</h4>
+        <h6 className={s.texto1}>{recipeDetail.area}</h6>
+
+        <h4 className={s.texto}>{t('detail.category')}</h4>
+        <h6 className={s.texto1}>{recipeDetail.category}</h6>
+
         {t('detail.ingredient')}
         {
           recipeDetail.ingredient1 ?
