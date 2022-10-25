@@ -259,7 +259,7 @@ function handleSubmit(e){
     dispatch(getAreaList())
     dispatch(getCategoryList())
     dispatch(getIngredientList())
-    dispatch(getRecipeTags())
+    //dispatch(getRecipeTags())
   }, [])
 
   return (
@@ -290,7 +290,7 @@ function handleSubmit(e){
           {/* {error.name_recipe && (<p className={s.redLabel}>{error.name_recipe}</p>)} */}
           <br />
           <label className={s.redLabel}>* </label><label>{t('post.instructions')}</label><br />
-          <textarea onChange={(e) => handleChange(e)} type="text" value={recipe.instructions} name="instructions"></textarea>
+          <textarea maxlength="500" onChange={(e) => handleChange(e)} type="text" value={recipe.instructions} name="instructions"></textarea>
           <br />
           <label className={s.redLabel}>* </label><label>{t('post.ingredient')}</label> 
           <input onChange={(e) => handleChange(e)} type="text" value={recipe.ingredient1} name="ingredient1"/>

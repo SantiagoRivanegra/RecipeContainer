@@ -20,18 +20,23 @@
     margin-top: 30px;
   }
 
+  .containerSection1{
+    max-height: 40%;
+  }
+
   .image{
     float: left;
     width: 40%;
+    height: 120%;
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-top: 1%;
+    margin-top: 2%;
   }
   
 .img{
   width:50%;
-  height:50%;
+  height:45%;
   display: flex;
   box-shadow: 2px 2px 3px black;
   border-radius: 5px;
@@ -44,6 +49,9 @@
   float: right;
   width: 60%;
   margin-top: 1%;
+}
+.attributes ul{
+  width: 33%;
 }
 
 .texto{
@@ -105,6 +113,8 @@
   float: right;
   width: 50%;
   font-weight: bold;
+  overflow: auto;
+  margin-top: 3%;
 }
 .section2 ul{
   margin: 0;
