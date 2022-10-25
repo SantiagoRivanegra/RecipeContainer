@@ -6,7 +6,7 @@ const CardNotFound = () => {
   return (
       <div className={s.cardContainer}>
         <h3 className={s.name}>Not Found</h3>
-        <img src='iamgen'alt="nothing" className={s.img}/>
+        <img src='imagen'alt="imgNotFound" className={s.img}/>
       </div>
   )
 }

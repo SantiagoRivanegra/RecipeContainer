@@ -290,7 +290,15 @@ function handleSubmit(e){
           {/* {error.name_recipe && (<p className={s.redLabel}>{error.name_recipe}</p>)} */}
           <br />
           <label className={s.redLabel}>* </label><label>{t('post.instructions')}</label><br />
-          <textarea maxlength="500" onChange={(e) => handleChange(e)} type="text" value={recipe.instructions} name="instructions"></textarea>
+          <textarea 
+            minlength="50" 
+            maxlength="500"
+            placeholder="Intructions..." 
+            onChange={(e) => handleChange(e)} 
+            type="text" 
+            value={recipe.instructions} 
+            name="instructions"
+          ></textarea><span>.   50 - 500</span>
           <br />
           <label className={s.redLabel}>* </label><label>{t('post.ingredient')}</label> 
           <input onChange={(e) => handleChange(e)} type="text" value={recipe.ingredient1} name="ingredient1"/>
@@ -313,9 +321,9 @@ function handleSubmit(e){
             data-bs-placement="right" 
             title={t('post.info')}
           >i</button>
-          <br />
+          {/* <br />
           <label>{t('post.tag')}</label> 
-          {/* <input onChange={(e) => handleChange(e)} type="text" value={recipe.tags} name="tags"/> */}
+           <input onChange={(e) => handleChange(e)} type="text" value={recipe.tags} name="tags"/> 
           <select onChange={(e) => handleChangeTags(e)}>
             {
               tags.sort((a, b) => a.localeCompare(b))
@@ -327,7 +335,7 @@ function handleSubmit(e){
                 )
               })
             }
-          </select>
+          </select> */}
           <br />
           <label className={s.redLabel}>* </label><label>{t('post.area')}</label> 
           <select onChange={(e) => handleChangeArea(e)}>

@@ -127,6 +127,9 @@ export function firstLetter(letter){
         payload: json.data
       })      
     } catch (error) {
+      return dispatch({
+        type: 'GET_RECIPE_LETTER'
+      }) 
     }
   }
 }

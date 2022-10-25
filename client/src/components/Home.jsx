@@ -264,7 +264,7 @@ const Home = () => {
             }) : (
               <div>
                 <CardNotFound/>
-                <h3>Loading...</h3>
+                {/* <h3>Loading...</h3> */}
               </div>
             )
           }
