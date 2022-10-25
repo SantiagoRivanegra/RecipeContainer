@@ -1,6 +1,7 @@
 import React, { useEffect, Fragment } from 'react'
 import { Helmet } from 'react-helmet'
 import { useDispatch, useSelector } from 'react-redux'
+import { useNavigate } from 'react-router-dom' 
 import { useParams } from 'react-router-dom'
 
 import { useTranslation } from 'react-i18next'
@@ -12,6 +13,8 @@ import s from './CardDetail.module.css'
 const CardDetail = () => {
   const dispatch = useDispatch()
   const recipeDetail = useSelector((state) => state.recipeDetail)
+  const navigate = useNavigate()
+
   
   const [t] = useTranslation('global')
   
@@ -29,122 +32,145 @@ const CardDetail = () => {
         </title>
       </Helmet>
       <div className={s.container}>
-        {t('detail.img')}
-        <img src={recipeDetail.image} alt="nothing" className={s.img}/>
-        {t('detail.name')}
-        <h6>{recipeDetail.name_recipe}</h6>
-        {t('detail.instructions')}
-        <h6>{recipeDetail.instructions}</h6>
-        {t('detail.area')}
-        <h6>{recipeDetail.area}</h6>
-        {t('detail.category')}
-        <h6>{recipeDetail.category}</h6>
-        {t('detail.ingredient')}
+        <button className={s.back} onClick={() => navigate(`/`)}>{t('post.back')}</button>
+        <div>
+        <div className={s.image}>
+          <h4 className={s.texto}>{t('detail.img')}</h4>
+          <img src={recipeDetail.image} alt="nothing" className={s.img}/>
+        </div>
+        <div className={s.attributes}>
+          <ul>
+            <h4 className={s.texto}>{t('detail.name')}&ensp;</h4>
+            <h4 className={s.name}>{recipeDetail.name_recipe}</h4>
+          </ul>
+
+          <ul>
+            <h4 className={s.texto}>{t('detail.area')}&ensp;</h4>
+            <h6 className={s.area}>{recipeDetail.area}</h6>
+          </ul>
+
+          <ul>
+              <h4 className={s.texto}>{t('detail.category')}&ensp;</h4>
+              <h6 className={s.category}>{recipeDetail.category}</h6>
+          </ul>
+          </div>
+        </div>
+
+        <div className={s.intructionsIngredient}>
+        <section className={s.section1}>
+        <h4 className={s.texto}>{t('detail.instructions')}</h4>
+        <h6 className={s.instructions}>{recipeDetail.instructions}</h6>
+        </section>
+        <h4 className={s.space}>¯</h4>
+        <section className={s.section2}>
+        <h4 className={s.texto}>{t('detail.ingredient')}</h4>
         {
           recipeDetail.ingredient1 ?
-          <span>{recipeDetail.ingredient1}.......{recipeDetail.measure1}</span> :
+          <ul>{recipeDetail.ingredient1}.......{recipeDetail.measure1}</ul> :
           ""
         }        
         {
           recipeDetail.ingredient2 ?
-          <span>{recipeDetail.ingredient2}.......{recipeDetail.measure2}</span> :
+          <ul>{recipeDetail.ingredient2}.......{recipeDetail.measure2}</ul> :
           ""
         }
         {
           recipeDetail.ingredient3 ?
-          <span>{recipeDetail.ingredient3}.......{recipeDetail.measure3}</span> :
+          <ul>{recipeDetail.ingredient3}.......{recipeDetail.measure3}</ul> :
           ""
         }
         {
           recipeDetail.ingredient4 ?
-          <span>{recipeDetail.ingredient4}.......{recipeDetail.measure4}</span> :
+          <ul>{recipeDetail.ingredient4}.......{recipeDetail.measure4}</ul> :
           ""
         }
         {
           recipeDetail.ingredient5 ?
-          <span>{recipeDetail.ingredient5}.......{recipeDetail.measure5}</span> :
+          <ul>{recipeDetail.ingredient5}.......{recipeDetail.measure5}</ul> :
           ""
         }
         {
           recipeDetail.ingredient6 ?
-          <span>{recipeDetail.ingredient6}.......{recipeDetail.measure6}</span> :
+          <ul>{recipeDetail.ingredient6}.......{recipeDetail.measure6}</ul> :
           ""
         }
         {
           recipeDetail.ingredient7 ?
-          <span>{recipeDetail.ingredient7}.......{recipeDetail.measure7}</span> :
+          <ul>{recipeDetail.ingredient7}.......{recipeDetail.measure7}</ul> :
           ""
         }
         {
           recipeDetail.ingredient8 ?
-          <span>{recipeDetail.ingredient8}.......{recipeDetail.measure8}</span> :
+          <ul>{recipeDetail.ingredient8}.......{recipeDetail.measure8}</ul> :
           ""
         }
         {
           recipeDetail.ingredient9 ?
-          <span>{recipeDetail.ingredient9}.......{recipeDetail.measure9}</span> :
+          <ul>{recipeDetail.ingredient9}.......{recipeDetail.measure9}</ul> :
           ""
         }
         {
           recipeDetail.ingredient10 ?
-          <span>{recipeDetail.ingredient10}.......{recipeDetail.measure10}</span> :
+          <ul>{recipeDetail.ingredient10}.......{recipeDetail.measure10}</ul> :
           ""
         }
         {
           recipeDetail.ingredient11 ?
-          <span>{recipeDetail.ingredient11}.......{recipeDetail.measure11}</span> :
+          <ul>{recipeDetail.ingredient11}.......{recipeDetail.measure11}</ul> :
           ""
         }
         {
           recipeDetail.ingredient12 ?
-          <span>{recipeDetail.ingredient12}.......{recipeDetail.measure12}</span> :
+          <ul>{recipeDetail.ingredient12}.......{recipeDetail.measure12}</ul> :
           ""
         }
         {
           recipeDetail.ingredient13 ?
-          <span>{recipeDetail.ingredient13}.......{recipeDetail.measure13}</span> :
+          <ul>{recipeDetail.ingredient13}.......{recipeDetail.measure13}</ul> :
           ""
         }
         {
           recipeDetail.ingredient14 ?
-          <span>{recipeDetail.ingredient14}.......{recipeDetail.measure14}</span> :
+          <ul>{recipeDetail.ingredient14}.......{recipeDetail.measure14}</ul> :
           ""
         }
         {
           recipeDetail.ingredient15 ?
-          <span>{recipeDetail.ingredient15}.......{recipeDetail.measure15}</span> :
+          <ul>{recipeDetail.ingredient15}.......{recipeDetail.measure15}</ul> :
           ""
         }
         {
           recipeDetail.ingredient16 ?
-          <span>{recipeDetail.ingredient16}.......{recipeDetail.measure16}</span> :
+          <ul>{recipeDetail.ingredient16}.......{recipeDetail.measure16}</ul> :
           ""
         }
         {
           recipeDetail.ingredient17 ?
-          <span>{recipeDetail.ingredient17}.......{recipeDetail.measure17}</span> :
+          <ul>{recipeDetail.ingredient17}.......{recipeDetail.measure17}</ul> :
           ""
         }
         {
           recipeDetail.ingredient18 ?
-          <span>{recipeDetail.ingredient18}.......{recipeDetail.measure18}</span> :
+          <ul>{recipeDetail.ingredient18}.......{recipeDetail.measure18}</ul> :
           ""
         }
         {
           recipeDetail.ingredient19 ?
-          <span>{recipeDetail.ingredient19}.......{recipeDetail.measure19}</span> :
+          <ul>{recipeDetail.ingredient19}.......{recipeDetail.measure19}</ul> :
           ""
         }
         {
           recipeDetail.ingredient20 ?          
-          <span>{recipeDetail.ingredient20}.......{recipeDetail.measure20}</span> :
+          <ul>{recipeDetail.ingredient20}.......{recipeDetail.measure20}</ul> :
           ""
         }
-        {
+        </section>
+        </div>
+        {/* {
           recipeDetail.userId ?
           <h6>{t('detail.userId')}  {recipeDetail.userId}</h6> :
           ""
-        }
+        } */}
       </div>
     </Fragment>
 )

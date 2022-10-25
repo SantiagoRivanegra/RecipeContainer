@@ -1,27 +1,35 @@
 {
   "helmet":{
-    "home":"Recipe Container"
+    "home":"Recipe Container",
+    "post":"Create your Recipe - Recipe Container",
+    "detail":"Recipe Detail - Recipe Container"
   },
   "home":{
     "create": "Create your own recipe!",
     "random": "See another random recipe",
     "searchPlaceHolder": "Search...",
     "search": "Search",
+    "notFound":"This recipe was not found",
+    "emptySearch":"Please enter a recipe to search",
     "area": "Area",
     "category": "Category",
     "ingredient": "Ingredients",
-    "contact": "Contact"
+    "contact": "Contact",
+    "language": "Change Language"
   },
   "post":{
+    "required":"Required fields",
     "created":"Recipe created successfully",
     "back":"Back to Home",
     "imgSoon": "(Soon you will be able to upload images and video from your PC/phone)",
     "img": "Final Recipe Image: ",
     "imgAlt": "Recipe Image",
+    "imgDelete": "Delete image",
     "name": "Name of Recipe: ",
     "instructions": "Instructions: ",
     "ingredient": "Ingredient: ",
     "measure": "Measure: ",
+    "info": "Soon you will be able to enter more ingredients",
     "tag": "Tags: ",
     "area": "Area: ",
     "category": "Category: "

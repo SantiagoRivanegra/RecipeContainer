@@ -11,6 +11,7 @@ import s from './styles/Home.module.css'
 import Card from './recipe/card/Card'
 import Random from './recipe/random/Random'
 import Paged from './Paged'
+import CardNotFound from './recipe/card/CardNotFound'
 
 import { getRecipeName, getAreaList, getAreaRecipe, getRecipe, firstLetter, getCategoryRecipe, getCategoryList, getIngredientList, getIngredientRecipe, getRandomRecipe } from '../redux/actions'
 //import { getRecipeTags } from '../redux/actions'
@@ -23,6 +24,7 @@ const Home = () => {
   const categoryList = useSelector((state) => state.categoryList)
   const ingredientList = useSelector((state) => state.ingredientList)
   //const tags = useSelector((state) => state.tags)
+  const [lang, setLang] = useState("")
   
   const [t, i18n] = useTranslation('global')
 
@@ -30,7 +32,7 @@ const Home = () => {
   const [recipesPerPage, setRecipesPerPage] = useState(8)
   const indexOfLastRecipe = currentPage * recipesPerPage
   const indexOfFirstRecipe = indexOfLastRecipe - recipesPerPage
-  const currentRecipe = allRecipes.slice(indexOfFirstRecipe, indexOfLastRecipe)
+  const currentRecipe = allRecipes && allRecipes.slice(indexOfFirstRecipe, indexOfLastRecipe)
 
   //SearchBar
   const [name, setName] = useState('')
@@ -47,10 +49,9 @@ const Home = () => {
       setCurrentPage(1)      
     } else {
       Swal.fire({
-        text: 'Please INsert a food name',
+        text: `${t('home.emptySearch')}`,
         width: '30%',
       })
-      //alert('Please INsert a food name')
     }
   }
 
@@ -93,7 +94,10 @@ const Home = () => {
     if(lang.target.value === 'en') i18n.changeLanguage('en')
     if(lang.target.value === 'fr') i18n.changeLanguage('fr')
     if(lang.target.value === 'pt') i18n.changeLanguage('pt')
+    setLang(lang.target.value)
+    localStorage.setItem('lang', lang.target.value)
   }
+  const idioma = localStorage.getItem('lang')
 
   useEffect(() => {
     dispatch(getRecipe())
@@ -205,9 +209,10 @@ const Home = () => {
               }
             </select> */}
           </div>
-          <div>
-            <a href="https://santiagorivanegra.netlify.app/" target="_blank" className={s.contact}>{t('home.contact')}</a>
-            <select onChange={(e) => handleLanguage(e)} className={s.lang}>
+          <div className={s.contactLang}>
+            <button href="https://santiagorivanegra.netlify.app/" target="_blank" className={s.contact}>{t('home.contact')}</button>
+            <b className={s.lang}>{t('home.language')}:</b>
+            <select onChange={(e) => handleLanguage(e)} className={s.langSelect} defaultValue={idioma}>            
               <option value='es'>ES</option>
               <option value='en'>EN</option>
               <option value='fr'>FR</option>
@@ -247,7 +252,7 @@ const Home = () => {
           </div>
           <Paged 
             recipesPerPage = {recipesPerPage}
-            allRecipes = {allRecipes.length}
+            allRecipes = {allRecipes && allRecipes.length}
             paged = {paged}
           />
         <div className={s.card}>
@@ -258,6 +263,7 @@ const Home = () => {
               )
             }) : (
               <div>
+                <CardNotFound/>
                 <h3>Loading...</h3>
               </div>
             )
