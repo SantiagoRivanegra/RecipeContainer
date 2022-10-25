@@ -1,27 +1,35 @@
 {
   "helmet":{
-    "home":"Recipe Container"
+    "home":"Recipe Container",
+    "post":"Crie sua Receita - Recipe Container",
+    "detail":"Detalhe da Receita - Recipe Container"
   },
   "home":{
     "create": "Crie sua própria receita!",
     "random": "Veja outra receita aleatória",
     "searchPlaceHolder": "Procurar...",
     "search": "Procurar",
+    "notFound":"Esta receita não foi encontrada",
+    "emptySearch":"Digite uma receita para pesquisar",
     "area": "Area",
     "category": "Categoria",
     "ingredient": "Ingredientes",
-    "contact": "Contato"
+    "contact": "Contato",
+    "language": "Mudar Idioma"
   },
   "post":{
+    "required":"Campos obrigatórios",
     "created":"Receita criada com sucesso",
     "back":"Volte para o começo",
     "imgSoon": "(Em breve você poderá fazer upload de imagens do seu PC/Celular)",
     "img": "Imagem final da receita: ",
     "imgAlt": "Imagem da Receita",
+    "imgDelete": "Excluir imagem",
     "name": "Nome da receita: ",
     "instructions": "Instruções: ",
     "ingredient": "Ingrediente: ",
     "measure": "Medida: ",
+    "info": "Em breve você poderá inserir mais ingredientes",
     "tag": "Etiqueta: ",
     "area": "Area: ",
     "category": "Categoria: "

@@ -7,7 +7,7 @@ const Card = ({ name, img, id }) => {
 
   return (
       <div className={s.cardContainer}>
-        <h3>{name}</h3>
+        <h3 className={s.name}>{name}</h3>
         <img src={img} alt="nothing" className={s.img} onClick={() => navigate(`/detail/${id}`)}/>
       </div>
   )

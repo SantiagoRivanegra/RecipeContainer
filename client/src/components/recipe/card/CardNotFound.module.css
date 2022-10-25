@@ -1,14 +1,13 @@
-.cardContainer h3{
+.cardContainer{
   font-size: 1.5rem;
   text-shadow: 2px 2px 3px black;
   color: #F4E2D8;
+  border-radius: 10px;
+  border: 1px solid
 }
 
 .name{
-  overflow: hidden;
-  display: -webkit-box;
-  -webkit-line-clamp: 3;
-  -webkit-box-orient: vertical;
+  font-size: 1em;
 }
 
 .img{

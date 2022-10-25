@@ -21,7 +21,8 @@ const Random = () => {
         random ? random.map((r) => {
           return(
             <Card
-              key={r.id} 
+              key={r.id}
+              id={r.id} 
               name={r.name_recipe} 
               img={r.image}
             />
