@@ -34,11 +34,27 @@
     "area": "Area: ",
     "category": "Categoria: "
   },
+  "postError":{
+    "image":"Erro ao carregar a imagem, selecione outra ou entre nesta seção novamente",
+    "nameLength":"O comprimento do nome deve ter entre 5 e 30 caracteres",
+    "nameAlphabet":"O nome só pode conter letras",
+    "instructions": "O comprimento das instruções deve estar entre 50 e 500 caracteres",
+    "ing1": "O comprimento do ingrediente deve ter entre 3 e 20 caracteres",
+    "meas1": "insira uma medida",
+    "ing2": "O comprimento do ingrediente deve ter entre 3 e 20 caracteres",
+    "meas2": "insira uma medida",
+    "ing3": "O comprimento do ingrediente deve ter entre 3 e 20 caracteres",
+    "meas3": "insira uma medida",
+    "tag": "Etiqueta",
+    "area": "Insira uma área",
+    "category": "Insira una Categoria",
+    "ingredient": "Ingrediente: "
+  },
   "detail":{
     "img": "Imagem final da receita: ",
     "name": "Nome da receita: ",
     "instructions": "Instruções: ",
-    "ingredient": "Ingrediente: ",
+    "ingredient": "Ingredientes: ",
     "measure": "Medida: ",
     "tag": "Etiqueta: ",
     "area": "Area: ",
