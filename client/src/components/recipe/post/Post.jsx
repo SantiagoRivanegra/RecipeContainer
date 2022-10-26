@@ -12,25 +12,29 @@ import { postRecipe, getAreaList, getCategoryList, getIngredientList, getRecipeT
 function validate(recipe) {
   let error = {}
   
-  if(!recipe.image) error.image = 'Ingre un image a su Receta'
+  // if(!recipe.image) error.image = 'Ingre un image a su Receta'
 
   if(recipe.name_recipe.length < 5 || recipe.name_recipe.length > 30) error.name_recipe = 'El nombre de ser entre 5 y 30 caracteres'
-  if(!recipe.name_recipe) {error.name_recipe = 'Ingre un Nombre a su Receta'}
+  // if(!recipe.name_recipe) {error.name_recipe = 'Ingre un Nombre a su Receta'}
   
-  if(!recipe.instructions) error.instructions = 'Ingre un instructions a su Receta'
+  if(recipe.instructions.length < 50 || recipe.instructions.length > 500) error.name_recipe = 'Las instructions deben tener al menos  entre 50 y 500 caracteres'
+  // if(!recipe.instructions) error.instructions = 'Ingre un instructions a su Receta'
 
-  if(!recipe.ingredient1) error.ingredient1 = 'Ingre un ingredient1 a su Receta'
+  if(recipe.ingredient1.length < 3 || recipe.ingredient1.length > 20) error.name_recipe = 'Los inrgredientes deben tener al menos  entre 3 y 20 caracteres'
+  // if(!recipe.ingredient1) error.ingredient1 = 'Ingre un ingredient1 a su Receta'
   if(!recipe.measure1) error.measure1 = 'Ingre un measure1 a su Receta'
 
-  if(!recipe.ingredient2) error.ingredient2 = 'Ingre un ingredient2 a su Receta'
+  if(recipe.ingredient2.length < 3 || recipe.ingredient2.length > 20) error.name_recipe = 'Los inrgredientes deben tener al menos  entre 3 y 20 caracteres'
+  // if(!recipe.ingredient2) error.ingredient2 = 'Ingre un ingredient2 a su Receta'
   if(!recipe.measure2) error.measure2 = 'Ingre un measure2 a su Receta'
 
-  if(!recipe.ingredient3) error.ingredient3 = 'Ingre un ingredient3 a su Receta'
+  if(recipe.ingredient3.length < 3 || recipe.ingredient3.length > 20) error.name_recipe = 'Los inrgredientes deben tener al menos  entre 3 y 20 caracteres'
+  // if(!recipe.ingredient3) error.ingredient3 = 'Ingre un ingredient3 a su Receta'
   if(!recipe.measure3) error.measure3 = 'Ingre un measure3 a su Receta'
 
-  if(!recipe.area) error.area = 'Ingre un area a su Receta'
+  // if(!recipe.area) error.area = 'Ingre un area a su Receta'
 
-  if(!recipe.category) error.category = 'Ingre un category a su Receta'
+  // if(!recipe.category) error.category = 'Ingre un category a su Receta'
 
   return error
 }
@@ -106,7 +110,7 @@ const Post = () => {
 function handleSubmit(e){
   e.preventDefault()
   if(error.image) alert(error.image)
-  else if(error.name_recipe) alert(error.name_recipe)
+  else if(error.name_recipe) Swal.fire({text: error.name_recipe, width: '30%'})
   else if(error.instructions) alert(error.instructions)
   else if(error.ingredient1) alert(error.ingredient1)
   else if(error.measure1) alert(error.measure1)
@@ -286,7 +290,14 @@ function handleSubmit(e){
         <input onChange={(e) => handleChange(e)} type="url" value={recipe.image} name="image" /> */}
           <br />
           <label className={s.redLabel}>* </label><label>{t('post.name')}</label> 
-          <input onChange={(e) => handleChange(e)} type="text" value={recipe.name_recipe} name="name_recipe"/>
+          <input 
+            minlength="5" 
+            maxlength="30"
+            onChange={(e) => handleChange(e)} 
+            type="text" 
+            value={recipe.name_recipe} 
+            name="name_recipe"
+          />
           {/* {error.name_recipe && (<p className={s.redLabel}>{error.name_recipe}</p>)} */}
           <br />
           <label className={s.redLabel}>* </label><label>{t('post.instructions')}</label><br />
@@ -301,19 +312,19 @@ function handleSubmit(e){
           ></textarea><span>.   50 - 500</span>
           <br />
           <label className={s.redLabel}>* </label><label>{t('post.ingredient')}</label> 
-          <input onChange={(e) => handleChange(e)} type="text" value={recipe.ingredient1} name="ingredient1"/>
+          <input minlength="3" maxlength="20" onChange={(e) => handleChange(e)} type="text" value={recipe.ingredient1} name="ingredient1"/>
           <label className={s.redLabel}>* </label><label>{t('post.measure')}</label> 
-          <input onChange={(e) => handleChange(e)} type="text" value={recipe.measure1} name="measure1"/>
+          <input maxlength="10"onChange={(e) => handleChange(e)} type="text" value={recipe.measure1} name="measure1"/>
           <br />
           <label className={s.redLabel}>* </label><label>{t('post.ingredient')}</label> 
-          <input onChange={(e) => handleChange(e)} type="text" value={recipe.ingredient2} name="ingredient2"/>
+          <input minlength="3" maxlength="20"onChange={(e) => handleChange(e)} type="text" value={recipe.ingredient2} name="ingredient2"/>
           <label className={s.redLabel}>* </label><label>{t('post.measure')}</label> 
-          <input onChange={(e) => handleChange(e)} type="text" value={recipe.measure2} name="measure2"/>
+          <input maxlength="10"onChange={(e) => handleChange(e)} type="text" value={recipe.measure2} name="measure2"/>
           <br />
           <label className={s.redLabel}>* </label><label>{t('post.ingredient')}</label> 
-          <input onChange={(e) => handleChange(e)} type="text" value={recipe.ingredient3} name="ingredient3"/>
+          <input minlength="3" maxlength="20"onChange={(e) => handleChange(e)} type="text" value={recipe.ingredient3} name="ingredient3"/>
           <label className={s.redLabel}>* </label><label>{t('post.measure')}</label> 
-          <input onChange={(e) => handleChange(e)} type="text" value={recipe.measure3} name="measure3"/>
+          <input maxlength="10"onChange={(e) => handleChange(e)} type="text" value={recipe.measure3} name="measure3"/>
           <br />
           <button
             className={s.info}

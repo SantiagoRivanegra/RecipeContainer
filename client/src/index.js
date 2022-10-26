@@ -22,7 +22,7 @@ const es = es
 i18next.init({
   interpolation: {escapeValue: false},
   lng: idioma,
-  fallbackLng: 'es',
+  fallbackLng: 'en',
   resources:{
     es: {
       global: global_es

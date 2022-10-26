@@ -210,7 +210,7 @@ const Home = () => {
             </select> */}
           </div>
           <div className={s.contactLang}>
-            <button href="https://santiagorivanegra.netlify.app/" target="_blank" className={s.contact}>{t('home.contact')}</button>
+            <a href="https://santiagorivanegra.netlify.app/" target="_blank" className={s.contact}>{t('home.contact')}</a>
             <b className={s.lang}>{t('home.language')}:</b>
             <select onChange={(e) => handleLanguage(e)} className={s.langSelect} defaultValue={idioma}>            
               <option value='es'>ES</option>
