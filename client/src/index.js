@@ -17,10 +17,12 @@ import global_pt from './translations/pt/global.json'
 import axios from 'axios';
 
 const idioma = localStorage.getItem('lang')
+const es = es
 
 i18next.init({
   interpolation: {escapeValue: false},
   lng: idioma,
+  fallbackLng: 'es',
   resources:{
     es: {
       global: global_es
