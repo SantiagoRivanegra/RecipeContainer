@@ -1,6 +1,6 @@
 .bgPost{
   height: 100%;
-  width: 100vw;
+  width: 100%;
   background-image: linear-gradient(
     0deg,
     rgba(0, 0, 0, 0.22),
@@ -24,12 +24,15 @@
 .bgPost input{
   width: 25%;
   background-color: #b29f94;
+  margin: 2%;
+  box-shadow: 2px 2px 3px black;
 }
 
 .bgPost textArea{
   height: 100px;
   width: 20rem;
   background-color: #b29f94;
+  box-shadow: 2px 2px 3px black;
 }
 
 .bgPost label{

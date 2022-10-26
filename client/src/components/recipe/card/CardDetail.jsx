@@ -33,7 +33,7 @@ const CardDetail = () => {
       </Helmet>
       <div className={s.container}>
         <button className={s.back} onClick={() => navigate(`/`)}>{t('post.back')}</button>
-        <div>
+        <div className={s.containerSection1}>
         <div className={s.image}>
           <h4 className={s.texto}>{t('detail.img')}</h4>
           <img src={recipeDetail.image} alt="nothing" className={s.img}/>
@@ -58,12 +58,12 @@ const CardDetail = () => {
 
         <div className={s.intructionsIngredient}>
         <section className={s.section1}>
-        <h4 className={s.texto}>{t('detail.instructions')}</h4>
-        <h6 className={s.instructions}>{recipeDetail.instructions}</h6>
+          <h4 className={s.texto}>{t('detail.instructions')}</h4>
+          <h6 className={s.instructions}>{recipeDetail.instructions}</h6>
         </section>
         <h4 className={s.space}>¯</h4>
-        <section className={s.section2}>
         <h4 className={s.texto}>{t('detail.ingredient')}</h4>
+        <section className={s.section2}>
         {
           recipeDetail.ingredient1 ?
           <ul>{recipeDetail.ingredient1}.......{recipeDetail.measure1}</ul> :
