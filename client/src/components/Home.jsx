@@ -213,8 +213,8 @@ const Home = () => {
             <a href="https://santiagorivanegra.netlify.app/" target="_blank" className={s.contact}>{t('home.contact')}</a>
             <b className={s.lang}>{t('home.language')}:</b>
             <select onChange={(e) => handleLanguage(e)} className={s.langSelect} defaultValue={idioma}>            
-              <option value='en'>EN</option>
               <option value='es'>ES</option>
+              <option value='en'>EN</option>
               <option value='fr'>FR</option>
               <option value='pt'>PT</option>
             </select>
