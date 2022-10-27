@@ -34,11 +34,27 @@
     "area": "Area: ",
     "category": "Category: "
   },
+  "postError":{
+    "image":"Error loading the image, select another one or enter this section again",
+    "nameLength":"The length of the name must be between 5 and 30 characters",
+    "nameAlphabet":"The name can only contain letters",
+    "instructions": "The length of the instructions must be between 50 and 500 characters",
+    "ing1": "Ingredient length must be between 3 and 20 characters",
+    "meas1": "Enter a measure",
+    "ing2": "Ingredient length must be between 3 and 20 characters",
+    "meas2": "Enter a measure",
+    "ing3": "Ingredient length must be between 3 and 20 characters",
+    "meas3": "Enter a measure",
+    "tag": "Tag",
+    "area": "Insert an area",
+    "category": "Insert a category",
+    "ingredient": "Ingrediente: "
+  },
   "detail":{
     "img": "Final Recipe Image: ",
     "name": "Name of Recipe: ",
     "instructions": "Instructions: ",
-    "ingredient": "Ingredient: ",
+    "ingredient": "Ingredients: ",
     "measure": "Measure: ",
     "tag": "Tags: ",
     "area": "Area: ",

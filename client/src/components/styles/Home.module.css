@@ -1,5 +1,5 @@
 .bgHome{
-  height: 100vh;
+  min-height: 100vh;
   width: 100vw;
   background-image: linear-gradient(
     0deg,
@@ -14,6 +14,7 @@
   flex-direction: row;
   text-align: center;
   justify-content: center;
+  align-items: flex-start;
 }
 
 .section1{
@@ -97,6 +98,8 @@
   margin-right: 10px;
   cursor: pointer;
   text-decoration: none;
+  margin: inherit;
+  text-align: center;
 }
 
 .lang{
