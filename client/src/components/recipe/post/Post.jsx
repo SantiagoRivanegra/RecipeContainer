@@ -355,6 +355,7 @@ function handleSubmit(e){
           <label className={s.redLabel}>* </label><label>{t('post.measure')}</label> 
           <input maxlength="10" onChange={(e) => handleChange(e)} type="text" value={recipe.measure1} name="measure1"/>
           { recipe.measure1.length === 0 || error.measure1 ? 
+
           <IoClose 
             data-bs-toggle="tooltip" 
             data-bs-placement="right" 
