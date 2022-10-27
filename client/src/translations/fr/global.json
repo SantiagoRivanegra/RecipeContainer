@@ -13,7 +13,7 @@
     "emptySearch":"Veuillez entrer une recette pour rechercher",
     "area": "Zone",
     "category": "Catégorie",
-    "ingredient": "Ingrédients",
+    "ingredient": "Ingrédient",
     "contact": "Contact",
     "language": "Changer la Langue"
   },
@@ -33,6 +33,22 @@
     "tag": "Étiquette: ",
     "area": "Zone: ",
     "category": "Catégorie: "
+  },
+  "postError":{
+    "image":"Erreur lors du téléchargement de l'image, sélectionnez-en une autre ou entrez à nouveau dans cette section",
+    "nameLength":"La longueur du nom doit être comprise entre 5 et 30 caractères",
+    "nameAlphabet":"Le nom ne peut contenir que des lettres",
+    "instructions": "La longueur des instructions doit être comprise entre 50 et 500 caractères",
+    "ing1": "La longueur de l'ingrédient doit être comprise entre 3 et 20 caractères",
+    "meas1": "Saisir une mesure",
+    "ing2": "La longueur de l'ingrédient doit être comprise entre 3 et 20 caractères",
+    "meas2": "Saisir une mesure",
+    "ing3": "La longueur de l'ingrédient doit être comprise entre 3 et 20 caractères",
+    "meas3": "Saisir une mesure",
+    "tag": "Étiquette",
+    "area": "Insérer dans une zone",
+    "category": "Insérer une catégorie",
+    "ingredient": "Ingrediente: "
   },
   "detail":{
     "img": "Image de la recette finale.: ",

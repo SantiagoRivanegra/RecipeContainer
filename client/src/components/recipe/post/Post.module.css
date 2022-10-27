@@ -12,6 +12,7 @@
   background-repeat: no-repeat;
   background-position: center center;
   display: flex;
+  justify-content: center;
   padding-left: 5rem
 }
 
