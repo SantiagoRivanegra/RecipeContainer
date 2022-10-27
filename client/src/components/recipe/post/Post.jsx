@@ -287,7 +287,7 @@ function handleSubmit(e){
           <br />
           <label className={s.redLabel}>* </label><label>{t('post.img')}</label>
           <input onChange={uploadImage} type="file" name="image"/>
-          { error.image ? 
+          { !recipe.image || error.image ? 
           <IoClose 
             data-bs-toggle="tooltip" 
             data-bs-placement="right" 
@@ -305,9 +305,6 @@ function handleSubmit(e){
           <label className={s.redLabel}>* </label><label>{t('post.name')}</label> 
           <input
             maxlength="30" 
-            data-bs-toggle="tooltip" 
-            data-bs-placement="right" 
-            title={t('post.info')}
             onChange={(e) => handleChange(e)} 
             type="text" 
             value={recipe.name_recipe} 
@@ -337,18 +334,18 @@ function handleSubmit(e){
             value={recipe.instructions} 
             name="instructions"
           ></textarea>
-          { error.instructions ? 
+          { recipe.instructions.length === 0 || error.instructions ? 
           <IoClose 
             data-bs-toggle="tooltip" 
             data-bs-placement="right" 
             title={t('postError.instructions')}
           /> : 
           <FcCheckmark/> }
-          <span>50 - 500</span>
+          <span>{recipe.instructions.length} - 500</span>
           <br />
           <label className={s.redLabel}>* </label><label>{t('post.ingredient')}</label> 
           <input maxlength="20" onChange={(e) => handleChange(e)} type="text" value={recipe.ingredient1} name="ingredient1"/>
-          { error.ingredient1 ? 
+          { recipe.ingredient1.length === 0 || error.ingredient1 ? 
           <IoClose 
             data-bs-toggle="tooltip" 
             data-bs-placement="right" 
@@ -357,7 +354,7 @@ function handleSubmit(e){
           <FcCheckmark/> }
           <label className={s.redLabel}>* </label><label>{t('post.measure')}</label> 
           <input maxlength="10" onChange={(e) => handleChange(e)} type="text" value={recipe.measure1} name="measure1"/>
-          { error.measure1 ? 
+          { recipe.measure1.length === 0 || error.measure1 ? 
           <IoClose 
             data-bs-toggle="tooltip" 
             data-bs-placement="right" 
@@ -367,7 +364,7 @@ function handleSubmit(e){
           <br />
           <label className={s.redLabel}>* </label><label>{t('post.ingredient')}</label> 
           <input maxlength="20" onChange={(e) => handleChange(e)} type="text" value={recipe.ingredient2} name="ingredient2"/>
-          { error.ingredient2 ? 
+          { recipe.ingredient2.length === 0 || error.ingredient2 ? 
           <IoClose 
             data-bs-toggle="tooltip" 
             data-bs-placement="right" 
@@ -376,7 +373,7 @@ function handleSubmit(e){
           <FcCheckmark/> }
           <label className={s.redLabel}>* </label><label>{t('post.measure')}</label> 
           <input maxlength="10"onChange={(e) => handleChange(e)} type="text" value={recipe.measure2} name="measure2"/>
-          { error.measure2 ? 
+          { recipe.measure2.length === 0 || error.measure2 ? 
           <IoClose 
             data-bs-toggle="tooltip" 
             data-bs-placement="right" 
@@ -386,7 +383,7 @@ function handleSubmit(e){
           <br />
           <label className={s.redLabel}>* </label><label>{t('post.ingredient')}</label> 
           <input maxlength="20" onChange={(e) => handleChange(e)} type="text" value={recipe.ingredient3} name="ingredient3"/>
-          { error.ingredient3 ? 
+          { recipe.ingredient3.length === 0 || error.ingredient3 ? 
           <IoClose 
             data-bs-toggle="tooltip" 
             data-bs-placement="right" 
@@ -395,7 +392,7 @@ function handleSubmit(e){
           <FcCheckmark/> }
           <label className={s.redLabel}>* </label><label>{t('post.measure')}</label> 
           <input maxlength="10"onChange={(e) => handleChange(e)} type="text" value={recipe.measure3} name="measure3"/>
-          { error.measure3 ? 
+          { recipe.measure3.length === 0 || error.measure3 ? 
           <IoClose 
             data-bs-toggle="tooltip" 
             data-bs-placement="right" 
@@ -440,7 +437,7 @@ function handleSubmit(e){
               })
             }
           </select>
-          { error.area ? 
+          { !recipe.area || error.area ? 
           <IoClose 
             data-bs-toggle="tooltip" 
             data-bs-placement="right" 
@@ -463,7 +460,7 @@ function handleSubmit(e){
               })
             }
           </select>
-          { error.category ? 
+          { !recipe.category || error.category ? 
           <IoClose 
             data-bs-toggle="tooltip" 
             data-bs-placement="right" 
