@@ -3,7 +3,7 @@ const { getRecipes, getRandomRecipe, getRecipeByName, getRecipeDetail, getRecipe
 const { deleteRecipe } = require('../controllers/recipe/deleteRecipe')
 const { postRecipe } = require('../controllers/recipe/postRecipe')
 const {  } = require('../controllers/recipe/putRecipe')
-const { tags } = require('../controllers/recipe/tags.js')
+const { tags } = require('../controllers/recipe/list/tags.js')
 
 const { ingredients } = require('../controllers/recipe/list/ingredients.js')
 const { categories } = require('../controllers/recipe/list/categories.js')
@@ -50,6 +50,9 @@ router.get('/ingredient/main/:ingredient', getRecipeByIngredient)
 
 //Get Tags
 router.get('/tags', tags)
+
+// //Get Recipe by Tag
+// router.get('/tag/:tag', getRecipeByTag)
 
 //Delete Recipe
 router.delete('/:id', deleteRecipe)
