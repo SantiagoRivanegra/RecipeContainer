@@ -287,13 +287,14 @@ function handleSubmit(e){
           <br />
           <label className={s.redLabel}>* </label><label>{t('post.img')}</label>
           <input onChange={uploadImage} type="file" name="image"/>
-          { error.image ? 
-          <IoClose 
-            data-bs-toggle="tooltip" 
-            data-bs-placement="right" 
-            title={t('postError.image')}
-          /> : 
-          <FcCheckmark/> }
+          { !recipe.image || error.image ? 
+            <IoClose 
+              data-bs-toggle="tooltip" 
+              data-bs-placement="right" 
+              title={t('postError.image')}
+            /> : 
+            <FcCheckmark/> 
+          }
           <br />
           {
           image ? <button onClick={handleDeleteImg} className={s.imgDelete}>{t('post.imgDelete')}</button> : "" 
@@ -305,9 +306,6 @@ function handleSubmit(e){
           <label className={s.redLabel}>* </label><label>{t('post.name')}</label> 
           <input
             maxlength="30" 
-            data-bs-toggle="tooltip" 
-            data-bs-placement="right" 
-            title={t('post.info')}
             onChange={(e) => handleChange(e)} 
             type="text" 
             value={recipe.name_recipe} 
@@ -337,71 +335,78 @@ function handleSubmit(e){
             value={recipe.instructions} 
             name="instructions"
           ></textarea>
-          { error.instructions ? 
-          <IoClose 
-            data-bs-toggle="tooltip" 
-            data-bs-placement="right" 
-            title={t('postError.instructions')}
-          /> : 
-          <FcCheckmark/> }
-          <span>50 - 500</span>
+          { recipe.instructions.length === 0 || error.instructions ? 
+            <IoClose 
+              data-bs-toggle="tooltip" 
+              data-bs-placement="right" 
+              title={t('postError.instructions')}
+            /> : 
+            <FcCheckmark/> 
+          }
+          <span>{recipe.instructions.length} / 500</span>
           <br />
           <label className={s.redLabel}>* </label><label>{t('post.ingredient')}</label> 
           <input maxlength="20" onChange={(e) => handleChange(e)} type="text" value={recipe.ingredient1} name="ingredient1"/>
-          { error.ingredient1 ? 
-          <IoClose 
-            data-bs-toggle="tooltip" 
-            data-bs-placement="right" 
-            title={t('postError.ing1')}
-          /> : 
-          <FcCheckmark/> }
+          { !recipe.ingredient1 || error.ingredient1 ? 
+            <IoClose 
+              data-bs-toggle="tooltip" 
+              data-bs-placement="right" 
+              title={t('postError.ing1')}
+            /> : 
+            <FcCheckmark/> 
+          }
           <label className={s.redLabel}>* </label><label>{t('post.measure')}</label> 
           <input maxlength="10" onChange={(e) => handleChange(e)} type="text" value={recipe.measure1} name="measure1"/>
-          { error.measure1 ? 
-          <IoClose 
-            data-bs-toggle="tooltip" 
-            data-bs-placement="right" 
-            title={t('postError.meas1')}
-          /> : 
-          <FcCheckmark/> }
+          { !recipe.measure1 || error.measure1 ? 
+            <IoClose 
+              data-bs-toggle="tooltip" 
+              data-bs-placement="right" 
+              title={t('postError.meas1')}
+            /> : 
+            <FcCheckmark/> 
+          }
           <br />
           <label className={s.redLabel}>* </label><label>{t('post.ingredient')}</label> 
           <input maxlength="20" onChange={(e) => handleChange(e)} type="text" value={recipe.ingredient2} name="ingredient2"/>
-          { error.ingredient2 ? 
-          <IoClose 
-            data-bs-toggle="tooltip" 
-            data-bs-placement="right" 
-            title={t('postError.ing2')}
-          /> : 
-          <FcCheckmark/> }
+          { !recipe.ingredient2 || error.ingredient2 ? 
+            <IoClose 
+              data-bs-toggle="tooltip" 
+              data-bs-placement="right" 
+              title={t('postError.ing2')}
+            /> : 
+            <FcCheckmark/> 
+          }
           <label className={s.redLabel}>* </label><label>{t('post.measure')}</label> 
           <input maxlength="10"onChange={(e) => handleChange(e)} type="text" value={recipe.measure2} name="measure2"/>
-          { error.measure2 ? 
-          <IoClose 
-            data-bs-toggle="tooltip" 
-            data-bs-placement="right" 
-            title={t('postError.meas2')}
-          /> : 
-          <FcCheckmark/> }
+          { !recipe.measure2 || error.measure2 ? 
+            <IoClose 
+              data-bs-toggle="tooltip" 
+              data-bs-placement="right" 
+              title={t('postError.meas2')}
+            /> : 
+            <FcCheckmark/> 
+          }
           <br />
           <label className={s.redLabel}>* </label><label>{t('post.ingredient')}</label> 
           <input maxlength="20" onChange={(e) => handleChange(e)} type="text" value={recipe.ingredient3} name="ingredient3"/>
-          { error.ingredient3 ? 
-          <IoClose 
-            data-bs-toggle="tooltip" 
-            data-bs-placement="right" 
-            title={t('postError.ing3')}
-          /> : 
-          <FcCheckmark/> }
+          { !recipe.ingredient3 || error.ingredient3 ? 
+            <IoClose 
+              data-bs-toggle="tooltip" 
+              data-bs-placement="right" 
+              title={t('postError.ing3')}
+            /> : 
+            <FcCheckmark/> 
+          }
           <label className={s.redLabel}>* </label><label>{t('post.measure')}</label> 
           <input maxlength="10"onChange={(e) => handleChange(e)} type="text" value={recipe.measure3} name="measure3"/>
-          { error.measure3 ? 
-          <IoClose 
-            data-bs-toggle="tooltip" 
-            data-bs-placement="right" 
-            title={t('postError.meas3')}
-          /> : 
-          <FcCheckmark/> }
+          { !recipe.measure3 || error.measure3 ? 
+            <IoClose 
+              data-bs-toggle="tooltip" 
+              data-bs-placement="right" 
+              title={t('postError.meas3')}
+            /> : 
+            <FcCheckmark/> 
+          }
           <br />
           <button
             className={s.info}
@@ -440,13 +445,14 @@ function handleSubmit(e){
               })
             }
           </select>
-          { error.area ? 
-          <IoClose 
-            data-bs-toggle="tooltip" 
-            data-bs-placement="right" 
-            title={t('postError.area')}
-          /> : 
-          <FcCheckmark/> }
+          { !recipe.area || error.area ? 
+            <IoClose 
+              data-bs-toggle="tooltip" 
+              data-bs-placement="right" 
+              title={t('postError.area')}
+            /> : 
+            <FcCheckmark/> 
+          }
           <br />
           <label className={s.redLabel}>* </label><label>{t('post.category')}</label> 
           <select onChange={(e) => handleChangeCategory(e)}>
@@ -463,13 +469,14 @@ function handleSubmit(e){
               })
             }
           </select>
-          { error.category ? 
-          <IoClose 
-            data-bs-toggle="tooltip" 
-            data-bs-placement="right" 
-            title={t('postError.category')}
-          /> : 
-          <FcCheckmark/> }
+          { !recipe.category || error.category ? 
+            <IoClose 
+              data-bs-toggle="tooltip" 
+              data-bs-placement="right" 
+              title={t('postError.category')}
+            /> : 
+            <FcCheckmark/> 
+          }
           <br />
           <br />
           <br />
