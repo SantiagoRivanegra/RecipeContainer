@@ -5,6 +5,13 @@ import { useNavigate } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 
 import Swal from 'sweetalert2'
+import gifCreated from '../../../assets/images/created.gif'
+import gifError from '../../../assets/images/errorGif.gif'
+
+import useSound from 'use-sound'
+import check from '../../../assets/sounds/created.mp3'
+import errorSound from '../../../assets/sounds/error.mp3'
+
 import { IoClose } from 'react-icons/io5'
 import { FcCheckmark } from 'react-icons/fc'
 
@@ -50,6 +57,13 @@ const Post = () => {
   const categoryList = useSelector((state) => state.categoryList)
   const ingredientList = useSelector((state) => state.ingredientList)
   const tags = useSelector((state) => state.tags)
+
+  const [ corrected ] = useSound(check, {
+    volume: 0.1
+  })
+  const [ wrong ] = useSound(errorSound, {
+    volume: 0.1
+  })
 
   const [t] = useTranslation('global')
 
@@ -109,23 +123,82 @@ const Post = () => {
     createdInD:true,
     userId: 1
 });
+
 // if(error.name_recipe) Swal.fire({text: `${t('postError.image')}`, width: '30%'})
 function handleSubmit(e){
   e.preventDefault()
-  if(error.image) Swal.fire({text: `${t('postError.image')}`, width: '30%'})
+  if(error.image) 
+    {Swal.fire({
+      imageUrl: gifError,
+      imageWidth: '25%',
+      imageHeight: '60%',
+      imageAlt: 'gifError',
+      text: `${t('postError.image')}`, 
+      width: '30%'})
+      wrong()}
   else if(recipe.name_recipe.length < 5 || recipe.name_recipe.length > 30)
-    Swal.fire({text: `${t('postError.nameLength')}`, width: '30%'})
+    {Swal.fire({
+      imageUrl: gifError,
+      imageWidth: '25%',
+      imageHeight: '60%',
+      imageAlt: 'gifError',
+      text: `${t('postError.nameLength')}`, 
+      width: '30%'})
+      wrong()}
   else if((!/^[a-zA-ZÀ-ÿ\u00f1\u00d1\s]+$/.test(recipe.name_recipe)))
-    Swal.fire({text: `${t('postError.nameAlphabet')}`, width: '30%'})
-  else if(error.instructions) Swal.fire({text: `${t('postError.instructions')}`, width: '30%'})
-  else if(error.ingredient1) Swal.fire({text: `${t('postError.ing1')}`, width: '30%'})
-  else if(error.measure1) Swal.fire({text: `${t('postError.meas1')}`, width: '30%'})
-  else if(error.ingredient2) Swal.fire({text: `${t('postError.ing2')}`, width: '30%'})
-  else if(error.measure2) Swal.fire({text: `${t('postError.meas2')}`, width: '30%'})
-  else if(error.ingredient3) Swal.fire({text: `${t('postError.ing3')}`, width: '30%'})
-  else if(error.measure3) Swal.fire({text: `${t('postError.meas3')}`, width: '30%'})
-  else if(error.area) Swal.fire({text: `${t('postError.area')}`, width: '30%'})
-  else if(error.category) Swal.fire({text: `${t('postError.category')}`, width: '30%'})
+    {Swal.fire({
+      imageUrl: gifError,
+      imageWidth: '25%',
+      imageHeight: '60%',
+      imageAlt: 'gifError',
+      text: `${t('postError.nameAlphabet')}`, 
+      width: '30%'})
+      wrong()}
+  else if(error.instructions) 
+    {Swal.fire({
+      imageUrl: gifError,
+      imageWidth: '25%',
+      imageHeight: '60%',
+      imageAlt: 'gifError',
+      text: `${t('postError.instructions')}`, 
+      width: '30%'})
+      wrong()}
+  else if(error.ingredient1 || error.ingredient2 || error.ingredient3) 
+  {Swal.fire({
+    imageUrl: gifError,
+    imageWidth: '25%',
+    imageHeight: '60%',
+    imageAlt: 'gifError',
+    text: `${t('postError.ing1')}`, 
+    width: '30%'})
+    wrong()}
+  else if(error.measure1 || error.measure2 || error.measure3) 
+  {Swal.fire({
+    imageUrl: gifError,
+    imageWidth: '25%',
+    imageHeight: '60%',
+    imageAlt: 'gifError',
+    text: `${t('postError.meas1')}`, 
+    width: '30%'})
+    wrong()}
+  else if(error.area) 
+  {Swal.fire({
+    imageUrl: gifError,
+    imageWidth: '25%',
+    imageHeight: '60%',
+    imageAlt: 'gifError',
+    text: `${t('postError.area')}`, 
+    width: '30%'})
+    wrong()}
+  else if(error.category) 
+  {Swal.fire({
+    imageUrl: gifError,
+    imageWidth: '25%',
+    imageHeight: '60%',
+    imageAlt: 'gifError',
+    text: `${t('postError.category')}`, 
+    width: '30%'})
+    wrong()}
   else{
       dispatch(postRecipe(recipe))
     // if(image.length>0){
@@ -187,10 +260,16 @@ function handleSubmit(e){
         createdInD:true,
         userId: 1
       });
+
       Swal.fire({
         text: `${t('post.created')}`,
         width: '30%',
+        imageUrl: gifCreated,
+        imageWidth: '25%',
+        imageHeight: '60%',
+        imageAlt: 'A tall image',
       })
+      corrected()
       navigate('/')
     }
   }

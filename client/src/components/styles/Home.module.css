@@ -5,7 +5,7 @@
     0deg,
     rgba(0, 0, 0, 0.4),
     rgba(0, 0, 0, 0.4)
-  ),url('../../images/bg-home.jpg');
+  ),url('../../assets/images/bg-home.jpg');
   position:absolute;
   background-size: cover;
   background-repeat: no-repeat;
