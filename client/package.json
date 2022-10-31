@@ -30,6 +30,7 @@
     "redux-thunk": "^2.4.1",
     "sweetalert2": "^11.5.2",
     "thunk": "^0.0.1",
+    "use-sound": "^4.0.1",
     "web-vitals": "^3.0.2"
   },
   "devDependencies": {

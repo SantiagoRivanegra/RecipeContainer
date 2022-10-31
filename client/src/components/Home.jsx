@@ -4,6 +4,9 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 
 import Swal from 'sweetalert2'
+import errorGif from '../assets/images/errorGif.gif'
+import useSound from 'use-sound'
+import errorSound from '../assets/sounds/error.mp3'
 import { useTranslation } from 'react-i18next'
 
 import s from './styles/Home.module.css'
@@ -25,6 +28,9 @@ const Home = () => {
   const ingredientList = useSelector((state) => state.ingredientList)
   //const tags = useSelector((state) => state.tags)
   const [lang, setLang] = useState("")
+  const [ error ] = useSound(errorSound, {
+    volume: 0.1
+  })
   
   const [t, i18n] = useTranslation('global')
 
@@ -51,7 +57,12 @@ const Home = () => {
       Swal.fire({
         text: `${t('home.emptySearch')}`,
         width: '30%',
+        imageUrl: errorGif,
+        imageWidth: '25%',
+        imageHeight: '60%',
+        imageAlt: 'A tall image',
       })
+      error()
     }
   }
 

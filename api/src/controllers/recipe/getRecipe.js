@@ -78,14 +78,14 @@ const getRecipeByName = async(req, res) => {
       const recipeNameApi = await byName(name)
       const recipeDb = await dbName(nameDb)
       const recipeDbName = []
-      let nameR = ""
+      let nameRecipe = ""
       for (let i = 0; i < recipeDb.length; i++) {
-        nameR = recipeDb[i].toLowerCase()
-        const recipe = await Recipe.findAll({ 
-          where: { name_recipe : nameR }
+        nameRecipe = recipeDb[i].toLowerCase()
+        const recipeInDb = await Recipe.findAll({ 
+          where: { name_recipe : nameRecipe }
         })
-        for (let i = 0; i < recipe.length; i++)
-        recipeDbName.push(recipe[i])
+        for (let i = 0; i < recipeInDb.length; i++)
+        recipeDbName.push(recipeInDb[i])
       }
     recipeNameApi !== undefined ?
     res.status(200).json(recipeNameApi.concat(recipeDbName)) :
@@ -102,7 +102,6 @@ const getRecipeByName = async(req, res) => {
 const getRecipeDetail = async(req, res) => {
   const { id } = req.params
   let idUuid = id.length
-  console.log(idUuid)
   try {
     if(idUuid !== 36){
       const recipeIdApi = await byId(id)
@@ -130,14 +129,14 @@ const getRecipeByFirstLetter = async(req, res) => {
       const recipeLetterApi = await byLetter(letter)
       const recipeDb = await dbLetter(letter)
       const recipeDbName = []
-      let name = ""
+      let nameRecipe = ""
       for (let i = 0; i < recipeDb.length; i++) {
-        name = recipeDb[i].toLowerCase()
-        const recipe = await Recipe.findAll({ 
-          where: { name_recipe : name }
+        nameRecipe = recipeDb[i].toLowerCase()
+        const recipes = await Recipe.findAll({ 
+          where: { name_recipe : nameRecipe }
         })
-        for (let i = 0; i < recipe.length; i++)
-        recipeDbName.push(recipe[i])
+        for (let i = 0; i < recipes.length; i++)
+        recipeDbName.push(recipes[i])
       }
       recipeLetterApi !== undefined ?
       res.status(200).json(recipeLetterApi.concat(recipeDbName)) :
