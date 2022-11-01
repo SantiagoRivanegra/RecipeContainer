@@ -19,6 +19,9 @@ import CardNotFound from './recipe/card/CardNotFound'
 import { getRecipeName, getAreaList, getAreaRecipe, getRecipe, firstLetter, getCategoryRecipe, getCategoryList, getIngredientList, getIngredientRecipe, getRandomRecipe } from '../redux/actions'
 //import { getRecipeTags } from '../redux/actions'
 
+import { UserAuth } from './firebase/context/AuthContext'
+
+
 const Home = () => {
   const dispatch = useDispatch()
   const navigate = useNavigate()
@@ -39,6 +42,8 @@ const Home = () => {
   const indexOfLastRecipe = currentPage * recipesPerPage
   const indexOfFirstRecipe = indexOfLastRecipe - recipesPerPage
   const currentRecipe = allRecipes && allRecipes.slice(indexOfFirstRecipe, indexOfLastRecipe)
+
+  const {user, logOut} = UserAuth()
 
   //SearchBar
   const [name, setName] = useState('')
@@ -109,6 +114,14 @@ const Home = () => {
     localStorage.setItem('lang', lang.target.value)
   }
   const idioma = localStorage.getItem('lang')
+
+  const handleSignOut = async () => {
+    try {
+      await logOut()
+    } catch (error) {
+      console.log(error)
+    }
+  }
 
   useEffect(() => {
     dispatch(getRecipe())
@@ -231,7 +244,12 @@ const Home = () => {
             </select>
           </div>
         </section>
+          {user ? (
+            <span className={s.user}>Welcome {user.displayName}           <button onClick={handleSignOut}>Logout</button></span>
+          ): ""}
+
         <section className={s.section2}>
+        {/* {user !== null ? console.log(user.displayName) : console.log(user)} */}
           {/* <h3>Carrusel</h3> */}
           <div className={s.divLetter}>
             <button value="a" onClick={(e) => letter(e)}>a</button>

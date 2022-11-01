@@ -115,6 +115,15 @@
   color: black;
 }
 
+.user{
+  background-image: linear-gradient(
+    0deg,
+    rgba(185, 184, 184, 0.3),
+    rgba(185, 184, 184, 0.3)
+  );
+  font-weight: bold;
+}
+
 .section2{
   display: flex;
   flex-direction: column;
