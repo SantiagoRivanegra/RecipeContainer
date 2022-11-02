@@ -1,0 +1,13 @@
+.container {
+  display: flex
+}
+
+.select{
+  margin-bottom: 10px;
+  background-color: #b29f94;
+  border-radius: 10px;
+  border: 1px solid;
+  font-weight: bold;
+  font-size: 1rem;
+  cursor: pointer;
+}

@@ -3,37 +3,30 @@ import { Helmet } from 'react-helmet'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 
-import Swal from 'sweetalert2'
-import errorGif from '../assets/images/errorGif.gif'
-import useSound from 'use-sound'
-import errorSound from '../assets/sounds/error.mp3'
 import { useTranslation } from 'react-i18next'
 
 import s from './styles/Home.module.css'
 
+import SearchBar from './recipe/searchBar/SearchBar'
+import Area from './recipe/filters/Area'
+import Category from './recipe/filters/Category'
+import Ingredient from './recipe/filters/Ingredient'
 import Card from './recipe/card/Card'
 import Random from './recipe/random/Random'
 import Paged from './Paged'
 import CardNotFound from './recipe/card/CardNotFound'
 
-import { getRecipeName, getAreaList, getAreaRecipe, getRecipe, firstLetter, getCategoryRecipe, getCategoryList, getIngredientList, getIngredientRecipe, getRandomRecipe } from '../redux/actions'
+import { getAreaList, getRecipe, firstLetter, getCategoryList, getIngredientList, getRandomRecipe } from '../redux/actions'
 //import { getRecipeTags } from '../redux/actions'
 
 import { UserAuth } from './firebase/context/AuthContext'
-
 
 const Home = () => {
   const dispatch = useDispatch()
   const navigate = useNavigate()
   const allRecipes = useSelector((state) => state.recipe)
-  const areaList = useSelector((state) => state.areaList)
-  const categoryList = useSelector((state) => state.categoryList)
-  const ingredientList = useSelector((state) => state.ingredientList)
   //const tags = useSelector((state) => state.tags)
   const [lang, setLang] = useState("")
-  const [ error ] = useSound(errorSound, {
-    volume: 0.1
-  })
   
   const [t, i18n] = useTranslation('global')
 
@@ -44,32 +37,6 @@ const Home = () => {
   const currentRecipe = allRecipes && allRecipes.slice(indexOfFirstRecipe, indexOfLastRecipe)
 
   const {user, logOut} = UserAuth()
-
-  //SearchBar
-  const [name, setName] = useState('')
-  const handleName = (e) => {
-    e.preventDefault()
-    console.log(e.target.value)
-    setName(e.target.value)
-  }
-  const handleSubmit = (e) => {
-    e.preventDefault()
-    if (name) {
-      dispatch(getRecipeName(name))
-      setName('')
-      setCurrentPage(1)      
-    } else {
-      Swal.fire({
-        text: `${t('home.emptySearch')}`,
-        width: '30%',
-        imageUrl: errorGif,
-        imageWidth: '25%',
-        imageHeight: '60%',
-        imageAlt: 'A tall image',
-      })
-      error()
-    }
-  }
 
   const paged = (pageNumber) => {
     setCurrentPage(pageNumber)
@@ -82,21 +49,6 @@ const Home = () => {
 
   const handleRandom = () => {
     dispatch(getRandomRecipe())
-    setCurrentPage(1)
-  }
-
-  const handleArea = (e) => {
-    dispatch(getAreaRecipe(e.target.value))
-    setCurrentPage(1)
-  }
-
-  const handleCategory = (e) => {
-    dispatch(getCategoryRecipe(e.target.value))
-    setCurrentPage(1)
-  }
-
-  const handleIngredient = (e) => {
-    dispatch(getIngredientRecipe(e.target.value))
     setCurrentPage(1)
   }
 
@@ -154,72 +106,22 @@ const Home = () => {
               className={s.btn}
             >{t('home.random')}</button>            
           </div>
-          <div className={s.search}>
-            <input 
-              type="search" 
-              placeholder={t('home.searchPlaceHolder')}
-              value={name}
-              onChange={(e) =>handleName(e)}
-            />
-            <button
-              type="submit"
-              onClick={(e) => handleSubmit(e)}
-            >{t('home.search')}</button>
-          </div>
+
+          <SearchBar 
+            setCurrentPage = {setCurrentPage}
+          />
 
           {/* <h4>Ver como poner en los selects los inputs que se puede escribir y poner opciones tambien</h4> */}
           <div className={s.filter}>
-            <select onChange={(e) => handleArea(e)}>
-              <option value="">{t('home.area')}</option>
-              <option key='other' value='other'>other</option>
-              {
-                areaList ? areaList.map(area => {
-                  return(
-                    <option key={area.name_area} value={area.name_area}>
-                      {area.name_area}
-                    </option>
-                  )
-                }) : (
-                  <div>
-                    <h3>Loading...</h3>
-                  </div>
-                )
-              }
-            </select>
-            <select onChange={(e) => handleCategory(e)}>
-              <option value="">{t('home.category')}</option>
-              <option key='other' value='other'>other</option>
-              {
-                categoryList ? categoryList.map(category => {
-                  return(
-                    <option key={category.name_category} value={category.name_category}>
-                      {category.name_category}
-                    </option>
-                  )
-                }) : (
-                  <div>
-                    <h3>Loading...</h3>
-                  </div>
-                )
-              }
-            </select>
-            {/* <input type="text" placeholder='Search main ingredient'/> */}
-            <select onChange={(e) => handleIngredient(e)}>
-              <option value="">{t('home.ingredient')}</option>
-              {
-                ingredientList ? ingredientList.map(ingredient => {
-                  return(
-                    <option key={ingredient.name_ingredient} value={ingredient.name_ingredient}>
-                      {ingredient.name_ingredient}
-                    </option>
-                  )
-                }) : (
-                  <div>
-                    <h3>Loading...</h3>
-                  </div>
-                )
-              }
-            </select>
+            <Area 
+              setCurrentPage = {setCurrentPage}
+            />
+            <Category 
+              setCurrentPage = {setCurrentPage}
+            />
+            <Ingredient 
+              setCurrentPage = {setCurrentPage}
+            />
             {/* <select onChange={(e) => handleTags(e)}>
               <option value="">Tags</option>
               {

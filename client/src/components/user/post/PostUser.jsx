@@ -9,6 +9,8 @@ import { signInWithGoogle } from '../../firebase/firebase-services'
 
 import { postUser, getUserById } from '../../../redux/actions'
 
+//Aca llamar a todos los componentes para iniciar sesion (google-mail/cont)
+
 const PostUser = () => {
   const dispatch = useDispatch()
   const navigate = useNavigate()
@@ -99,13 +101,17 @@ const PostUser = () => {
     <div>
         <button onClick={() => navigate('/')}>Back to Home</button>
         <GoogleButton onClick={handleGoogleSignIn} />
-
         {user && user.displayName ? (
           <button onClick={handleSignOut}>Logout</button>
           ) : (
             <button onClick={() => navigate('/')}>Back to Home</button>
           )}
 
+{/*<Google />*/}
+{/*<Facebook />*/}
+{/*<Mail&contraseña />*/}
+{/*<ForgotPassword />*/}
+{/*<CreateNewAccount />*/}
 
         {/* <form onSubmit={(e) => handleSubmit(e)}>
           <label>Username: </label> 
