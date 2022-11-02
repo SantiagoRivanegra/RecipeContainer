@@ -26,25 +26,25 @@ const Category = ({setCurrentPage}) => {
 
   return (
     <>
-    <select onChange={(e) => handleCategory(e)} className={s.select}>
-      <option value="">{t('home.category')}</option>
-      <option key='other' value='other'>other</option>
-      {
-        categoryList ? categoryList.map(category => {
-          return(
-            <option key={category.name_category} value={category.name_category}>
-              {category.name_category}
-            </option>
+      <select onChange={(e) => handleCategory(e)} className={s.select}>
+        <option value="">{t('home.category')}</option>
+        <option key='other' value='other'>other</option>
+        {
+          categoryList ? categoryList.map(category => {
+            return(
+              <option key={category.name_category} value={category.name_category}>
+                {category.name_category}
+              </option>
+            )
+          }) : (
+            <div>
+              <h3>Loading...</h3>
+            </div>
           )
-        }) : (
-          <div>
-            <h3>Loading...</h3>
-          </div>
-        )
-      }
-    </select>
-    <b>{value === "" ? "" : value}</b>
-  </>
+        }
+      </select>
+      {/* <span className={s.target}>{value === "" ? "" : value}</span> */}
+    </>
   )
 }
 

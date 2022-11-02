@@ -1,5 +1,5 @@
-.container {
-  display: flex
+.target{
+  font-weight: bold;
 }
 
 .select{
@@ -9,5 +9,15 @@
   border: 1px solid;
   font-weight: bold;
   font-size: 1rem;
+  cursor: pointer;
+}
+
+.divLetter{
+  display: flex;
+}
+.divLetter button{
+  border-radius: 10px;
+  font-size: 1.1rem;
+  background-color: #b29f94;
   cursor: pointer;
 }

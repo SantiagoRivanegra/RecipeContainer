@@ -46,7 +46,7 @@ const Area = ({setCurrentPage}) => {
         )
       }
     </select>
-    <b>{value === "" ? "" : value}</b>
+    {/* <span className={s.target}>{value === "" ? "" : value}</span> */}
   </>
   )
 }
