@@ -15,7 +15,10 @@ function App() {
       <AuthContextProvider>
         <Routes>
           <Route exact path = '/' element = {<Home />}/>
-          <Route exact path = '/post' element = {<Protected><Post/></Protected>}/>
+          <Route exact path = '/post' element = {<Protected>
+                                                    <Post/>
+                                                  </Protected>}
+          />
           <Route exact path = '/detail/:id' element = {<CardDetail />}/>
           <Route exact path = '/user' element = {<PostUser />}/>
 
