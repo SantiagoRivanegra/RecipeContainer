@@ -1,32 +1,32 @@
 import React, { useState } from 'react'
 import { UserAuth } from '../../firebase/context/AuthContext'
 
-const SignIn = () => {
+const SignUp = () => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [error, setError] = useState('')
 
-  const { signIn } = UserAuth()
+  const { createUserEmailPassword } = UserAuth()
 
   const handleSubmit = async(e) => {
     e.preventDefault()
     setError('')
     try {
-      await signIn(email, password)
-    } catch (error) {
-      setError(error.message)
-      console.log(error.message)
+      await createUserEmailPassword(email, password)
+    } catch (e) {
+      setError(e.message)
+      console.log(e.message)
     }
   }
 
   return (
     <div>
-      <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit}>
       <div>
         <label>Email: </label>
         <input
           type= 'email'
-          onChange={(e) => {setEmail(e.target.value)}}  
+          onChange={(e) => {setEmail(e.target.value)}} 
         />
       </div>
       <div>
@@ -36,10 +36,10 @@ const SignIn = () => {
           onChange={(e) => {setPassword(e.target.value)}}  
         />
       </div>
-      <button>Sign In</button>
+      <button>Sign Up</button>
     </form>
-    </div>
+  </div>
   )
 }
 
-export default SignIn
+export default SignUp

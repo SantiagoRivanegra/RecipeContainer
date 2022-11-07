@@ -5,6 +5,9 @@ import { useNavigate } from 'react-router-dom'
 import { GoogleButton } from 'react-google-button'
 import { UserAuth } from '../../firebase/context/AuthContext'
 
+import SignUp from './SignUp'
+import SignIn from './SignIn'
+
 import { signInWithGoogle } from '../../firebase/firebase-services'
 
 import { postUser, getUserById } from '../../../redux/actions'
@@ -106,6 +109,16 @@ const PostUser = () => {
           ) : (
             <button onClick={() => navigate('/')}>Back to Home</button>
           )}
+
+        <span>Already have an account yet? Sign In</span>
+          <SignIn />
+
+        <span>Don't have an account yet? Sign Up</span> 
+          <SignUp />
+
+          <div>
+            User email: {user && user.email}
+          </div>
 
 {/*<Google />*/}
 {/*<Facebook />*/}

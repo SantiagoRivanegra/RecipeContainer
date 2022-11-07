@@ -11,7 +11,7 @@ import useSound from 'use-sound'
 import errorSound from '../../../assets/sounds/error.mp3'
 import { useTranslation } from 'react-i18next'
 
-const SearchBar = ({setCurrentPage}) => {
+const SearchBar = ({setCurrentPage, setNameNotFound}) => {
   const [ error ] = useSound(errorSound, {
     volume: 0.1
   })
@@ -23,10 +23,11 @@ const SearchBar = ({setCurrentPage}) => {
     e.preventDefault()
     setName(e.target.value)
   }
-  const handleSubmit = (e) => {
+  const handleSubmit = async(e) => {
     e.preventDefault()
     if (name) {
-      dispatch(getRecipeName(name))
+      await dispatch(getRecipeName(name))
+      setNameNotFound(name)
       setName('')
       setCurrentPage(1)      
     } else {

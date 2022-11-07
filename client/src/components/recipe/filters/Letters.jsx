@@ -7,8 +7,8 @@ import s from './Filters.module.css'
 const Letters = ({setCurrentPage}) => {
   const dispatch = useDispatch()
 
-  const letter = (e) => {
-    dispatch(firstLetter(e.target.value))
+  const letter = async(e) => {
+    await dispatch(firstLetter(e.target.value))
     setCurrentPage(1)
   }
 

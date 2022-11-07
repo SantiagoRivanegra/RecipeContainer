@@ -29,6 +29,8 @@ const Home = () => {
   const navigate = useNavigate()
   const allRecipes = useSelector((state) => state.recipe)
   //const tags = useSelector((state) => state.tags)
+
+  const [nameNotFound, setNameNotFound] = useState('')
   
   const [t] = useTranslation('global')
 
@@ -46,7 +48,6 @@ const Home = () => {
 
   const handleRandom = () => {
     dispatch(getRandomRecipe())
-    setCurrentPage(1)
   }
 
   // const handleTags = (e) => {
@@ -97,6 +98,7 @@ const Home = () => {
 
         <SearchBar 
           setCurrentPage = {setCurrentPage}
+          setNameNotFound = {setNameNotFound}
         />
 
         {/* <h4>Ver como poner en los selects los inputs que se puede escribir y poner opciones tambien</h4> */}
@@ -155,7 +157,9 @@ const Home = () => {
               )
             }) : (
               <div>
-                <CardNotFound />
+                <CardNotFound 
+                  name = {nameNotFound}
+                />
                 {/* <h3>Loading...</h3> */}
               </div>
             )

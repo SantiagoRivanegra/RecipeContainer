@@ -21,7 +21,6 @@ function App() {
           />
           <Route exact path = '/detail/:id' element = {<CardDetail />}/>
           <Route exact path = '/user' element = {<PostUser />}/>
-
         </Routes>  
       </AuthContextProvider>
     </div>

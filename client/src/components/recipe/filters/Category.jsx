@@ -14,9 +14,9 @@ const Category = ({setCurrentPage}) => {
 
   const [t] = useTranslation('global')
 
-  const handleCategory = (e) => {
+  const handleCategory = async(e) => {
     if(e.target.value){
-    dispatch(getCategoryRecipe(e.target.value))
+    await dispatch(getCategoryRecipe(e.target.value))
     setCurrentPage(1)
     setValue(e.target.value)
     } else {
