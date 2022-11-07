@@ -14,9 +14,9 @@ const Ingredient = ({setCurrentPage}) => {
 
   const [t] = useTranslation('global')
 
-  const handleIngredient = (e) => {
+  const handleIngredient = async(e) => {
     if(e.target.value){
-    dispatch(getIngredientRecipe(e.target.value))
+    await dispatch(getIngredientRecipe(e.target.value))
     setCurrentPage(1)
     setValue(e.target.value)
     e.target.value = ""

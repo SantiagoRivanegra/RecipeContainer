@@ -29,6 +29,8 @@ const Home = () => {
   const navigate = useNavigate()
   const allRecipes = useSelector((state) => state.recipe)
   //const tags = useSelector((state) => state.tags)
+
+  const [nameNotFound, setNameNotFound] = useState('')
   
   const [t] = useTranslation('global')
 
@@ -46,13 +48,16 @@ const Home = () => {
 
   const handleRandom = () => {
     dispatch(getRandomRecipe())
-    setCurrentPage(1)
   }
 
   // const handleTags = (e) => {
   //   dispatch(getAreaRecipe(e.target.value))
   //   setCurrentPage(1)
   // }
+
+  const handleSignIn = async () => {
+    navigate('/user')
+  }
 
   const handleSignOut = async () => {
     try {
@@ -97,6 +102,7 @@ const Home = () => {
 
         <SearchBar 
           setCurrentPage = {setCurrentPage}
+          setNameNotFound = {setNameNotFound}
         />
 
         {/* <h4>Ver como poner en los selects los inputs que se puede escribir y poner opciones tambien</h4> */}
@@ -131,8 +137,8 @@ const Home = () => {
         </div>
       </section>
           {user ? (
-            <span className={s.user}>Welcome {user.displayName}           <button onClick={handleSignOut}>Logout</button></span>
-          ): ""}
+            <span className={s.user}>Welcome {user.displayName}<button onClick={handleSignOut}>Logout</button></span>
+          ): <span className={s.user}><button onClick={handleSignIn}>SignIn</button></span>}
 
         <section className={s.section2}>
         {/* {user !== null ? console.log(user.displayName) : console.log(user)} */}
@@ -155,7 +161,9 @@ const Home = () => {
               )
             }) : (
               <div>
-                <CardNotFound />
+                <CardNotFound 
+                  name = {nameNotFound}
+                />
                 {/* <h3>Loading...</h3> */}
               </div>
             )

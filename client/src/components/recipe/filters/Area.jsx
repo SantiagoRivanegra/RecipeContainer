@@ -14,9 +14,9 @@ const Area = ({setCurrentPage}) => {
 
   const [t] = useTranslation('global')
 
-  const handleArea = (e) => {
+  const handleArea = async(e) => {
     if(e.target.value){
-      dispatch(getAreaRecipe(e.target.value))
+      await dispatch(getAreaRecipe(e.target.value))
       setCurrentPage(1)
       setValue(e.target.value)
       console.log(value)

@@ -70,6 +70,7 @@
     rgba(185, 184, 184, 0.3)
   );
   font-weight: bold;
+  position: absolute;
 }
 
 .section2{

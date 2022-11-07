@@ -5,6 +5,7 @@
 .search input::placeholder{
   color: rgb(93, 93, 93);
   font-weight: bold;
+  cursor: text;
 }
 .search button{
   background-color: rgb(175, 109, 66);
