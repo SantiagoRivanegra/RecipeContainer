@@ -21,6 +21,15 @@ const SignIn = () => {
 
   return (
     <div>
+      {/* 
+        Este comp que no se pueda acceder mientars exista un usuario
+      */}
+      {/* traer el boton del signin google y ejecutar la funct del postUser del action y guardar los sgtes datos
+        username=user.displayName
+        email=user.email
+        avatr=user.photoURL
+        ver login -> login de MyPC
+      */}
       <form onSubmit={handleSubmit}>
       <div>
         <label>Email: </label>

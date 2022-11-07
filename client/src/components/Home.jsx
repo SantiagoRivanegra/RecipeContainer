@@ -55,6 +55,10 @@ const Home = () => {
   //   setCurrentPage(1)
   // }
 
+  const handleSignIn = async () => {
+    navigate('/user')
+  }
+
   const handleSignOut = async () => {
     try {
       await logOut()
@@ -133,8 +137,8 @@ const Home = () => {
         </div>
       </section>
           {user ? (
-            <span className={s.user}>Welcome {user.displayName}           <button onClick={handleSignOut}>Logout</button></span>
-          ): ""}
+            <span className={s.user}>Welcome {user.displayName}<button onClick={handleSignOut}>Logout</button></span>
+          ): <span className={s.user}><button onClick={handleSignIn}>SignIn</button></span>}
 
         <section className={s.section2}>
         {/* {user !== null ? console.log(user.displayName) : console.log(user)} */}

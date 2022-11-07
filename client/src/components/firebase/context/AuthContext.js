@@ -18,7 +18,7 @@ export const AuthContextProvider = ({children}) => {
     const provider = new GoogleAuthProvider()
     signInWithRedirect(auth, provider)
   }
-//
+
   const createUserEmailPassword = (email, password) => {
     return createUserWithEmailAndPassword(auth, email, password)
   }
@@ -26,7 +26,7 @@ export const AuthContextProvider = ({children}) => {
   const signIn = (email, password) => {
     return createUserWithEmailAndPassword(auth, email, password)
   }
-//
+
   const logOut = () => {
     signOut(auth)
   }

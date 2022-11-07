@@ -7,6 +7,7 @@ import Home from './components/Home'
 import Post from './components/recipe/post/Post'
 import CardDetail from './components/recipe/card/CardDetail'
 import PostUser from './components/user/post/PostUser'
+import SignUp from './components/user/post/SignUp';
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
                                                     <Post/>
                                                   </Protected>}
           />
+          <Route exact path = '/user/signup' element = {<SignUp/>}/>
           <Route exact path = '/detail/:id' element = {<CardDetail />}/>
           <Route exact path = '/user' element = {<PostUser />}/>
         </Routes>  
