@@ -4,13 +4,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom' 
 import { useTranslation } from 'react-i18next'
 
-import Swal from 'sweetalert2'
-import gifCreated from '../../../assets/images/created.gif'
-import gifError from '../../../assets/images/errorGif.gif'
-
-import useSound from 'use-sound'
-import check from '../../../assets/sounds/created.mp3'
-import errorSound from '../../../assets/sounds/error.mp3'
+import { Alerts } from '../../alerts/Alerts'
 
 import { IoClose } from 'react-icons/io5'
 import { FcCheckmark } from 'react-icons/fc'
@@ -57,13 +51,7 @@ const Post = () => {
   const categoryList = useSelector((state) => state.categoryList)
   const ingredientList = useSelector((state) => state.ingredientList)
   const tags = useSelector((state) => state.tags)
-
-  const [ corrected ] = useSound(check, {
-    volume: 0.1
-  })
-  const [ wrong ] = useSound(errorSound, {
-    volume: 0.1
-  })
+  const { correct, wrong } = Alerts()
 
   const [t] = useTranslation('global')
 
@@ -124,81 +112,49 @@ const Post = () => {
     userId: 1
 });
 
-// if(error.name_recipe) Swal.fire({text: `${t('postError.image')}`, width: '30%'})
 function handleSubmit(e){
   e.preventDefault()
   if(error.image) 
-    {Swal.fire({
-      imageUrl: gifError,
-      imageWidth: '25%',
-      imageHeight: '60%',
-      imageAlt: 'gifError',
-      text: `${t('postError.image')}`, 
-      width: '30%'})
-      wrong()}
+    {
+      let text= `${t('postError.image')}`
+      wrong(text)
+    }
   else if(recipe.name_recipe.length < 5 || recipe.name_recipe.length > 30)
-    {Swal.fire({
-      imageUrl: gifError,
-      imageWidth: '25%',
-      imageHeight: '60%',
-      imageAlt: 'gifError',
-      text: `${t('postError.nameLength')}`, 
-      width: '30%'})
-      wrong()}
+    {
+      let text = `${t('postError.nameLength')}`
+      wrong(text)
+    }
   else if((!/^[a-zA-ZÀ-ÿ\u00f1\u00d1\s]+$/.test(recipe.name_recipe)))
-    {Swal.fire({
-      imageUrl: gifError,
-      imageWidth: '25%',
-      imageHeight: '60%',
-      imageAlt: 'gifError',
-      text: `${t('postError.nameAlphabet')}`, 
-      width: '30%'})
-      wrong()}
+    {
+      let text = `${t('postError.nameAlphabet')}`
+      wrong(text)
+    }
   else if(error.instructions) 
-    {Swal.fire({
-      imageUrl: gifError,
-      imageWidth: '25%',
-      imageHeight: '60%',
-      imageAlt: 'gifError',
-      text: `${t('postError.instructions')}`, 
-      width: '30%'})
-      wrong()}
+    {
+      let text = `${t('postError.instructions')}`
+      wrong(text)
+    }
   else if(error.ingredient1 || error.ingredient2 || error.ingredient3) 
-  {Swal.fire({
-    imageUrl: gifError,
-    imageWidth: '25%',
-    imageHeight: '60%',
-    imageAlt: 'gifError',
-    text: `${t('postError.ing1')}`, 
-    width: '30%'})
-    wrong()}
+    {
+      let text = `${t('postError.ing1')}` 
+      wrong(text)
+    }
+  
   else if(error.measure1 || error.measure2 || error.measure3) 
-  {Swal.fire({
-    imageUrl: gifError,
-    imageWidth: '25%',
-    imageHeight: '60%',
-    imageAlt: 'gifError',
-    text: `${t('postError.meas1')}`, 
-    width: '30%'})
-    wrong()}
+    {
+      let text= `${t('postError.meas1')}`
+      wrong(text)
+    }
   else if(error.area) 
-  {Swal.fire({
-    imageUrl: gifError,
-    imageWidth: '25%',
-    imageHeight: '60%',
-    imageAlt: 'gifError',
-    text: `${t('postError.area')}`, 
-    width: '30%'})
-    wrong()}
+    {
+      let text = `${t('postError.area')}`
+      wrong(text)
+    }
   else if(error.category) 
-  {Swal.fire({
-    imageUrl: gifError,
-    imageWidth: '25%',
-    imageHeight: '60%',
-    imageAlt: 'gifError',
-    text: `${t('postError.category')}`, 
-    width: '30%'})
-    wrong()}
+    {
+      let text = `${t('postError.category')}`
+      wrong(text)
+    }
   else{
       dispatch(postRecipe(recipe))
     // if(image.length>0){
@@ -260,16 +216,8 @@ function handleSubmit(e){
         createdInD:true,
         userId: 1
       });
-
-      Swal.fire({
-        text: `${t('post.created')}`,
-        width: '30%',
-        imageUrl: gifCreated,
-        imageWidth: '25%',
-        imageHeight: '60%',
-        imageAlt: 'A tall image',
-      })
-      corrected()
+      let text = `${t('post.created')}`
+      correct(text)
       navigate('/')
     }
   }

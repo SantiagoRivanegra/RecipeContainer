@@ -28,7 +28,6 @@ const Home = () => {
   const dispatch = useDispatch()
   const navigate = useNavigate()
   const allRecipes = useSelector((state) => state.recipe)
-  //const tags = useSelector((state) => state.tags)
 
   const [nameNotFound, setNameNotFound] = useState('')
   
@@ -50,11 +49,6 @@ const Home = () => {
     dispatch(getRandomRecipe())
   }
 
-  // const handleTags = (e) => {
-  //   dispatch(getAreaRecipe(e.target.value))
-  //   setCurrentPage(1)
-  // }
-
   const handleSignIn = async () => {
     navigate('/user')
   }
@@ -72,7 +66,6 @@ const Home = () => {
     dispatch(getAreaList())
     dispatch(getCategoryList())
     dispatch(getIngredientList())
-    //dispatch(getRecipeTags())
   }, [])
   
   return (
@@ -109,12 +102,15 @@ const Home = () => {
         <div className={s.filter}>
           <Area 
             setCurrentPage = {setCurrentPage}
+            refresh = {allRecipes}
           />
           <Category 
             setCurrentPage = {setCurrentPage}
+            refresh = {allRecipes}
           />
           <Ingredient 
             setCurrentPage = {setCurrentPage}
+            refresh = {allRecipes}
           />
           {/* <select onChange={(e) => handleTags(e)}>
             <option value="">Tags</option>

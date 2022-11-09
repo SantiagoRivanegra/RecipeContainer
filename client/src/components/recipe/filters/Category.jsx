@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
 import s from './Filters.module.css'
@@ -7,7 +7,7 @@ import { getCategoryRecipe } from '../../../redux/actions'
 
 import { useTranslation } from 'react-i18next'
 
-const Category = ({setCurrentPage}) => {
+const Category = ({setCurrentPage, refresh}) => {
   const dispatch = useDispatch()
   const categoryList = useSelector((state) => state.categoryList)
   const [value, setValue] = useState("")
@@ -19,10 +19,15 @@ const Category = ({setCurrentPage}) => {
     await dispatch(getCategoryRecipe(e.target.value))
     setCurrentPage(1)
     setValue(e.target.value)
+    e.target.value = ""
     } else {
       setValue("")
     }
   }
+
+  useEffect(() => {
+    setValue("")
+  }, [refresh])
 
   return (
     <>
@@ -43,7 +48,7 @@ const Category = ({setCurrentPage}) => {
           )
         }
       </select>
-      {/* <span className={s.target}>{value === "" ? "" : value}</span> */}
+      <span className={s.target}>{value === "" ? "" : value}</span>
     </>
   )
 }
