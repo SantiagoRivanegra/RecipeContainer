@@ -6,6 +6,8 @@ import { UserAuth } from '../../firebase/context/AuthContext'
 
 import SignIn from './SignIn'
 
+import s from './PostUser.module.css'
+
 const PostUser = () => {
   const navigate = useNavigate()
 
@@ -36,7 +38,7 @@ const PostUser = () => {
 
 
   return (
-    <div>
+    <div className={s.container}>
       {/* {logOut aca seria innecesario} */}
         <button onClick={() => navigate('/')}>Back to Home</button>
         <GoogleButton onClick={handleGoogleSignIn} />

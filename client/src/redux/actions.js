@@ -142,6 +142,16 @@ export function postRecipe(payload){
   }
 }
 
+export function getUser(){
+  return async function(dispatch){
+    let json = await axios.get(`/user`)
+    return dispatch({
+      type: 'GET_USER',
+      payload: json.data
+    })
+  }
+}
+
 export function postUser(payload){
   return async () => {
     let res = await axios.post("/user", payload)

@@ -5,19 +5,14 @@ import { getRecipeName } from '../../..//redux/actions'
 
 import s from './SearchBar.module.css'
 
-import Swal from 'sweetalert2'
-import errorGif from '../../../assets/images/errorGif.gif'
-import useSound from 'use-sound'
-import errorSound from '../../../assets/sounds/error.mp3'
 import { useTranslation } from 'react-i18next'
+import { Alerts } from '../../alerts/Alerts'
 
 const SearchBar = ({setCurrentPage, setNameNotFound}) => {
-  const [ error ] = useSound(errorSound, {
-    volume: 0.1
-  })
   const dispatch = useDispatch()
   const [name, setName] = useState('')
   const [t] = useTranslation('global')
+  const { wrong } = Alerts()
 
   const handleName = (e) => {
     e.preventDefault()
@@ -31,15 +26,8 @@ const SearchBar = ({setCurrentPage, setNameNotFound}) => {
       setName('')
       setCurrentPage(1)      
     } else {
-      Swal.fire({
-        text: `${t('home.emptySearch')}`,
-        width: '30%',
-        imageUrl: errorGif,
-        imageWidth: '25%',
-        imageHeight: '60%',
-        imageAlt: 'A tall image',
-      })
-      error()
+      let text = `${t('home.emptySearch')}`
+      wrong(text)
     }
   }
   return (

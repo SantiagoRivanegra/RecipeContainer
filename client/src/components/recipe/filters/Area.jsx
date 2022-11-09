@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
 import s from './Filters.module.css'
@@ -7,7 +7,7 @@ import { getAreaRecipe } from '../../../redux/actions'
 
 import { useTranslation } from 'react-i18next'
 
-const Area = ({setCurrentPage}) => {
+const Area = ({setCurrentPage, refresh}) => {
   const dispatch = useDispatch()
   const areaList = useSelector((state) => state.areaList)
   const [value, setValue] = useState("")
@@ -19,13 +19,15 @@ const Area = ({setCurrentPage}) => {
       await dispatch(getAreaRecipe(e.target.value))
       setCurrentPage(1)
       setValue(e.target.value)
-      console.log(value)
-      //e.target.value = ""
+      e.target.value = ""
     } else {
       setValue("")
-      console.log(value)
     }
   }
+
+  useEffect(() => {
+    setValue("")
+  }, [refresh])
 
   return (
   <>
@@ -46,7 +48,7 @@ const Area = ({setCurrentPage}) => {
         )
       }
     </select>
-    {/* <span className={s.target}>{value === "" ? "" : value}</span> */}
+    <span className={s.target}>{value === "" ? "" : value}</span> 
   </>
   )
 }

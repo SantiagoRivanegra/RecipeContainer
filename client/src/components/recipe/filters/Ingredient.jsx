@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
 import s from './Filters.module.css'
@@ -7,7 +7,7 @@ import { getIngredientRecipe } from '../../../redux/actions'
 
 import { useTranslation } from 'react-i18next'
 
-const Ingredient = ({setCurrentPage}) => {
+const Ingredient = ({setCurrentPage, refresh}) => {
   const dispatch = useDispatch()
   const ingredientList = useSelector((state) => state.ingredientList)
   const [value, setValue] = useState("")
@@ -22,9 +22,12 @@ const Ingredient = ({setCurrentPage}) => {
     e.target.value = ""
   } else {
     setValue("")
-    console.log(value)
   }
   }
+
+  useEffect(() => {
+    setValue("")
+  }, [refresh])
 
   return (
   <>
@@ -44,7 +47,7 @@ const Ingredient = ({setCurrentPage}) => {
         )
       }
     </select>
-    {/* <span className={s.target}>{value === "" ? "" : value}</span> */}
+    <span className={s.target}>{value === "" ? "" : value}</span> 
   </>
   )
 }
