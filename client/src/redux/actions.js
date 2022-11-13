@@ -160,6 +160,17 @@ export function postUser(payload){
   }
 }
 
+export function userExists(id){
+  return async function(dispatch){
+    try {
+      let json = await axios.get(`/user/${id}`)
+      return json.data
+    } catch (error) {
+      console.log(error)
+    }
+  }
+}
+
 export function getUserById(id){
   return async function(dispatch){
     let json = await axios.get(`/user/${id}`)

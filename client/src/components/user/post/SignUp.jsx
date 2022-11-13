@@ -2,14 +2,16 @@ import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import { UserAuth } from '../../firebase/context/AuthContext'
+import { GoogleButton } from 'react-google-button'
 
-import { postUser, getUserById } from '../../../redux/actions'
+import { postUser, getUserById, userExists } from '../../../redux/actions'
 
 const SignUp = () => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [error, setError] = useState('')
   const [user, setUser] = useState({
+    id:"",
     admin:false, 
     username:"", 
     email:"", 
@@ -22,7 +24,7 @@ const SignUp = () => {
   const dispatch = useDispatch()
   const navigate = useNavigate()
 
-  const { createUserEmailPassword } = UserAuth()
+  const { createUserEmailPassword, googleSignIn } = UserAuth()
 
   const handleChange = (e) => {
     setUser({
@@ -36,9 +38,11 @@ const SignUp = () => {
     e.preventDefault()
     setError('')
     try {
-      await createUserEmailPassword(email, password)
+      const userData = await createUserEmailPassword(email, password)
+      user.id = userData.user.uid
       dispatch(postUser(user))
       setUser({
+        id:"",
         admin:false, 
         username:"", 
         email:"", 
@@ -54,12 +58,36 @@ const SignUp = () => {
     }
   }
 
+  const handleGoogleSignIn = async () => {
+    try {
+      let data = await googleSignIn()
+      let res = await dispatch(userExists(data.uid))
+      // await dispatch(getUserById(data.uid))
+      if(res.length === 0) {
+        await dispatch(postUser({
+          admin:false, 
+          id:data.uid,
+          username:data.displayName,
+          email:data.email,
+          avatar:data.photoURL,
+          like:"", 
+          comment_received:"", 
+          comment_send:""
+        }))
+        //dispatch(getUserById(data.uid))
+      }
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
   return (
     <div>
       {/* 
         Este comp que no se pueda acceder mientars exista un usuario
       */}
       <button onClick={() => navigate('/user')}>Back to Home</button>
+      <GoogleButton onClick={handleGoogleSignIn} />
       <form onSubmit={handleSubmit}>
         <div>
           {/* <label>Email: </label>

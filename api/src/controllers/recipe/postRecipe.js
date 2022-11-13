@@ -27,7 +27,7 @@ const postRecipe = async(req, res) => {
       comments,
       tags,
       createdInDb,
-      userId
+      recipeUsername
     } = req.body
 
     // let arr = []
@@ -62,7 +62,7 @@ const postRecipe = async(req, res) => {
       comments,
       tags,
       createdInDb,
-      userId
+      recipeUsername
     })
     res.json(recipeCreated)
   } catch (error) {

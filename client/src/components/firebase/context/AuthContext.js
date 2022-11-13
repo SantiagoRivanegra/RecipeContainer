@@ -6,6 +6,7 @@ import {
   onAuthStateChanged,
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword, 
+  signInWithPopup
 } from 'firebase/auth'
 import { auth } from '../firebase-config'
 
@@ -14,13 +15,25 @@ const AuthContext = createContext()
 export const AuthContextProvider = ({children}) => {
   const [user, setUser] = useState({})  
 
-  const googleSignIn = () => {
+  const googleSignIn = async() => {
     const provider = new GoogleAuthProvider()
-    signInWithRedirect(auth, provider)
+    //const response = signInWithRedirect(auth, provider)
+    let response = await signInWithPopup(auth, provider)
+    console.log(response)
+    const { email, uid } = response.user
+    let user = window.localStorage.getItem('userData')
+    if(!user){
+      window.localStorage.setItem(
+        'userData',
+        JSON.stringify({email, id: uid})
+        )
+    }
+   return response.user
   }
 
   const createUserEmailPassword = (email, password) => {
-    return createUserWithEmailAndPassword(auth, email, password)
+    const user = createUserWithEmailAndPassword(auth, email, password)
+    return user
   }
 
   const signIn = (email, password) => {

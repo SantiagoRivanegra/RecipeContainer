@@ -62,12 +62,12 @@ sequelize.models = Object.fromEntries(capsEntries);
 const { User, Recipe } = sequelize.models;
 
 User.hasMany(Recipe, {
-  foreignKey: 'userId',
-  sourceKey: 'id'
+  foreignKey: 'recipeUsername',
+  sourceKey: 'username'
 })
 
 Recipe.belongsTo(User, {
-  foreignKey: 'userId',
+  foreignKey: 'recipeUsername',
   targetId: 'id'
 })
 

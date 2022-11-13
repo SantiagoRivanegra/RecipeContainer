@@ -11,16 +11,16 @@ import s from './PostUser.module.css'
 const PostUser = () => {
   const navigate = useNavigate()
 
-  const {googleSignIn} = UserAuth()
+  // const {googleSignIn} = UserAuth()
   const { user, logOut } = UserAuth()
 
-  const handleGoogleSignIn = async () => {
-    try {
-      await googleSignIn()
-    } catch (error) {
-      console.log(error)
-    }
-  }
+  // const handleGoogleSignIn = async () => {
+  //   try {
+  //     await googleSignIn()
+  //   } catch (error) {
+  //     console.log(error)
+  //   }
+  // }
 
   useEffect(() => {
     if(user !== null){
@@ -41,7 +41,7 @@ const PostUser = () => {
     <div className={s.container}>
       {/* {logOut aca seria innecesario} */}
         <button onClick={() => navigate('/')}>Back to Home</button>
-        <GoogleButton onClick={handleGoogleSignIn} />
+        {/* <GoogleButton onClick={handleGoogleSignIn} /> */}
         {user && user.displayName ? (
           <button onClick={handleSignOut}>Logout</button>
           ) : (

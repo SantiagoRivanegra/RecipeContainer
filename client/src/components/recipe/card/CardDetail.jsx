@@ -32,6 +32,7 @@ const CardDetail = () => {
         </title>
       </Helmet>
       <div className={s.container}>
+        {recipeDetail.recipeUsername}
         <button className={s.back} onClick={() => navigate(`/`)}>{t('post.back')}</button>
         <div className={s.containerSection1}>
         <div className={s.image}>
