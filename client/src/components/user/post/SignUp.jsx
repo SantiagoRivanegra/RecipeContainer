@@ -41,6 +41,7 @@ const SignUp = () => {
       const userData = await createUserEmailPassword(email, password)
       user.id = userData.user.uid
       dispatch(postUser(user))
+      window.localStorage.setItem('username', user.username)
       setUser({
         id:"",
         admin:false, 
@@ -76,6 +77,8 @@ const SignUp = () => {
         }))
         //dispatch(getUserById(data.uid))
       }
+      window.localStorage.setItem('username', data.displayName)
+      navigate('/')
     } catch (error) {
       console.log(error)
     }

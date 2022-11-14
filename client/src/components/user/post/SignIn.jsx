@@ -1,7 +1,12 @@
 import React, { useState } from 'react'
+import { useDispatch } from 'react-redux'
 import { UserAuth } from '../../firebase/context/AuthContext'
 
+import { getUserByEmail } from '../../../redux/actions'
+
 const SignIn = () => {
+  const dispatch = useDispatch()
+
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [error, setError] = useState('')
@@ -13,6 +18,8 @@ const SignIn = () => {
     setError('')
     try {
       await signIn(email, password)
+      const userDb = await dispatch(getUserByEmail(email.toString()))
+      window.localStorage.setItem('username', userDb[0].username)
     } catch (error) {
       setError(error.message)
       console.log(error.message)

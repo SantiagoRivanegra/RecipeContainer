@@ -41,6 +41,8 @@ const Home = () => {
 
   const {user, logOut} = UserAuth()
 
+  let datasuer = window.localStorage.getItem('username')
+
   const paged = (pageNumber) => {
     setCurrentPage(pageNumber)
   }
@@ -133,7 +135,7 @@ const Home = () => {
         </div>
       </section>
           {user ? (
-            <span className={s.user}>Welcome {user.displayName}<button onClick={handleSignOut}>Logout</button></span>
+            <span className={s.user}>Welcome {datasuer}<button onClick={handleSignOut}>Logout</button></span>
           ): <span className={s.user}><button onClick={handleSignIn}>SignIn</button></span>}
 
         <section className={s.section2}>

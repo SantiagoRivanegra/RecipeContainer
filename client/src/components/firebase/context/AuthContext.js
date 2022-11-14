@@ -42,6 +42,8 @@ export const AuthContextProvider = ({children}) => {
 
   const logOut = () => {
     signOut(auth)
+    window.localStorage.removeItem('username')
+    window.localStorage.removeItem('userData')
   }
 
   useEffect(() => {
