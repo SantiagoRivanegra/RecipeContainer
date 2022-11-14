@@ -2,9 +2,12 @@ import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import { UserAuth } from '../../firebase/context/AuthContext'
-import { GoogleButton } from 'react-google-button'
 
-import { postUser, getUserById, userExists } from '../../../redux/actions'
+import { postUser } from '../../../redux/actions'
+
+import { Alerts } from '../../alerts/Alerts'
+
+import s from './PostUser.module.css'
 
 const SignUp = () => {
   const [email, setEmail] = useState('')
@@ -24,7 +27,8 @@ const SignUp = () => {
   const dispatch = useDispatch()
   const navigate = useNavigate()
 
-  const { createUserEmailPassword, googleSignIn } = UserAuth()
+  const { createUserEmailPassword } = UserAuth()
+  const { correct, wrong } = Alerts()
 
   const handleChange = (e) => {
     setUser({
@@ -37,85 +41,98 @@ const SignUp = () => {
   const handleSubmit = async(e) => {
     e.preventDefault()
     setError('')
-    try {
-      const userData = await createUserEmailPassword(email, password)
-      user.id = userData.user.uid
-      dispatch(postUser(user))
-      window.localStorage.setItem('username', user.username)
-      setUser({
-        id:"",
-        admin:false, 
-        username:"", 
-        email:"", 
-        avatar:"", 
-        like:"", 
-        comment_received:"", 
-        comment_send:""
-      })
-      navigate('/')
-    } catch (e) {
-      setError(e.message)
-      console.log(e.message)
-    }
-  }
-
-  const handleGoogleSignIn = async () => {
-    try {
-      let data = await googleSignIn()
-      let res = await dispatch(userExists(data.uid))
-      // await dispatch(getUserById(data.uid))
-      if(res.length === 0) {
-        await dispatch(postUser({
+    if(user.username !== ''){
+      try {
+        const userData = await createUserEmailPassword(email, password)
+        user.id = userData.user.uid
+        const usuarito = await dispatch(postUser(user))
+        console.log(usuarito)
+        window.localStorage.setItem('username', user.username)
+        await correct('Registrado')
+        setUser({
+          id:"",
           admin:false, 
-          id:data.uid,
-          username:data.displayName,
-          email:data.email,
-          avatar:data.photoURL,
+          username:"", 
+          email:"", 
+          avatar:"", 
           like:"", 
           comment_received:"", 
           comment_send:""
-        }))
-        //dispatch(getUserById(data.uid))
+        })
+        navigate('/')
+      } catch (e) {
+        setError(e.code)
+        if(e.code === 'auth/missing-email'){
+          const text = e.code 
+          wrong(text)
+        }
+        if(e.code === 'auth/invalid-email'){
+          const text = e.code 
+          wrong(text)
+        }
+        if(e.code === 'auth/email-already-in-use'){
+          const text = e.code 
+          wrong(text)
+        }
+        if(e.code === 'auth/internal-error'){//cuando pondo email y no contraseña
+          const text = e.code 
+          wrong(text)
+        }
+        if(e.code === 'auth/weak-password'){
+          const text = e.code 
+          wrong(text)
+        }
+        console.log(e.code)
       }
-      window.localStorage.setItem('username', data.displayName)
-      navigate('/')
-    } catch (error) {
-      console.log(error)
+    }   
+    if(user.username === ''){
+      const text = 'ingrese un username' 
+      wrong(text)
     }
   }
 
-  return (
-    <div>
-      {/* 
-        Este comp que no se pueda acceder mientars exista un usuario
-      */}
-      <button onClick={() => navigate('/user')}>Back to Home</button>
-      <GoogleButton onClick={handleGoogleSignIn} />
-      <form onSubmit={handleSubmit}>
-        <div>
-          {/* <label>Email: </label>
-          <input
-            type= 'email'
-            onChange={(e) => {setEmail(e.target.value)}} 
-          /> */}
-        </div>
-        <div>
-          <label>Password: </label>
-          <input
-            type= 'password'
-            onChange={(e) => {setPassword(e.target.value)}}  
+  let datasuer = window.localStorage.getItem('username')
+  if(!datasuer){
+    return (
+      <div className={s.container}>
+        {/* 
+          Este comp que no se pueda acceder mientars exista un usuario
+        */}
+        <button onClick={() => navigate('/user')}>Back to SignIn</button>
+        <form 
+          className={s.formSignUp}
+          onSubmit={handleSubmit}
+        >
+  
+
+          <label className={s.text}>Email: </label> 
+          <input 
+            onChange={(e) => handleChange(e)} 
+            type="email" 
+            value={user.email} 
+            name="email"
           />
-        </div>
-        <label>Username: </label> 
-        <input onChange={(e) => handleChange(e)} type="text" value={user.username} name="username" />
-        <br />
-        <label>email: </label> 
-        <input onChange={(e) => handleChange(e)} type="email" value={user.email} name="email"/>
-        <br />
-        <button>Sign Up</button>
-      </form>
-    </div>
-  )
+            <label className={s.text}>Password: </label>
+            <input
+              type= 'password'
+              onChange={(e) => {setPassword(e.target.value)}}  
+            />
+
+          <label className={s.text}>Username: </label> 
+            <input 
+              onChange={(e) => handleChange(e)} 
+              type="text" 
+              value={user.username} 
+              name="username" 
+            />
+          <br />
+          <button>Sign Up</button>
+        </form>
+      </div>
+    )
+  } else {
+    navigate('/')
+  }
 }
 
 export default SignUp

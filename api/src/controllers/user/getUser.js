@@ -44,8 +44,23 @@ const getUserByEmail = async(req, res) => {
   }
 }
 
+const getUserByUsername = async(req, res) => {
+  const {username} = req.params
+  try {
+    const users = await User.findAll({
+      where: { username: username }
+    })
+    //const users = await User.findByPk(id)
+    res.status(200).json(users) 
+  } catch (error) {
+    console.log(error)
+    res.status(500).json("No anda")
+  }
+}
+
 module.exports = {
   getUser,
   getUserById,
-  getUserByEmail
+  getUserByEmail,
+  getUserByUsername
 }

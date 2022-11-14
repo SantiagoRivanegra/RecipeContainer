@@ -181,6 +181,16 @@ export function getUserById(id){
   }
 }
 
+export function getUserByUsername(username){
+  return async function(dispatch){
+    let json = await axios.get(`/user/username/${username}`)
+    return dispatch({
+      type: 'GET_USER_LOGGED',
+      payload: json.data
+    })
+  }
+}
+
 export function getUserByEmail(email){
   return async function(dispatch){
     let json = await axios.get(`/user/email/${email}`)

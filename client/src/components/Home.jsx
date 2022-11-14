@@ -18,16 +18,19 @@ import Random from './recipe/random/Random'
 import Paged from './Paged'
 import CardNotFound from './recipe/card/CardNotFound'
 
-import { getAreaList, getRecipe, getCategoryList, getIngredientList, getRandomRecipe } from '../redux/actions'
+import { getAreaList, getRecipe, getCategoryList, getIngredientList, getRandomRecipe, getUserByUsername } from '../redux/actions'
 //import { getRecipeTags } from '../redux/actions'
 
 import { UserAuth } from './firebase/context/AuthContext'
 import Contact from './contact/Contact'
 
+import { Alerts } from './alerts/Alerts'
+
 const Home = () => {
   const dispatch = useDispatch()
   const navigate = useNavigate()
   const allRecipes = useSelector((state) => state.recipe)
+  const loggedUser = useSelector((state) => state.userLogged)
 
   const [nameNotFound, setNameNotFound] = useState('')
   
@@ -40,6 +43,7 @@ const Home = () => {
   const currentRecipe = allRecipes && allRecipes.slice(indexOfFirstRecipe, indexOfLastRecipe)
 
   const {user, logOut} = UserAuth()
+  const { correct } = Alerts()
 
   let datasuer = window.localStorage.getItem('username')
 
@@ -58,12 +62,17 @@ const Home = () => {
   const handleSignOut = async () => {
     try {
       await logOut()
+      await correct('Sesion Cerrada')
     } catch (error) {
       console.log(error)
     }
   }
 
   useEffect(() => {
+    let datasuer = window.localStorage.getItem('username')
+    if(datasuer){
+      dispatch(getUserByUsername(datasuer))
+    }
     dispatch(getRecipe())
     dispatch(getAreaList())
     dispatch(getCategoryList())
