@@ -3,13 +3,18 @@ import { useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import { UserAuth } from '../../firebase/context/AuthContext'
 
-import { postUser, getUserById } from '../../../redux/actions'
+import { postUser } from '../../../redux/actions'
+
+import { Alerts } from '../../alerts/Alerts'
+
+import s from './PostUser.module.css'
 
 const SignUp = () => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [error, setError] = useState('')
   const [user, setUser] = useState({
+    id:"",
     admin:false, 
     username:"", 
     email:"", 
@@ -23,6 +28,7 @@ const SignUp = () => {
   const navigate = useNavigate()
 
   const { createUserEmailPassword } = UserAuth()
+  const { correct, wrong } = Alerts()
 
   const handleChange = (e) => {
     setUser({
@@ -35,56 +41,98 @@ const SignUp = () => {
   const handleSubmit = async(e) => {
     e.preventDefault()
     setError('')
-    try {
-      await createUserEmailPassword(email, password)
-      dispatch(postUser(user))
-      setUser({
-        admin:false, 
-        username:"", 
-        email:"", 
-        avatar:"", 
-        like:"", 
-        comment_received:"", 
-        comment_send:""
-      })
-      navigate('/')
-    } catch (e) {
-      setError(e.message)
-      console.log(e.message)
+    if(user.username !== ''){
+      try {
+        const userData = await createUserEmailPassword(email, password)
+        user.id = userData.user.uid
+        const usuarito = await dispatch(postUser(user))
+        console.log(usuarito)
+        window.localStorage.setItem('username', user.username)
+        await correct('Registrado')
+        setUser({
+          id:"",
+          admin:false, 
+          username:"", 
+          email:"", 
+          avatar:"", 
+          like:"", 
+          comment_received:"", 
+          comment_send:""
+        })
+        navigate('/')
+      } catch (e) {
+        setError(e.code)
+        if(e.code === 'auth/missing-email'){
+          const text = e.code 
+          wrong(text)
+        }
+        if(e.code === 'auth/invalid-email'){
+          const text = e.code 
+          wrong(text)
+        }
+        if(e.code === 'auth/email-already-in-use'){
+          const text = e.code 
+          wrong(text)
+        }
+        if(e.code === 'auth/internal-error'){//cuando pondo email y no contraseña
+          const text = e.code 
+          wrong(text)
+        }
+        if(e.code === 'auth/weak-password'){
+          const text = e.code 
+          wrong(text)
+        }
+        console.log(e.code)
+      }
+    }   
+    if(user.username === ''){
+      const text = 'ingrese un username' 
+      wrong(text)
     }
   }
 
-  return (
-    <div>
-      {/* 
-        Este comp que no se pueda acceder mientars exista un usuario
-      */}
-      <button onClick={() => navigate('/user')}>Back to Home</button>
-      <form onSubmit={handleSubmit}>
-        <div>
-          {/* <label>Email: </label>
-          <input
-            type= 'email'
-            onChange={(e) => {setEmail(e.target.value)}} 
-          /> */}
-        </div>
-        <div>
-          <label>Password: </label>
-          <input
-            type= 'password'
-            onChange={(e) => {setPassword(e.target.value)}}  
+  let datasuer = window.localStorage.getItem('username')
+  if(!datasuer){
+    return (
+      <div className={s.container}>
+        {/* 
+          Este comp que no se pueda acceder mientars exista un usuario
+        */}
+        <button onClick={() => navigate('/user')}>Back to SignIn</button>
+        <form 
+          className={s.formSignUp}
+          onSubmit={handleSubmit}
+        >
+  
+
+          <label className={s.text}>Email: </label> 
+          <input 
+            onChange={(e) => handleChange(e)} 
+            type="email" 
+            value={user.email} 
+            name="email"
           />
-        </div>
-        <label>Username: </label> 
-        <input onChange={(e) => handleChange(e)} type="text" value={user.username} name="username" />
-        <br />
-        <label>email: </label> 
-        <input onChange={(e) => handleChange(e)} type="email" value={user.email} name="email"/>
-        <br />
-        <button>Sign Up</button>
-      </form>
-    </div>
-  )
+            <label className={s.text}>Password: </label>
+            <input
+              type= 'password'
+              onChange={(e) => {setPassword(e.target.value)}}  
+            />
+
+          <label className={s.text}>Username: </label> 
+            <input 
+              onChange={(e) => handleChange(e)} 
+              type="text" 
+              value={user.username} 
+              name="username" 
+            />
+          <br />
+          <button>Sign Up</button>
+        </form>
+      </div>
+    )
+  } else {
+    navigate('/')
+  }
 }
 
 export default SignUp

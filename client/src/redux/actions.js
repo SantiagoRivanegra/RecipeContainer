@@ -160,6 +160,17 @@ export function postUser(payload){
   }
 }
 
+export function userExists(id){
+  return async function(dispatch){
+    try {
+      let json = await axios.get(`/user/${id}`)
+      return json.data
+    } catch (error) {
+      console.log(error)
+    }
+  }
+}
+
 export function getUserById(id){
   return async function(dispatch){
     let json = await axios.get(`/user/${id}`)
@@ -167,5 +178,22 @@ export function getUserById(id){
       type: 'GET_USER_ID',
       payload: json.data
     })
+  }
+}
+
+export function getUserByUsername(username){
+  return async function(dispatch){
+    let json = await axios.get(`/user/username/${username}`)
+    return dispatch({
+      type: 'GET_USER_LOGGED',
+      payload: json.data
+    })
+  }
+}
+
+export function getUserByEmail(email){
+  return async function(dispatch){
+    let json = await axios.get(`/user/email/${email}`)
+    return json.data
   }
 }

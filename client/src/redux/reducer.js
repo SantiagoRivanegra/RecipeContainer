@@ -8,7 +8,8 @@ const initialState = {
   ingredientList: [],
   tags: [],
   user: [],
-  userId: []
+  userId: [],
+  userLogged: []
 }
 
 function reducer(state = initialState, { type, payload }){
@@ -106,7 +107,13 @@ function reducer(state = initialState, { type, payload }){
       return{
         ...state,
         userId: payload
-      }  
+      }
+      
+    case 'GET_USER_LOGGED':
+      return{
+        ...state,
+        userLogged: payload
+      } 
 
     default: return state
   }

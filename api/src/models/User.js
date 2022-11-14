@@ -3,10 +3,9 @@ const { DataTypes } = require('sequelize');
 module.exports = (sequelize) => {
 
   sequelize.define('User', {
-    id: {
-      type: DataTypes.INTEGER,
-      primaryKey: true,
-      autoIncrement: true,
+    id:{
+      type: DataTypes.STRING,
+      allowNull: false,
     },
     admin: {
       type: DataTypes.BOOLEAN,
@@ -15,6 +14,7 @@ module.exports = (sequelize) => {
     },
     username: {
       type: DataTypes.STRING,
+      primaryKey: true,
       allowNull: false,
     },
     email: {

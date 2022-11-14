@@ -109,7 +109,7 @@ const Post = () => {
     measure19:"",
     measure20:"",
     createdInD:true,
-    userId: 1
+    recipeUsername: 'SantiRiva'
 });
 
 function handleSubmit(e){
