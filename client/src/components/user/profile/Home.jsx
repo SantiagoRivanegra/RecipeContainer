@@ -6,6 +6,7 @@ import { getUser } from '../../../redux/actions'
 const Home = () => {
   const dispatch = useDispatch()
   const allUsers = useSelector((state) => state.user)
+  const loggedUser = useSelector((state) => state.userLogged)
 
   useEffect(() => {
     dispatch(getUser())
