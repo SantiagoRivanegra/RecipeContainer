@@ -23,7 +23,7 @@ const SignIn = () => {
     try {
       await signIn(email, password)
       await correct('Sesion Iniciada')
-      const userDb = await dispatch(getUserByEmail(email.toString()))
+      const userDb = await dispatch(getUserByEmail(email))
       await dispatch(getUserByUsername(userDb[0].username))
       window.localStorage.setItem('username', userDb[0].username)
     } catch (error) {

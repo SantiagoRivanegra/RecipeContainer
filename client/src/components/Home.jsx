@@ -144,7 +144,7 @@ const Home = () => {
         </div>
       </section>
           {user ? (
-            <span className={s.user}>Welcome {datasuer}<button onClick={handleSignOut}>Logout</button></span>
+            <span className={s.user}>Welcome {datasuer || user.displayName}<button onClick={handleSignOut}>Logout</button></span>
           ): <span className={s.user}><button onClick={handleSignIn}>SignIn</button></span>}
 
         <section className={s.section2}>

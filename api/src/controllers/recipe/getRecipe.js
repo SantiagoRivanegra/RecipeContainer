@@ -211,6 +211,22 @@ const getRecipeByIngredient = async(req, res) => {
   }
 }
 
+const getRecipeByUser = async(req, res)=> {
+  const { username } = req.params
+  try {
+    if(username){
+      const recipeUsernameDb = await Recipe.findAll({
+        where: { recipeUsername : username }
+      })
+      recipeUsernameDb ?
+      res.status(200).json(recipeUsernameDb) :
+      "noHayNada"
+    }
+  } catch (error) {
+    console.log(error)
+  }
+}
+
 module.exports = {
   getRecipes,
   getRandomRecipe,
@@ -219,5 +235,6 @@ module.exports = {
   getRecipeByFirstLetter,
   getRecipeByCategory,
   getRecipeByArea,
-  getRecipeByIngredient
+  getRecipeByIngredient,
+  getRecipeByUser
 }
