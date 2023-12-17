@@ -4,7 +4,8 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom' 
 import { useTranslation } from 'react-i18next'
 
-import Swal from 'sweetalert2'
+import { Alerts } from '../../alerts/Alerts'
+
 import { IoClose } from 'react-icons/io5'
 import { FcCheckmark } from 'react-icons/fc'
 
@@ -50,6 +51,7 @@ const Post = () => {
   const categoryList = useSelector((state) => state.categoryList)
   const ingredientList = useSelector((state) => state.ingredientList)
   const tags = useSelector((state) => state.tags)
+  const { correct, wrong } = Alerts()
 
   const [t] = useTranslation('global')
 
@@ -107,25 +109,52 @@ const Post = () => {
     measure19:"",
     measure20:"",
     createdInD:true,
-    userId: 1
+    recipeUsername: 'SantiRiva'
 });
-// if(error.name_recipe) Swal.fire({text: `${t('postError.image')}`, width: '30%'})
+
 function handleSubmit(e){
   e.preventDefault()
-  if(error.image) Swal.fire({text: `${t('postError.image')}`, width: '30%'})
+  if(error.image) 
+    {
+      let text= `${t('postError.image')}`
+      wrong(text)
+    }
   else if(recipe.name_recipe.length < 5 || recipe.name_recipe.length > 30)
-    Swal.fire({text: `${t('postError.nameLength')}`, width: '30%'})
+    {
+      let text = `${t('postError.nameLength')}`
+      wrong(text)
+    }
   else if((!/^[a-zA-ZÀ-ÿ\u00f1\u00d1\s]+$/.test(recipe.name_recipe)))
-    Swal.fire({text: `${t('postError.nameAlphabet')}`, width: '30%'})
-  else if(error.instructions) Swal.fire({text: `${t('postError.instructions')}`, width: '30%'})
-  else if(error.ingredient1) Swal.fire({text: `${t('postError.ing1')}`, width: '30%'})
-  else if(error.measure1) Swal.fire({text: `${t('postError.meas1')}`, width: '30%'})
-  else if(error.ingredient2) Swal.fire({text: `${t('postError.ing2')}`, width: '30%'})
-  else if(error.measure2) Swal.fire({text: `${t('postError.meas2')}`, width: '30%'})
-  else if(error.ingredient3) Swal.fire({text: `${t('postError.ing3')}`, width: '30%'})
-  else if(error.measure3) Swal.fire({text: `${t('postError.meas3')}`, width: '30%'})
-  else if(error.area) Swal.fire({text: `${t('postError.area')}`, width: '30%'})
-  else if(error.category) Swal.fire({text: `${t('postError.category')}`, width: '30%'})
+    {
+      let text = `${t('postError.nameAlphabet')}`
+      wrong(text)
+    }
+  else if(error.instructions) 
+    {
+      let text = `${t('postError.instructions')}`
+      wrong(text)
+    }
+  else if(error.ingredient1 || error.ingredient2 || error.ingredient3) 
+    {
+      let text = `${t('postError.ing1')}` 
+      wrong(text)
+    }
+  
+  else if(error.measure1 || error.measure2 || error.measure3) 
+    {
+      let text= `${t('postError.meas1')}`
+      wrong(text)
+    }
+  else if(error.area) 
+    {
+      let text = `${t('postError.area')}`
+      wrong(text)
+    }
+  else if(error.category) 
+    {
+      let text = `${t('postError.category')}`
+      wrong(text)
+    }
   else{
       dispatch(postRecipe(recipe))
     // if(image.length>0){
@@ -187,10 +216,8 @@ function handleSubmit(e){
         createdInD:true,
         userId: 1
       });
-      Swal.fire({
-        text: `${t('post.created')}`,
-        width: '30%',
-      })
+      let text = `${t('post.created')}`
+      correct(text)
       navigate('/')
     }
   }
@@ -287,13 +314,14 @@ function handleSubmit(e){
           <br />
           <label className={s.redLabel}>* </label><label>{t('post.img')}</label>
           <input onChange={uploadImage} type="file" name="image"/>
-          { error.image ? 
-          <IoClose 
-            data-bs-toggle="tooltip" 
-            data-bs-placement="right" 
-            title={t('postError.image')}
-          /> : 
-          <FcCheckmark/> }
+          { !recipe.image || error.image ? 
+            <IoClose 
+              data-bs-toggle="tooltip" 
+              data-bs-placement="right" 
+              title={t('postError.image')}
+            /> : 
+            <FcCheckmark/> 
+          }
           <br />
           {
           image ? <button onClick={handleDeleteImg} className={s.imgDelete}>{t('post.imgDelete')}</button> : "" 
@@ -305,9 +333,6 @@ function handleSubmit(e){
           <label className={s.redLabel}>* </label><label>{t('post.name')}</label> 
           <input
             maxlength="30" 
-            data-bs-toggle="tooltip" 
-            data-bs-placement="right" 
-            title={t('post.info')}
             onChange={(e) => handleChange(e)} 
             type="text" 
             value={recipe.name_recipe} 
@@ -337,71 +362,78 @@ function handleSubmit(e){
             value={recipe.instructions} 
             name="instructions"
           ></textarea>
-          { error.instructions ? 
-          <IoClose 
-            data-bs-toggle="tooltip" 
-            data-bs-placement="right" 
-            title={t('postError.instructions')}
-          /> : 
-          <FcCheckmark/> }
-          <span>50 - 500</span>
+          { recipe.instructions.length === 0 || error.instructions ? 
+            <IoClose 
+              data-bs-toggle="tooltip" 
+              data-bs-placement="right" 
+              title={t('postError.instructions')}
+            /> : 
+            <FcCheckmark/> 
+          }
+          <span>{recipe.instructions.length} / 500</span>
           <br />
           <label className={s.redLabel}>* </label><label>{t('post.ingredient')}</label> 
           <input maxlength="20" onChange={(e) => handleChange(e)} type="text" value={recipe.ingredient1} name="ingredient1"/>
-          { error.ingredient1 ? 
-          <IoClose 
-            data-bs-toggle="tooltip" 
-            data-bs-placement="right" 
-            title={t('postError.ing1')}
-          /> : 
-          <FcCheckmark/> }
+          { !recipe.ingredient1 || error.ingredient1 ? 
+            <IoClose 
+              data-bs-toggle="tooltip" 
+              data-bs-placement="right" 
+              title={t('postError.ing1')}
+            /> : 
+            <FcCheckmark/> 
+          }
           <label className={s.redLabel}>* </label><label>{t('post.measure')}</label> 
           <input maxlength="10" onChange={(e) => handleChange(e)} type="text" value={recipe.measure1} name="measure1"/>
-          { error.measure1 ? 
-          <IoClose 
-            data-bs-toggle="tooltip" 
-            data-bs-placement="right" 
-            title={t('postError.meas1')}
-          /> : 
-          <FcCheckmark/> }
+          { !recipe.measure1 || error.measure1 ? 
+            <IoClose 
+              data-bs-toggle="tooltip" 
+              data-bs-placement="right" 
+              title={t('postError.meas1')}
+            /> : 
+            <FcCheckmark/> 
+          }
           <br />
           <label className={s.redLabel}>* </label><label>{t('post.ingredient')}</label> 
           <input maxlength="20" onChange={(e) => handleChange(e)} type="text" value={recipe.ingredient2} name="ingredient2"/>
-          { error.ingredient2 ? 
-          <IoClose 
-            data-bs-toggle="tooltip" 
-            data-bs-placement="right" 
-            title={t('postError.ing2')}
-          /> : 
-          <FcCheckmark/> }
+          { !recipe.ingredient2 || error.ingredient2 ? 
+            <IoClose 
+              data-bs-toggle="tooltip" 
+              data-bs-placement="right" 
+              title={t('postError.ing2')}
+            /> : 
+            <FcCheckmark/> 
+          }
           <label className={s.redLabel}>* </label><label>{t('post.measure')}</label> 
           <input maxlength="10"onChange={(e) => handleChange(e)} type="text" value={recipe.measure2} name="measure2"/>
-          { error.measure2 ? 
-          <IoClose 
-            data-bs-toggle="tooltip" 
-            data-bs-placement="right" 
-            title={t('postError.meas2')}
-          /> : 
-          <FcCheckmark/> }
+          { !recipe.measure2 || error.measure2 ? 
+            <IoClose 
+              data-bs-toggle="tooltip" 
+              data-bs-placement="right" 
+              title={t('postError.meas2')}
+            /> : 
+            <FcCheckmark/> 
+          }
           <br />
           <label className={s.redLabel}>* </label><label>{t('post.ingredient')}</label> 
           <input maxlength="20" onChange={(e) => handleChange(e)} type="text" value={recipe.ingredient3} name="ingredient3"/>
-          { error.ingredient3 ? 
-          <IoClose 
-            data-bs-toggle="tooltip" 
-            data-bs-placement="right" 
-            title={t('postError.ing3')}
-          /> : 
-          <FcCheckmark/> }
+          { !recipe.ingredient3 || error.ingredient3 ? 
+            <IoClose 
+              data-bs-toggle="tooltip" 
+              data-bs-placement="right" 
+              title={t('postError.ing3')}
+            /> : 
+            <FcCheckmark/> 
+          }
           <label className={s.redLabel}>* </label><label>{t('post.measure')}</label> 
           <input maxlength="10"onChange={(e) => handleChange(e)} type="text" value={recipe.measure3} name="measure3"/>
-          { error.measure3 ? 
-          <IoClose 
-            data-bs-toggle="tooltip" 
-            data-bs-placement="right" 
-            title={t('postError.meas3')}
-          /> : 
-          <FcCheckmark/> }
+          { !recipe.measure3 || error.measure3 ? 
+            <IoClose 
+              data-bs-toggle="tooltip" 
+              data-bs-placement="right" 
+              title={t('postError.meas3')}
+            /> : 
+            <FcCheckmark/> 
+          }
           <br />
           <button
             className={s.info}
@@ -440,13 +472,14 @@ function handleSubmit(e){
               })
             }
           </select>
-          { error.area ? 
-          <IoClose 
-            data-bs-toggle="tooltip" 
-            data-bs-placement="right" 
-            title={t('postError.area')}
-          /> : 
-          <FcCheckmark/> }
+          { !recipe.area || error.area ? 
+            <IoClose 
+              data-bs-toggle="tooltip" 
+              data-bs-placement="right" 
+              title={t('postError.area')}
+            /> : 
+            <FcCheckmark/> 
+          }
           <br />
           <label className={s.redLabel}>* </label><label>{t('post.category')}</label> 
           <select onChange={(e) => handleChangeCategory(e)}>
@@ -463,13 +496,14 @@ function handleSubmit(e){
               })
             }
           </select>
-          { error.category ? 
-          <IoClose 
-            data-bs-toggle="tooltip" 
-            data-bs-placement="right" 
-            title={t('postError.category')}
-          /> : 
-          <FcCheckmark/> }
+          { !recipe.category || error.category ? 
+            <IoClose 
+              data-bs-toggle="tooltip" 
+              data-bs-placement="right" 
+              title={t('postError.category')}
+            /> : 
+            <FcCheckmark/> 
+          }
           <br />
           <br />
           <br />

@@ -1,0 +1,16 @@
+.search input{
+  background-color: #F4E2D8;
+  border-radius: 10px;
+}
+.search input::placeholder{
+  color: rgb(93, 93, 93);
+  font-weight: bold;
+  cursor: text;
+}
+.search button{
+  background-color: rgb(175, 109, 66);
+  border-radius: 10px;
+  font-weight: bold;
+  color: black;
+  cursor: pointer;
+}

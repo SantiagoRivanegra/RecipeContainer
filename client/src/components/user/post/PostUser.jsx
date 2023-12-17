@@ -1,57 +1,72 @@
-import React, { useState } from 'react'
+import React, { useEffect } from 'react'
 import { useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 
-import { postUser } from '../../../redux/actions'
+import { GoogleButton } from 'react-google-button'
+import { UserAuth } from '../../firebase/context/AuthContext'
+import { Alerts } from '../../alerts/Alerts'
+
+import { postUser, getUserByUsername, userExists } from '../../../redux/actions'
+
+import SignIn from './SignIn'
+
+import s from './PostUser.module.css'
 
 const PostUser = () => {
-  const dispatch = useDispatch()
   const navigate = useNavigate()
-  const [user, setUser] = useState({
-    admin:false, 
-    username:"", 
-    email:"", 
-    avatar:"", 
-    like:"", 
-    comment_received:"", 
-    comment_send:""
-  })
 
-  const handleSubmit = (e) => {
-    e.preventDefault()
-    dispatch(postUser(user))
-    setUser({
-      admin:false, 
-      username:"", 
-      email:"", 
-      avatar:"", 
-      like:"", 
-      comment_received:"", 
-      comment_send:""
-    })
-    navigate('/')
+  const dispatch = useDispatch()
+  const {googleSignIn} = UserAuth()
+  const { user } = UserAuth()
+  const { correct } = Alerts()
+
+  const handleGoogleSignIn = async () => {
+    try {
+      let data = await googleSignIn()
+      let res = await dispatch(userExists(data.uid))
+      await dispatch(getUserByUsername(data.displayName))
+      if(res.length === 0) {
+        await dispatch(postUser({
+          admin:false, 
+          id:data.uid,
+          username:data.displayName,
+          email:data.email,
+          avatar:data.photoURL,
+          like:"", 
+          comment_received:"", 
+          comment_send:""
+        }))
+        dispatch(getUserByUsername(data.displayName))
+      }
+      await correct('Sesion Iniciada')
+      window.localStorage.setItem('username', data.displayName)
+      navigate('/')
+    } catch (error) {
+      console.log(error)
+    }
   }
 
-  const handleChange = (e) => {
-    setUser({
-      ...user,
-      [e.target.name] : e.target.value
-    })
-  }
+  useEffect(() => {
+    if(user !== null){
+      navigate('/')
+    }
+  }, [user])
 
   return (
-    <div>
+    <div className={s.container}>
         <button onClick={() => navigate('/')}>Back to Home</button>
-        <form onSubmit={(e) => handleSubmit(e)}>
-          <label>Username: </label> 
-          <input onChange={(e) => handleChange(e)} type="text" value={user.username} name="username" />
-          <br />
-          <label>email: </label> 
-          <input onChange={(e) => handleChange(e)} type="email" value={user.email} name="email"/>
-          <br />
-          <br />
-          <button type="submit">Create Recipe</button>
-        </form>
+        <span className={s.text}>Ya tienes una cuenta? Sign In</span>
+        <GoogleButton 
+          onClick={handleGoogleSignIn} 
+        />
+        <span className={s.text}>Or</span>
+        <br />
+        <SignIn />
+        <br />
+        <span className={s.text}>Todavia no tienes una cuenta?<a href="/user/signup">Sign Up</a></span> 
+        <br />
+{/*<Facebook />*/}
+{/*<ForgotPassword />*/}
     </div>
   )
 }
