@@ -32,7 +32,9 @@
     "info": "Bientôt, vous pourrez entrer plus d'ingrédients",
     "tag": "Étiquette: ",
     "area": "Zone: ",
-    "category": "Catégorie: "
+    "category": "Catégorie: ",
+    "other": "Autre",
+    "create": "Créer Recette"
   },
   "postError":{
     "image":"Erreur lors du téléchargement de l'image, sélectionnez-en une autre ou entrez à nouveau dans cette section",

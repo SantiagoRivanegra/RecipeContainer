@@ -32,7 +32,9 @@
     "info": "Soon you will be able to enter more ingredients",
     "tag": "Tags: ",
     "area": "Area: ",
-    "category": "Category: "
+    "category": "Category: ",
+    "other": "Other",
+    "create": "Create Recipe"
   },
   "postError":{
     "image":"Error loading the image, select another one or enter this section again",
