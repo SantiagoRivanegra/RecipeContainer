@@ -460,7 +460,7 @@ function handleSubmit(e){
           <label className={s.redLabel}>* </label><label>{t('post.area')}</label> 
           <select onChange={(e) => handleChangeArea(e)}>
           <option hidden selected>----</option>
-          <option key='other' value='other'>other</option>
+          <option key='other' value='other'>{t('post.other')}</option>
             {
               areaList.sort((a, b) => a.name_area.localeCompare(b.name_area))
               .map(area => {
@@ -484,7 +484,7 @@ function handleSubmit(e){
           <label className={s.redLabel}>* </label><label>{t('post.category')}</label> 
           <select onChange={(e) => handleChangeCategory(e)}>
           <option hidden selected>----</option>
-          <option key='other' value='other'>other</option>
+          <option key='other' value='other'>{t('post.other')}</option>
             {
               categoryList.sort((a, b) => a.name_category.localeCompare(b.name_area))
               .map(category => {
@@ -520,8 +520,8 @@ function handleSubmit(e){
             !recipe.measure3 ||
             !recipe.area ||
             !recipe.category ?
-            <button type="submit" disabled>Create Recipe</button>:
-            <button type="submit">Create Recipe</button>
+            <button type="submit" disabled>{t('post.create')}</button>:
+            <button type="submit">{t('post.create')}</button>
 
           }
         </form>

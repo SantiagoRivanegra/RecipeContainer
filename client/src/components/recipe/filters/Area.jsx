@@ -33,7 +33,7 @@ const Area = ({setCurrentPage, refresh}) => {
   <>
     <select onChange={(e) => handleArea(e)} className={s.select}>
       <option value="">{t('home.area')}</option>
-      <option key='other' value='other'>other</option>
+      <option key='other' value='other'>{t('home.other')}</option>
       {
         areaList ? areaList.map(area => {
           return(

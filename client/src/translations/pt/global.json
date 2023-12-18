@@ -14,6 +14,7 @@
     "area": "Area",
     "category": "Categoria",
     "ingredient": "Ingredientes",
+    "other": "Outra",
     "contact": "Contato",
     "language": "Mudar Idioma"
   },
@@ -32,7 +33,9 @@
     "info": "Em breve você poderá inserir mais ingredientes",
     "tag": "Etiqueta: ",
     "area": "Area: ",
-    "category": "Categoria: "
+    "category": "Categoria: ",
+    "other": "Outra",
+    "create": "Criar Receita"
   },
   "postError":{
     "image":"Erro ao carregar a imagem, selecione outra ou entre nesta seção novamente",
