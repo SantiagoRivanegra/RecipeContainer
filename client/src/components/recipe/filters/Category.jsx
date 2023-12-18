@@ -33,7 +33,7 @@ const Category = ({setCurrentPage, refresh}) => {
     <>
       <select onChange={(e) => handleCategory(e)} className={s.select}>
         <option value="">{t('home.category')}</option>
-        <option key='other' value='other'>other</option>
+        <option key='other' value='other'>{t('home.other')}</option>
         {
           categoryList ? categoryList.map(category => {
             return(
